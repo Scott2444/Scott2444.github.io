@@ -50,9 +50,18 @@ export function NavBar() {
               </Link>
             </li>
             <li className="ml-2 mr-0 md:mr-20">
-              <Link href="#contact" className="px-5 py-2.5 block font-semibold bg-neutral-300 rounded-xl transition-all duration-500 hover:bg-neutral-400">
+              <button 
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent default action
+                  document.getElementById('contact')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
+                className="px-5 py-2.5 block font-semibold bg-neutral-300 rounded-xl transition-all duration-500 hover:bg-neutral-400 w-full text-left"
+                style={{cursor: 'pointer'}}
+              >
                 <h4 className="text-base md:text-lg font-medium">Contact</h4>
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
@@ -90,13 +99,18 @@ export function NavBar() {
               </Link>
             </li>
             <li className="pt-2">
-              <Link 
-                href="#contact" 
-                className="block px-4 py-2 bg-neutral-300 rounded-lg transition-all duration-500 hover:bg-neutral-400 text-center"
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent default action
+                  document.getElementById('contact')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                  setIsMenuOpen(false);
+                }}
+                className="block w-full px-4 py-2 bg-neutral-300 rounded-lg transition-all duration-500 hover:bg-neutral-400 text-center"
               >
                 <h4 className="text-base font-medium">Contact</h4>
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
@@ -427,6 +441,7 @@ export function ContactMe() {
               }}
               className="inline-flex flex-col items-center hover:opacity-80 transition-opacity"
               aria-label="Scroll to top"
+              style={{cursor: 'pointer'}}
             >
               <svg 
                 className="w-14 h-14 border border-white rounded-full p-2 mb-2" 
