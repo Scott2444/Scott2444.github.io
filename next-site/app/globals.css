@@ -45,3 +45,7 @@ body {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
