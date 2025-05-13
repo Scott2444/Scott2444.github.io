@@ -106,7 +106,7 @@ export function NavBar() {
 
 export function HeroSection() {
   return (
-    <section className="w-full bg-sky-100">
+    <section className="w-full bg-sky-100 relative">
       {/* Mobile layout: image with overlay text */}
       <div className="md:hidden relative">
         {/* Image with gradient overlay */}
@@ -167,6 +167,25 @@ export function HeroSection() {
             priority
           />
         </div>
+      </div>
+
+      {/* Get to know me - (desktop only) */}
+      <div className="hidden md:flex flex-col items-center absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="text-gray-700 mb-2 font-medium">Get to know me</div>
+        <svg 
+          className="w-6 h-6 text-gray-700" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
       </div>
     </section>
   );
