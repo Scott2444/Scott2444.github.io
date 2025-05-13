@@ -1,0 +1,45 @@
+{
+    "About Me": {},
+    "Experience": {
+        "Professional": [
+            {
+                "Company": "Michigan State University, CSE 331", 
+                "Position": "Undergraduate Learning Assistant", 
+                "Description": "CSE 331 is the Data Structures and Algorithms Course at MSU taught by Professor Sebnam Onsay.", 
+                "Location": "East Lansing, MI", 
+                "Start Date": "January 2024",
+                "End Date": "May 2025",
+                "Responsibilities": [
+                    "Developed a project focused on Deques with a robust test suite for automated grading in Python",
+                    "Evaluated 17 students’ projects for time and space complexity, correctness, and adherence to best practices",
+                    "Hosted 1:1 help rooms to support students with conceptual questions and project related coding issues"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/ULA.JPG", "alt": "ULA Gathering"},
+                    {"type": "video", "src": "https://www.youtube.com/watch?v=Qc2PFExZXas", "alt": "ULA Video"}
+                ]
+            },
+            {
+                "Company": "Schaeffler Group North America", 
+                "Position": "Prototype Software Development Co-op", 
+                "Description": "Schaeffler Group is a German-based automotive supplier with 120,000 employees worldwide.", 
+                "Location": "Troy, Michigan", 
+                "Start Date": "August 2024",
+                "End Date": "December 2024",
+                "Responsibilities": [
+                    "Developed a physics-based plant model to characterize the active ride height suspension in Simulink",
+                    "Authored a rigorous test suite for ride height control software, with 26% of test cases identifying failures",
+                    "Augmented an embedded chip to convert CAN communication to Serial communication in C++"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Schaeffler.jpg", "alt": "Schaeffler Office"}
+                ]
+            }
+        ],
+        "Personal": [],
+        "Skills": []
+    },
+    "Education": {
+
+    }
+}
