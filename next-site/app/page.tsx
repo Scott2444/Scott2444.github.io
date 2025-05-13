@@ -252,7 +252,7 @@ export function AboutMe() {
   }, []);
   
   return (
-    <section className="w-full bg-[#2C2E3A] py-12 md:py-16 text-white">
+    <section className="w-full bg-gray-800 py-12 md:py-16 text-white">
       <div className="container mx-auto px-2 md:px-16">
         <h2 className="text-3xl md:text-4xl font-medium text-center mb-6">
           About Me
@@ -335,12 +335,129 @@ export function AboutMe() {
   );
 }
 
+export function ContactMe() {
+  return (
+    <section className="w-full bg-[#141619] pt-16 pb-8 md:pb-16 text-white" id="contact">
+      <div className="container mx-auto px-6 md:px-16">
+        <div className="md:flex md:justify-between">
+          {/* Content area */}
+          <div className="md:w-2/3 mb-10 md:mb-0">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Contact Me
+            </h1>
+            <h4 className="text-base md:text-xl font-normal mb-8 leading-relaxed max-w-xl">
+              I'm interested in hearing from you about job opportunities, social media connections, or simply for a conversation.
+            </h4>
+            
+            {/* Social media icons */}
+            <div className="flex space-x-6 md:space-x-8 mb-8">
+              <a 
+                href="https://www.linkedin.com/in/scott-haakenson-84295724b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="LinkedIn"
+              >
+                <Image 
+                  src="/images/LinkedIn.svg" 
+                  alt="LinkedIn" 
+                  width={40} 
+                  height={40}
+                  className="w-8 h-8 md:w-14 md:h-14"
+                />
+              </a>
+              <a 
+                href="mailto:scotty.haakenson@gmail.com"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Email"
+              >
+                <Image 
+                  src="/images/Gmail.svg" 
+                  alt="Gmail" 
+                  width={40} 
+                  height={40}
+                  className="w-8 h-8 md:w-14 md:h-14"
+                />
+              </a>
+              <a 
+                href="https://github.com/Scott2444"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="GitHub"
+              >
+                <Image 
+                  src="/images/Github.svg" 
+                  alt="Github" 
+                  width={40} 
+                  height={40}
+                  className="w-8 h-8 md:w-14 md:h-14"
+                />
+              </a>
+              <a 
+                href="https://www.instagram.com/scott.haakenson/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Instagram"
+              >
+                <Image 
+                  src="/images/Instagram.svg" 
+                  alt="Instagram" 
+                  width={40} 
+                  height={40}
+                  className="w-8 h-8 md:w-14 md:h-14"
+                />
+              </a>
+            </div>
+            
+            <h6 className="text-xs font-light italic opacity-70">
+              © {new Date().getFullYear()} Scott Haakenson
+            </h6>
+          </div>
+          
+          {/* Back to top button */}
+          <div className="hidden md:flex md:self-center text-right">
+            <button 
+              onClick={() => {
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              }}
+              className="inline-flex flex-col items-center hover:opacity-80 transition-opacity"
+              aria-label="Scroll to top"
+            >
+              <svg 
+                className="w-14 h-14 border border-white rounded-full p-2 mb-2" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={1.5} 
+                  d="M5 10l7-7m0 0l7 7m-7-7v18" 
+                />
+              </svg>
+              <h5 className="text-base font-light">Back to Top</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <>
       <NavBar />
       <HeroSection />
       <AboutMe />
+      <ContactMe />
     </>
   );
 }
