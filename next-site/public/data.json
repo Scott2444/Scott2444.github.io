@@ -109,6 +109,32 @@
         ],
         "Personal": [
             {
+                "Position": "Personal Portfolio Website", 
+                "Location": "Novi, MI", 
+                "Start Date": "June 2024",
+                "End Date": "May 2025",
+                "Accomplishments": [
+                    "Built a static website using Next.js, TypeScript, and Tailwind CSS to showcase my projects and skills",
+                    "Implemented a responsive design to enable both desktop and mobile accessibility",
+                    "Designed website in Figma"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://www.scott-haakenson.com/", "alt": "Website"},
+                    {"type": "link", "src": "https://github.com/Scott2444/Scott2444.github.io", "alt": "Github Repo"}
+                ],
+                "Skills": [
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "TypeScript",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "Git",
+                    "Figma"
+                ],
+                "Color": "#2C2E3A"
+            },
+            {
                 "Position": "QuizMe for Amazon Echo, SpartaHack 10", 
                 "Location": "East Lansing, MI", 
                 "Start Date": "February 2025",
@@ -121,7 +147,10 @@
                 "Additional Content": [
                     {"type": "image", "src": "/images/SpartaX_Group.JPG", "alt": "Group Photo"},
                     {"type": "image", "src": "/images/SpartaX_Interactive.jpeg", "alt": "Winner of Interactive Track"},
-                    {"type": "image", "src": "/images/SpartaX_YouLearn.jpeg", "alt": "Winner of Best AI Learning Tool"}
+                    {"type": "image", "src": "/images/SpartaX_YouLearn.jpeg", "alt": "Winner of Best AI Learning Tool"},
+                    {"type": "link", "src": "https://devpost.com/software/quizme-for-amazon-echo?ref_content=my-projects-tab&ref_feature=my_projects", "alt": "Devpost"},
+                    {"type": "link", "src": "https://github.com/Scott2444/SpartahackX", "alt": "Amazon Skill Github Repo"},
+                    {"type": "link", "src": "https://github.com/maxgorm/quiz-me", "alt": "Website Github Repo"}
                 ],
                 "Skills": [
                     "Python", 
@@ -129,7 +158,96 @@
                     "Machine Learning", 
                     "AWS Lambda"
                 ],
-                "Color": "#17453C"
+                "Color": "#3B75F3",
+                "Awards": [
+                    "[Interactive Media] Winner of the Track",
+                    "[YouLearn] The Best AI Learning tool for students and learners"
+                ]
+            },
+            {
+                "Position": "PDF Extract", 
+                "Location": "East Lansing, MI", 
+                "Start Date": "February 2025",
+                "Accomplishments": [
+                    "Built a full-stack web application to process and extract text and bounding boxes from PDFs, supporting both searchable and OCR-based documents",
+                    "Developed a FastAPI-based REST backend in Python to extract and return structured text-bounding box data from PDF URLs, with support for files up to 2,000 pages and 50MB",
+                    "Implemented OCR fallback for non-searchable PDFs and optimized processing to 1 second per 1000 pages",
+                    "Created a responsive frontend using Next.js, TypeScript, and Tailwind CSS that visualizes bounding boxes and transcripts with synchronized zoom and highlight interactions"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://pdf-extract-dusky.vercel.app/", "alt": "Deployment"},
+                    {"type": "link", "src": "https://github.com/Scott2444/PDF-Viewer", "alt": "Github Repo"}
+                ],
+                "Skills": [
+                    "Python", 
+                    "TypeScript",
+                    "Docker", 
+                    "Next.js", 
+                    "Vercel",
+                    "Tailwind CSS"
+                ]
+            },
+            {
+                "Position": "FitConnect, MHacks 2024", 
+                "Location": "Ann Arbor, MI", 
+                "Start Date": "September 2024",
+                "Accomplishments": [
+                    "Developed FitConnect, an iOS app built with SwiftUI and Firebase to help users find gym partners, share fitness goals, and track personal records in a social, supportive environment",
+                    "Engineered real-time data synchronization and user session storage using Firestore NoSQL database, integrating Firebase's Swift SDK for seamless backend communication",
+                    "Overcame integration issues with MongoDB Atlas and successfully migrated to Google Firebase, rebuilding the backend infrastructure under tight time constraints",
+                    "Gained first-hand experience with Swift, Xcode, and NoSQL databases, while designing a responsive UI and learning best practices for cloud-based app development"
+                ],
+                "Additional Content": [
+                    {"type": "video", "src": "https://www.youtube.com/watch?v=w3yO3yhb55E", "alt": "Demo Video"},
+                    {"type": "link", "src": "https://github.com/Scott2444/MHacks2024", "alt": "Github Repo"},
+                    {"type": "link", "src": "https://devpost.com/software/fitconnect-5164jc", "alt": "Devpost"}
+                ],
+                "Skills": [
+                    "Swift", 
+                    "Google Firebase",
+                    "MongoDB Atlas", 
+                    "NoSQL"
+                ],
+                "Color": "#FFAF2F"
+            },
+            {
+                "Position": "CongressForecast, Spartahack 9", 
+                "Location": "East Lansing, MI", 
+                "Start Date": "January 2024",
+                "Accomplishments": [
+                    "Competed in the Spartahack 9 hack-a-thon and developed a machine learning algorithm to determine U.S. Congressional Election results based off data provided by the U.S. Census Bureau",
+                    "Leveraged TensorFlow’s deep learning capabilities to build a custom neural network for the prediction model",
+                    "Achieved 8.5% average error in predicting election outcomes within U.S. demographics and socioeconomic constraints"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://github.com/Scott2444/Spartahack_9", "alt": "Github Repo"}
+                ],
+                "Skills": [
+                    "Python", 
+                    "Machine Learning",
+                    "TensorFlow"
+                ]
+            },
+            {
+                "Position": "Ascent Videogame", 
+                "Location": "Novi, MI", 
+                "Start Date": "September 2021",
+                "End Date": "June 2022",
+                "Description": "Ascent is a 3D, online, multiplayer videogame created apart of the Novi High School Incubator Class. It was a collaborative effort of 2 other students.",
+                "Accomplishments": [
+                    "Led a project apart of the high school's incubator class to create a 3D multiplayer game directed at all audiences",
+                    "Utilized C# programming, Blender modeling, the Unity game engine, and Autodesk Fusion 360",
+                    "Engineered the foundational framework for a 3D multiplayer game, encompassing the development of a map, multiple character models, multiplayer server capabilities, and functional game mechanics within the designated project timeline"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Ascent_Map.png", "alt": "Ascent Main Map Render"},
+                    {"type": "image", "src": "/images/Ascent_Menu.png", "alt": "Ascent Game Menu"}
+                ],
+                "Skills": [
+                    "C#", 
+                    "Blender",
+                    "Unity"
+                ]
             }
         ],
         "Skills": {
@@ -210,6 +328,13 @@
                     "Description": "MATLAB is a high-level programming environment used for numerical computation, data analysis, algorithm development, and visualization, widely adopted in engineering and scientific research.",
                     "Expertise": 2, 
                     "Logo": "/images/skills/Matlab.svg"
+                },
+                {
+                    "Title": "Swift", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "Swift is a programming language developed by Apple designed for safer, and more expressive software development on Apple platforms like iOS, macOS, and more.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Swift.svg"
                 }
             ],
             "Proficiencies": [

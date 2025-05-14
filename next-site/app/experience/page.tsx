@@ -27,6 +27,7 @@ interface Experience {
   Skills?: string[];
   Banner?: string;
   Color?: string;
+  Awards?: string[];
 }
 
 interface Skill {
@@ -389,7 +390,10 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   ) || [];
 
   return (
-    <div className={`bg-white shadow-lg rounded-lg overflow-hidden mb-8 border border-gray-200 hover:shadow-xl transition-all duration-300 ${experience.Color ? `border-l-4` : ''}`} style={{ borderLeftColor: experience.Color || 'transparent' }}>
+    <div 
+      className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 border border-gray-200 hover:shadow-xl transition-all duration-300 border-l-4" 
+      style={{ borderLeftColor: experience.Color || '#374151' }}
+    >
       {/* Banner Image with Gradient Overlay */}
       {experience.Banner && (
         <div className="relative h-48 w-full overflow-hidden">
@@ -431,6 +435,17 @@ function ExperienceCard({ experience }: { experience: Experience }) {
         </div>
         
         <p className="text-gray-600 mb-4">{experience.Description}</p>
+
+        {experience.Awards && experience.Awards.length > 0 && (
+          <div className="mb-6">
+            <h5 className="text-gray-800 font-medium mb-2">Awards</h5>
+            <ul className="list-disc pl-5 text-gray-600 space-y-1">
+              {experience.Awards.map((award, i) => (
+                <li key={i}>{award}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         
         {experience.Accomplishments && experience.Accomplishments.length > 0 && (
           <div className="mb-6">
