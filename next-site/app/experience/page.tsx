@@ -37,6 +37,208 @@ interface Skill {
     Logo: string;
 }
 
+export function SidebarNav({activeSection}: SidebarNavProps ) {
+  const [expandedSections, setExpandedSections] = useState({
+    professional: false,
+    personal: false,
+    skills: false
+  });
+
+  // Toggle section expansion
+  const toggleSection = (section: 'professional' | 'personal' | 'skills') => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  // Create a URL-friendly ID from a title
+  const createSectionId = (title: string) => {
+    return title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  };
+
+  return (
+    <div className="hidden lg:block w-64 pr-6 border-r border-gray-200">
+      <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">
+        <h3 className="text-lg font-semibold mb-6 text-gray-700">Experience</h3>
+        <nav>
+          <ul className="space-y-3">
+            <li>
+              <a 
+                href="#overview" 
+                className={`block py-2 px-3 rounded-lg transition-colors ${
+                  activeSection === "overview" 
+                    ? "bg-blue-100 text-blue-700 font-medium" 
+                    : "text-gray-700 hover:bg-blue-50"
+                }`}
+              >
+                Overview
+              </a>
+            </li>
+            
+            {/* Professional Experience with dropdown */}
+            <li>
+              <div className="flex justify-between items-center">
+                <a 
+                  href="#professional" 
+                  className={`py-2 px-3 rounded-lg transition-colors flex-grow ${
+                    activeSection === "professional" 
+                      ? "bg-blue-100 text-blue-700 font-medium" 
+                      : "text-gray-700 hover:bg-blue-50"
+                  }`}
+                >
+                  Professional Experience
+                </a>
+                <button 
+                  onClick={() => toggleSection('professional')}
+                  className="p-1.5 ml-1 text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md"
+                  aria-label={expandedSections.professional ? 'Collapse professional experience' : 'Expand professional experience'}
+                >
+                  {expandedSections.professional ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  )}
+                </button>
+              </div>
+              
+              {/* Professional Experience Subsections */}
+              {expandedSections.professional && (
+                <ul className="mt-1 ml-4 border-l-2 border-gray-100 pl-3 space-y-1">
+                  {(data.Experience.Professional as Experience[]).map((exp, index) => (
+                    <li key={index}>
+                      <a 
+                        href={`#${createSectionId(exp.Position)}`}
+                        className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                      >
+                        {exp.Position}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+            
+            {/* Personal Experience with dropdown */}
+            <li>
+              <div className="flex justify-between items-center">
+                <a 
+                  href="#personal" 
+                  className={`py-2 px-3 rounded-lg transition-colors flex-grow ${
+                    activeSection === "personal" 
+                      ? "bg-blue-100 text-blue-700 font-medium" 
+                      : "text-gray-700 hover:bg-blue-50"
+                  }`}
+                >
+                  Personal Experience
+                </a>
+                <button 
+                  onClick={() => toggleSection('personal')}
+                  className="p-1.5 ml-1 text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md"
+                  aria-label={expandedSections.personal ? 'Collapse personal experience' : 'Expand personal experience'}
+                >
+                  {expandedSections.personal ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  )}
+                </button>
+              </div>
+              
+              {/* Personal Experience Subsections */}
+              {expandedSections.personal && (
+                <ul className="mt-1 ml-4 border-l-2 border-gray-100 pl-3 space-y-1">
+                  {(data.Experience.Personal as Experience[]).map((exp, index) => (
+                    <li key={index}>
+                      <a 
+                        href={`#${createSectionId(exp.Position)}`}
+                        className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                      >
+                        {exp.Position}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+            
+            {/* Skills with dropdown */}
+            <li>
+              <div className="flex justify-between items-center">
+                <a 
+                  href="#skills" 
+                  className={`py-2 px-3 rounded-lg transition-colors flex-grow ${
+                    activeSection === "skills" 
+                      ? "bg-blue-100 text-blue-700 font-medium" 
+                      : "text-gray-700 hover:bg-blue-50"
+                  }`}
+                >
+                  Skills
+                </a>
+                <button 
+                  onClick={() => toggleSection('skills')}
+                  className="p-1.5 ml-1 text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md"
+                  aria-label={expandedSections.skills ? 'Collapse skills' : 'Expand skills'}
+                >
+                  {expandedSections.skills ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  )}
+                </button>
+              </div>
+              
+              {/* Skills Subsections */}
+              {expandedSections.skills && (
+                <ul className="mt-1 ml-4 border-l-2 border-gray-100 pl-3 space-y-1">
+                  <li>
+                    <a 
+                      href="#programming-languages"
+                      className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                    >
+                      Programming Languages
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="#technical-proficiencies"
+                      className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                    >
+                      Technical Proficiencies
+                    </a>
+                  </li>
+                </ul>
+              )}
+            </li>
+          </ul>
+        </nav>
+        
+        <div className="mt-10 border-t pt-6 border-gray-200">
+          <a 
+            href="College Resume - Third Year.pdf" 
+            download
+            className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300"
+          >
+            Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function VideoComponent({ src, alt }: { src: string; alt: string }) {
   // Check if the source is a YouTube URL
   const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
@@ -321,78 +523,6 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   );
 }
 
-export function SidebarNav({activeSection}: SidebarNavProps ) {
-  return (
-    <div className="hidden lg:block w-64 pr-6 border-r border-gray-200">
-      <div className="sticky top-24">
-        <h3 className="text-lg font-semibold mb-6 text-gray-700">Experience</h3>
-        <nav>
-          <ul className="space-y-3">
-            <li>
-              <a 
-                href="#overview" 
-                className={`block py-2 px-3 rounded-lg transition-colors ${
-                  activeSection === "overview" 
-                    ? "bg-blue-100 text-blue-700 font-medium" 
-                    : "text-gray-700 hover:bg-blue-50"
-                }`}
-              >
-                Overview
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#professional" 
-                className={`block py-2 px-3 rounded-lg transition-colors ${
-                  activeSection === "professional" 
-                    ? "bg-blue-100 text-blue-700 font-medium" 
-                    : "text-gray-700 hover:bg-blue-50"
-                }`}
-              >
-                Professional Experience
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#personal" 
-                className={`block py-2 px-3 rounded-lg transition-colors ${
-                  activeSection === "personal" 
-                    ? "bg-blue-100 text-blue-700 font-medium" 
-                    : "text-gray-700 hover:bg-blue-50"
-                }`}
-              >
-                Personal Experience
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#skills" 
-                className={`block py-2 px-3 rounded-lg transition-colors ${
-                  activeSection === "skills" 
-                    ? "bg-blue-100 text-blue-700 font-medium" 
-                    : "text-gray-700 hover:bg-blue-50"
-                }`}
-              >
-                Skills
-              </a>
-            </li>
-          </ul>
-        </nav>
-        
-        <div className="mt-10 border-t pt-6 border-gray-200">
-          <a 
-            href="College Resume - Third Year.pdf" 
-            download
-            className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300"
-          >
-            Download Resume
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function SkillCard({ skill }: { skill: Skill }) {
     const [imageError, setImageError] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -443,6 +573,10 @@ function SkillCard({ skill }: { skill: Skill }) {
 }
 
 export function ExperienceContent({activeSection}: SidebarNavProps ) {
+    const createSectionId = (position: string | undefined) => {
+        if (!position) return '';
+        return position.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    };
   return (
     <div className="flex-1 pl-6 relative">
       {/* Content with relative positioning to appear above the gradient */}
@@ -519,7 +653,9 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         <section id="professional" className="py-10 scroll-mt-20">
             <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-amber-300 to-amber-500 inline-block rounded-lg shadow-sm text-white">Professional Experience</h2>
             {(data.Experience.Professional as Experience[]).map((exp, index) => (
-                <ExperienceCard key={index} experience={exp} />
+                <div key={index} id={createSectionId(exp.Position)} className="scroll-mt-24">
+                    <ExperienceCard experience={exp} />
+                </div>
             ))}
             <hr className="border-t-2 border-gray-200" />
         </section>
@@ -528,9 +664,11 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         <section id="personal" className="py-10 scroll-mt-20">
             <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-rose-300 to-rose-500 inline-block rounded-lg shadow-sm text-white">Personal Experience</h2>
             {(data.Experience.Personal as Experience[]).map((exp, index) => (
-                <ExperienceCard key={index} experience={exp} />
+                <div key={index} id={createSectionId(exp.Position)} className="scroll-mt-24">
+                    <ExperienceCard experience={exp} />
+                </div>
             ))}
-          <hr className="border-t-2 border-gray-200" />
+            <hr className="border-t-2 border-gray-200" />
         </section>
         
         {/* Skills Section */}
@@ -538,7 +676,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-indigo-300 to-indigo-500 inline-block rounded-lg shadow-sm text-white">Skills</h2>
             
             {/* Programming Languages Section */}
-            <div className="mb-8">
+            <div id="programming-languages" className="mb-8 scroll-mt-24">
                 <h3 className="text-xl font-semibold mb-5 text-gray-800">Programming Languages</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
                 {data.Experience.Skills?.Languages?.map((skill, index) => (
@@ -548,7 +686,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             </div>
             
             {/* Technical Proficiencies Section */}
-            <div>
+            <div id="technical-proficiencies" className="scroll-mt-24">
                 <h3 className="text-xl font-semibold mb-5 text-gray-800">Technical Proficiencies</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {data.Experience.Skills?.Proficiencies?.map((skill, index) => (
