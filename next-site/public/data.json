@@ -140,6 +140,76 @@
                     "Description": "Python is high-level, general-purpose programming language known for it’s readability, ease of use, and wide range of libraries.",
                     "Expertise": 5, 
                     "Logo": "/images/skills/Python.svg"
+                },
+                {
+                    "Title": "C", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "C is a powerful, low-level programming language known for its efficiency, portability, and close-to-hardware capabilities. It forms the foundation for many modern languages and operating systems.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/C.svg"
+                },
+                {
+                    "Title": "C++", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "C++ is a low-level, general-purpose programming language that excels in performance, flexibility, and a large standard library.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Cpp.svg"
+                },
+                {
+                    "Title": "C#", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "C# is a high-level, general-purpose programming language that excels at object-oriented programming. It is very popular in web applications and game development.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/CSharp.svg"
+                },
+                {
+                    "Title": "PostgreSQL", 
+                    "Subheading": "Query Language",
+                    "Description": "PostgreSQL is a powerful, open source query language used in relational databases. It is most proficient at storing data in a structured way while offering object-oriented features.",
+                    "Expertise": 5, 
+                    "Logo": "/images/skills/PostgreSQL.svg"
+                },
+                {
+                    "Title": "GraphQL", 
+                    "Subheading": "Query Language",
+                    "Description": "Graph QL is a query language known for it’s defined type structuring and system versatility, able to retrieve data from any server.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/GraphQL.svg"
+                },
+                {
+                    "Title": "HTML", 
+                    "Subheading": "Markup Language",
+                    "Description": "HTML (HyperText Markup Language) is the standard language used for creating and designing web pages. HTML is often used in conjunction with CSS and JavaScript.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/HTML.svg"
+                },
+                {
+                    "Title": "CSS", 
+                    "Subheading": "Styling Language",
+                    "Description": "CSS (Cascading Style Sheets) is a styling language used to control the presentation of web pages. It styles HTML elements to enhancing the visual appeal of websites.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/CSS.svg"
+                },
+                {
+                    "Title": "JavaScript", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "JavaScript is a high level, general purpose programming language that is the backbone of interactive web pages, allowing for dynamic elements.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Javascript.svg"
+                },
+                {
+                    "Title": "TypeScript", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "TypeScript is a statically typed superset of JavaScript that adds optional type checking and advanced tooling. It is commonly used for large-scale web development.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Typescript.svg"
+                },
+                {
+                    "Title": "MATLAB", 
+                    "Subheading": "Numerical Computing Environment",
+                    "Description": "MATLAB is a high-level programming environment used for numerical computation, data analysis, algorithm development, and visualization, widely adopted in engineering and scientific research.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Matlab.svg"
                 }
             ],
             "Proficiencies": [
@@ -148,7 +218,77 @@
                     "Subheading": "Version Control",
                     "Description": "Git is an open-source and extremely popular version control system. Its lightweight, distributed control makes it an absolute must-have for any software development.",
                     "Expertise": 4, 
-                    "Logo": "/images/skills/Tensorflow_logo.svg"
+                    "Logo": "/images/skills/Git.svg"
+                },
+                {
+                    "Title": "Machine Learning", 
+                    "Subheading": "Algorithms",
+                    "Description": "Machine Learning is a sub-field of AI that can learn complex tests from data. This field includes natural language processing, reinforcement learning, and computer vision.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Machine_Learning.svg"
+                },
+                {
+                    "Title": "Figma", 
+                    "Subheading": "Software",
+                    "Description": "Figma is a collaborative design tool used for creating user interfaces. It offers features for prototyping, real-time collaboration, vector graphics, and design systems.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Figma.svg"
+                },
+                {
+                    "Title": "TensorFlow", 
+                    "Subheading": "Machine Learning Library",
+                    "Description": "TensorFlow is an open-source machine learning framework created by Google to make it easier to build, train, and deploy machine learning models.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Tensorflow.svg"
+                },
+                {
+                    "Title": "Linux", 
+                    "Subheading": "Operating System",
+                    "Description": "Linux is a family of open-source operating system used in servers, desktops, and embedded systems and is known for it’s performance and customization.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Linux.svg"
+                },
+                {
+                    "Title": "Scikit Learn", 
+                    "Subheading": "Machine Learning Library",
+                    "Description": "Scikit-learn is an open-source machine learning library in Python that provides simple and efficient tools for data mining and analysis, including classification, regression, and clustering.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Scikit_Learn.svg"
+                },
+                {
+                    "Title": "Keras", 
+                    "Subheading": "Machine Learning Library",
+                    "Description": "Keras is a high-level neural networks API written in Python that runs on top of TensorFlow. It is user-friendly, modular, and great for fast experimentation with deep learning models.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Keras.svg"
+                },
+                {
+                    "Title": "Databases", 
+                    "Subheading": "Data Management",
+                    "Description": "Databases are organized collections of data that allow efficient retrieval, insertion, and deletion. They are fundamental to backend systems and data-driven applications.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Databases.svg"
+                },
+                {
+                    "Title": "Next.js", 
+                    "Subheading": "Web Framework",
+                    "Description": "Next.js is a React-based framework for building full-stack web applications. It offers features like server-side rendering, static site generation, and API routes out of the box.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Next_JS.svg"
+                },
+                {
+                    "Title": "Tailwind CSS", 
+                    "Subheading": "Styling Framework",
+                    "Description": "Tailwind CSS is a utility-first CSS framework that enables fast and consistent styling by composing classes directly in your HTML or JSX.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Tailwind.svg"
+                },
+                {
+                    "Title": "Docker", 
+                    "Subheading": "Containerization Platform",
+                    "Description": "Docker is a platform that enables developers to package applications and their dependencies into containers, ensuring consistency across different environments.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Docker.svg"
                 }
             ]
         }

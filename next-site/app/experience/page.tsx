@@ -349,6 +349,33 @@ function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: 
   );
 }
 
+// Function to categorize a skill based on data.json
+function categorizeSkill(skillName: string): string {
+  // Case-insensitive comparison
+  const skillLower = skillName.toLowerCase();
+  
+  // Check if this skill is in the Languages list
+  const isLanguage = data.Experience.Skills?.Languages?.some(
+    lang => lang.Title.toLowerCase() === skillLower
+  );
+  
+  if (isLanguage) {
+    return "bg-blue-100 text-blue-700"; // Blue for programming languages
+  }
+  
+  // Check if this skill is in the Proficiencies list
+  const isProficiency = data.Experience.Skills?.Proficiencies?.some(
+    prof => prof.Title.toLowerCase() === skillLower
+  );
+  
+  if (isProficiency) {
+    return "bg-green-100 text-green-700"; // Green for technical proficiencies
+  }
+  
+  // If not found in either list, return gray
+  return "bg-gray-100 text-gray-700";
+}
+
 function ExperienceCard({ experience }: { experience: Experience }) {
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
   
@@ -396,7 +423,10 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           </div>
           <div className="mt-2 md:mt-0 text-right">
             <p className="text-gray-600">{experience.Location}</p>
-            <p className="text-gray-500 text-sm">{experience["Start Date"]} - {experience["End Date"]}</p>
+            <p className="text-gray-500 text-sm">
+              {experience["Start Date"]}
+              {experience["End Date"] ? ` - ${experience["End Date"]}` : ""}
+            </p>
           </div>
         </div>
         
@@ -493,28 +523,37 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           <div className="mt-6 border-t pt-4">
             <h5 className="text-gray-800 font-medium mb-3">Skills</h5>
             <div className="flex flex-wrap gap-2">
-              {experience.Skills.map((skill, i) => {
-                // Categorize skills by type for better visual organization
-                const skillColor = 
-                  skill.includes("Python") || skill.includes("C") || skill.includes("Java") || skill.includes("MATLAB") || skill.includes("SQL") ? 
-                    "bg-blue-100 text-blue-700" : 
-                  skill.includes("Git") || skill.includes("Linux") ? 
-                    "bg-green-100 text-green-700" : 
-                  skill.includes("Machine Learning") || skill.includes("TensorFlow") || skill.includes("Scikit-learn") ? 
-                    "bg-purple-100 text-purple-700" :
-                  skill.includes("Database") || skill.includes("Postgre") || skill.includes("Weav") ? 
-                    "bg-yellow-100 text-yellow-700" :
-                    "bg-gray-100 text-gray-700";
+              {experience.Skills
+                .sort((a, b) => {
+                  // Helper function to get category priority (1=language, 2=proficiency, 3=other)
+                  const getCategoryPriority = (skill: string) => {
+                    const skillLower = skill.toLowerCase();
+                    // Check if this skill is a programming language
+                    const isLanguage = data.Experience.Skills?.Languages?.some(
+                      lang => lang.Title.toLowerCase() === skillLower
+                    );
+                    if (isLanguage) return 1;
                     
-                return (
+                    // Check if this skill is a technical proficiency
+                    const isProficiency = data.Experience.Skills?.Proficiencies?.some(
+                      prof => prof.Title.toLowerCase() === skillLower
+                    );
+                    if (isProficiency) return 2;
+                    
+                    // Other skills
+                    return 3;
+                  };
+                  
+                  return getCategoryPriority(a) - getCategoryPriority(b);
+                })
+                .map((skill, i) => (
                   <span 
                     key={i} 
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${skillColor}`}
+                    className={`px-3 py-1 rounded-full text-sm font-medium ${categorizeSkill(skill)}`}
                   >
                     {skill}
                   </span>
-                );
-              })}
+                ))}
             </div>
           </div>
         )}
@@ -524,52 +563,41 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 }
 
 function SkillCard({ skill }: { skill: Skill }) {
-    const [imageError, setImageError] = useState(false);
-    const [imageLoaded, setImageLoaded] = useState(false);
-    
-    return (
-        <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 relative h-[280px] hover:shadow-xl transition-all overflow-hidden">
-            <h3 className="text-lg font-semibold text-gray-800 relative z-10">{skill.Title}</h3>
-            <h5 className="text-sm text-gray-600 mb-2 relative z-10">{skill.Subheading}</h5>
-            
-            <div className="h-[120px] overflow-hidden relative z-10">
-                <p className="text-gray-600 text-sm">
-                {skill.Description}
-                </p>
-            </div>
-            
-            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-2xl whitespace-nowrap z-10">
-                {[...Array(5)].map((_, i) => (
-                <span key={i} className={`${i < skill.Expertise ? "fa-solid fa-star text-amber-400" : "fa-regular fa-star text-gray-300"} px-1`}></span>
-                ))}
-            </div>
-            
-            {!imageError && (
-            <div className="absolute inset-0 flex items-center justify-center z-0 opacity-25">
-                {/* This hidden image preloads and checks if the image exists */}
-                <img
-                    src={skill.Logo}
-                    style={{ display: 'none' }}
-                    alt=""
-                    onLoad={() => setImageLoaded(true)}
-                    onError={() => setImageError(true)}
-                />
-                
-                {/* Only show the actual image if it loaded successfully */}
-                {imageLoaded && (
-                    <img
-                        src={skill.Logo}
-                        width="160"
-                        height="160"
-                        style={{ objectFit: 'contain' }}
-                        className="w-40 h-40"
-                        alt=""
-                    />
-                )}
-            </div>
-            )}
+  const [imageError, setImageError] = useState(false);
+  
+  // No imageLoaded state - simplify the approach
+  return (
+    <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 relative h-[280px] hover:shadow-xl transition-all overflow-hidden">
+      <h3 className="text-lg font-semibold text-gray-800 relative z-10">{skill.Title}</h3>
+      <h5 className="text-sm text-gray-600 mb-2 relative z-10">{skill.Subheading}</h5>
+      
+      <div className="h-[120px] overflow-hidden relative z-10">
+        <p className="text-gray-600 text-sm">
+          {skill.Description}
+        </p>
+      </div>
+      
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-2xl whitespace-nowrap z-10">
+        {[...Array(5)].map((_, i) => (
+          <span key={i} className={`${i < skill.Expertise ? "fa-solid fa-star text-amber-400" : "fa-regular fa-star text-gray-300"} px-1`}></span>
+        ))}
+      </div>
+      
+      {!imageError && (
+        <div className="absolute inset-0 flex items-center justify-center z-0 opacity-25">
+          <img
+            src={skill.Logo}
+            width="160"
+            height="160"
+            style={{ objectFit: 'contain' }}
+            className="w-40 h-40"
+            alt=""
+            onError={() => setImageError(true)}
+          />
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export function ExperienceContent({activeSection}: SidebarNavProps ) {
@@ -679,17 +707,17 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             <div id="programming-languages" className="mb-8 scroll-mt-24">
                 <h3 className="text-xl font-semibold mb-5 text-gray-800">Programming Languages</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
-                {data.Experience.Skills?.Languages?.map((skill, index) => (
+                {data.Experience.Skills?.Languages?.sort((a, b) => b.Expertise - a.Expertise).map((skill, index) => (
                     <SkillCard key={index} skill={skill} />
                 ))}
                 </div>
             </div>
-            
+
             {/* Technical Proficiencies Section */}
             <div id="technical-proficiencies" className="scroll-mt-24">
                 <h3 className="text-xl font-semibold mb-5 text-gray-800">Technical Proficiencies</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {data.Experience.Skills?.Proficiencies?.map((skill, index) => (
+                {data.Experience.Skills?.Proficiencies?.sort((a, b) => b.Expertise - a.Expertise).map((skill, index) => (
                     <SkillCard key={index} skill={skill} />
                 ))}
                 </div>
