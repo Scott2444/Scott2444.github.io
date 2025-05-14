@@ -38,7 +38,7 @@ interface Skill {
     Logo: string;
 }
 
-export function SidebarNav({activeSection}: SidebarNavProps ) {
+function SidebarNav({activeSection}: SidebarNavProps ) {
   const [expandedSections, setExpandedSections] = useState({
     professional: false,
     personal: false,
@@ -240,6 +240,153 @@ export function SidebarNav({activeSection}: SidebarNavProps ) {
   );
 }
 
+function MobileNavigation({ activeSection }: { activeSection: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Create URL-friendly ID from position
+  const createSectionId = (title: string) => {
+    return title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  };
+  
+  return (
+    <>
+      {/* Floating Action Button - Toggles between hamburger and X */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`fixed lg:hidden bottom-6 right-6 bg-blue-400 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-blue-500 transition-colors`}
+        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          {isOpen ? (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          )}
+        </svg>
+      </button>
+      
+      {/* Mobile Navigation Drawer - Slides in from left */}
+      {isOpen && (
+        <div className="fixed inset-0 z-30 lg:hidden">
+          {/* Semi-transparent backdrop */}
+          <div 
+            className="absolute inset-0 bg-gray-900/50 transition-opacity duration-300"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Drawer content - from left side */}
+          <div className="absolute left-0 top-0 bottom-0 w-80 bg-white shadow-xl p-6 overflow-y-auto z-40 animate-slide-in-left">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold">Experience</h2>
+            </div>
+            
+            <nav>
+              <ul className="space-y-4">
+                <li>
+                  <a 
+                    href="#overview" 
+                    className={`block py-2 px-4 rounded-md ${activeSection === "overview" ? "bg-blue-100 text-blue-700 font-medium" : "text-gray-700 hover:bg-blue-50"}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Overview
+                  </a>
+                </li>
+                
+                <li>
+                  <a 
+                    href="#professional" 
+                    className={`block py-2 px-4 rounded-md mb-2 ${activeSection === "professional" ? "bg-blue-100 text-blue-700 font-medium" : "text-gray-700 hover:bg-blue-50"}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Professional Experience
+                  </a>
+                  <ul className="ml-2 border-l border-gray-200 pl-2 space-y-2 mt-2">
+                    {(data.Experience.Professional as Experience[]).map((exp, index) => (
+                      <li key={index}>
+                        <a 
+                          href={`#${createSectionId(exp.Position)}`}
+                          className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {exp.Position}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                
+                <li>
+                  <a 
+                    href="#personal" 
+                    className={`block py-2 px-4 rounded-md mb-2 ${activeSection === "personal" ? "bg-blue-100 text-blue-700 font-medium" : "text-gray-700 hover:bg-blue-50"}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Personal Experience
+                  </a>
+                  <ul className="ml-2 border-l border-gray-200 pl-2 space-y-2 mt-2">
+                    {(data.Experience.Personal as Experience[]).map((exp, index) => (
+                      <li key={index}>
+                        <a 
+                          href={`#${createSectionId(exp.Position)}`}
+                          className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {exp.Position}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                
+                <li>
+                  <a 
+                    href="#skills" 
+                    className={`block py-2 px-4 rounded-md mb-2 ${activeSection === "skills" ? "bg-blue-100 text-blue-700 font-medium" : "text-gray-700 hover:bg-blue-50"}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Skills
+                  </a>
+                  <ul className="ml-2 border-l border-gray-200 pl-2 space-y-2 mt-2">
+                    <li>
+                      <a 
+                        href="#programming-languages"
+                        className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Programming Languages
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="#technical-proficiencies"
+                        className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Technical Proficiencies
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <a 
+                  href="/College Resume - Third Year.pdf" 
+                  download
+                  className="block w-full bg-blue-400 hover:bg-blue-500 text-white py-3 px-4 rounded-md text-center"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Download Resume
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 function VideoComponent({ src, alt }: { src: string; alt: string }) {
   // Check if the source is a YouTube URL
   const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
@@ -396,7 +543,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
     >
       {/* Banner Image with Gradient Overlay */}
       {experience.Banner && (
-        <div className="relative h-48 w-full overflow-hidden">
+        <div className="relative h-36 md:h-48 w-full overflow-hidden">
           <Image 
             src={experience.Banner}
             alt={`${experience.Title} banner`}
@@ -410,7 +557,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
         </div>
       )}
 
-      <div className="p-6">
+      <div className="p-4 md:p-6">
         {/* Show modal when image is selected */}
         {selectedImage && (
           <ImageModal
@@ -465,7 +612,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             {mediaContent.length > 0 && (
               <div>
                   <h5 className="text-gray-800 font-medium mb-3">Media</h5>
-                  <div className="flex flex-wrap gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                   {mediaContent.map((content, i) => (
                       content.type === "image" ? (
                       <div
@@ -780,6 +927,8 @@ export default function Experience() {
           <ExperienceContent activeSection={activeSection} />
         </div>
       </div>
+
+      <MobileNavigation activeSection={activeSection} />
 
       <ContactMe />
     </div>
