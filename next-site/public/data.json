@@ -72,6 +72,7 @@
                     "Linux",
                     "Machine Learning",
                     "Scikit-learn",
+                    "Keras",
                     "TensorFlow"
                 ],
                 "Banner": "/images/Ford_Header.png",
@@ -106,8 +107,51 @@
                 "Color": "#911032"
             }
         ],
-        "Personal": [],
-        "Skills": []
+        "Personal": [
+            {
+                "Position": "QuizMe for Amazon Echo, SpartaHack 10", 
+                "Location": "East Lansing, MI", 
+                "Start Date": "February 2025",
+                "Accomplishments": [
+                    "Built QuizMe, an Amazon Alexa skill that converts Quizlet flashcards into voice-based quizzes using Google Gemini for question generation and semantic answer evaluation",
+                    "Developed a full-stack web app (HTML/CSS/JavaScript frontend, Flask backend on Render) to process Quizlet exports and serve them to Alexa via REST API",
+                    "Integrated AWS Lambda and the Alexa Developer Console to handle voice intents, external API calls, and user interaction through natural language",
+                    "Used Google Gemini’s API to rephrase flashcard definitions into quiz questions and interpret user responses with semantic flexibility"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/SpartaX_Group.JPG", "alt": "Group Photo"},
+                    {"type": "image", "src": "/images/SpartaX_Interactive.jpeg", "alt": "Winner of Interactive Track"},
+                    {"type": "image", "src": "/images/SpartaX_YouLearn.jpeg", "alt": "Winner of Best AI Learning Tool"}
+                ],
+                "Skills": [
+                    "Python", 
+                    "Git", 
+                    "Machine Learning", 
+                    "AWS Lambda"
+                ],
+                "Color": "#17453C"
+            }
+        ],
+        "Skills": {
+            "Languages": [
+                {
+                    "Title": "Python", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "Python is high-level, general-purpose programming language known for it’s readability, ease of use, and wide range of libraries.",
+                    "Expertise": 5, 
+                    "Logo": "/images/skills/Python.svg"
+                }
+            ],
+            "Proficiencies": [
+                {
+                    "Title": "Git", 
+                    "Subheading": "Version Control",
+                    "Description": "Git is an open-source and extremely popular version control system. Its lightweight, distributed control makes it an absolute must-have for any software development.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Tensorflow_logo.svg"
+                }
+            ]
+        }
     },
     "Education": {
 

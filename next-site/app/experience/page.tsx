@@ -29,6 +29,14 @@ interface Experience {
   Color?: string;
 }
 
+interface Skill {
+    Title: string;
+    Subheading: string;
+    Description: string;
+    Expertise: number;  
+    Logo: string;
+}
+
 function VideoComponent({ src, alt }: { src: string; alt: string }) {
   // Check if the source is a YouTube URL
   const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
@@ -385,6 +393,55 @@ export function SidebarNav({activeSection}: SidebarNavProps ) {
   );
 }
 
+function SkillCard({ skill }: { skill: Skill }) {
+    const [imageError, setImageError] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    
+    return (
+        <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 relative h-[280px] hover:shadow-xl transition-all overflow-hidden">
+            <h3 className="text-lg font-semibold text-gray-800 relative z-10">{skill.Title}</h3>
+            <h5 className="text-sm text-gray-600 mb-2 relative z-10">{skill.Subheading}</h5>
+            
+            <div className="h-[120px] overflow-hidden relative z-10">
+                <p className="text-gray-600 text-sm">
+                {skill.Description}
+                </p>
+            </div>
+            
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-2xl whitespace-nowrap z-10">
+                {[...Array(5)].map((_, i) => (
+                <span key={i} className={`${i < skill.Expertise ? "fa-solid fa-star text-amber-400" : "fa-regular fa-star text-gray-300"} px-1`}></span>
+                ))}
+            </div>
+            
+            {!imageError && (
+            <div className="absolute inset-0 flex items-center justify-center z-0 opacity-25">
+                {/* This hidden image preloads and checks if the image exists */}
+                <img
+                    src={skill.Logo}
+                    style={{ display: 'none' }}
+                    alt=""
+                    onLoad={() => setImageLoaded(true)}
+                    onError={() => setImageError(true)}
+                />
+                
+                {/* Only show the actual image if it loaded successfully */}
+                {imageLoaded && (
+                    <img
+                        src={skill.Logo}
+                        width="160"
+                        height="160"
+                        style={{ objectFit: 'contain' }}
+                        className="w-40 h-40"
+                        alt=""
+                    />
+                )}
+            </div>
+            )}
+        </div>
+    );
+}
+
 export function ExperienceContent({activeSection}: SidebarNavProps ) {
   return (
     <div className="flex-1 pl-6 relative">
@@ -461,31 +518,43 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         {/* Professional Experience Section */}
         <section id="professional" className="py-10 scroll-mt-20">
             <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-amber-300 to-amber-500 inline-block rounded-lg shadow-sm text-white">Professional Experience</h2>
-          {(data.Experience.Professional as Experience[]).map((exp, index) => (
-            <ExperienceCard key={index} experience={exp} />
-          ))}
-          
-          <hr className="border-t-2 border-gray-200" />
+            {(data.Experience.Professional as Experience[]).map((exp, index) => (
+                <ExperienceCard key={index} experience={exp} />
+            ))}
+            <hr className="border-t-2 border-gray-200" />
         </section>
         
         {/* Personal Experience Section */}
         <section id="personal" className="py-10 scroll-mt-20">
             <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-rose-300 to-rose-500 inline-block rounded-lg shadow-sm text-white">Personal Experience</h2>
-            <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-8">
-            <p className="text-gray-600">
-              Personal experience content will go here...
-            </p>
-          </div>
+            {(data.Experience.Personal as Experience[]).map((exp, index) => (
+                <ExperienceCard key={index} experience={exp} />
+            ))}
           <hr className="border-t-2 border-gray-200" />
         </section>
         
         {/* Skills Section */}
         <section id="skills" className="py-10 scroll-mt-20">
             <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-indigo-300 to-indigo-500 inline-block rounded-lg shadow-sm text-white">Skills</h2>
-            <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-8">
-                <p className="text-gray-600">
-                Skills content will go here...
-                </p>
+            
+            {/* Programming Languages Section */}
+            <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-5 text-gray-800">Programming Languages</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+                {data.Experience.Skills?.Languages?.map((skill, index) => (
+                    <SkillCard key={index} skill={skill} />
+                ))}
+                </div>
+            </div>
+            
+            {/* Technical Proficiencies Section */}
+            <div>
+                <h3 className="text-xl font-semibold mb-5 text-gray-800">Technical Proficiencies</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {data.Experience.Skills?.Proficiencies?.map((skill, index) => (
+                    <SkillCard key={index} skill={skill} />
+                ))}
+                </div>
             </div>
         </section>
       </div>
