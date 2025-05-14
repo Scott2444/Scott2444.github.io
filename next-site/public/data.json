@@ -3,13 +3,13 @@
     "Experience": {
         "Professional": [
             {
-                "Company": "Michigan State University, CSE 331", 
+                "Title": "Michigan State University, CSE 331", 
                 "Position": "Undergraduate Learning Assistant", 
                 "Description": "CSE 331 is the Data Structures and Algorithms Course at MSU taught by Professor Sebnam Onsay.", 
                 "Location": "East Lansing, MI", 
                 "Start Date": "January 2024",
                 "End Date": "May 2025",
-                "Responsibilities": [
+                "Accomplishments": [
                     "Developed a project focused on Deques with a robust test suite for automated grading in Python",
                     "Evaluated 17 students’ projects for time and space complexity, correctness, and adherence to best practices",
                     "Hosted 1:1 help rooms to support students with conceptual questions and project related coding issues"
@@ -21,16 +21,18 @@
                     "Python",
                     "Git",
                     "Data Structures"
-                ]
+                ],
+                "Banner": "/images/MSU_Header.png",
+                "Color": "#17453C"
             },
             {
-                "Company": "Schaeffler Group North America", 
+                "Title": "Schaeffler Group North America", 
                 "Position": "Prototype Software Development Co-op", 
                 "Description": "Schaeffler Group is a German-based automotive supplier with 120,000 employees worldwide.", 
                 "Location": "Troy, Michigan", 
                 "Start Date": "August 2024",
                 "End Date": "December 2024",
-                "Responsibilities": [
+                "Accomplishments": [
                     "Developed a physics-based plant model to characterize the active ride height suspension in Simulink",
                     "Authored a rigorous test suite for ride height control software, with 26% of test cases identifying failures",
                     "Augmented an embedded chip to convert CAN communication to Serial communication in C++"
@@ -41,16 +43,18 @@
                 "Skills": [
                     "MATLAB",
                     "C"
-                ]
+                ],
+                "Banner": "/images/Schaeffler_Header.png",
+                "Color": "#08954C"
             },
             {
-                "Company": "Ford Motor Company, Model E Group", 
+                "Title": "Ford Motor Company, Model E Group", 
                 "Position": "Product Development Intern", 
                 "Description": "Ford Motor Company, a major American car company, is famous for putting America on wheels. Today, they are pioneers in the electric vehicle space.", 
                 "Location": "Dearborn, Michigan", 
                 "Start Date": "May 2024",
                 "End Date": "August 2024",
-                "Responsibilities": [
+                "Accomplishments": [
                     "Developed machine learning algorithms to predict internal temperatures of high-voltage battery packs",
                     "Applied Hyperparameter Optimization algorithms to a novel Physics-Informed LSTM model, improving the model’s maximum error from 2.2°C to 1.6°C",
                     "Designed backend scripts for comprehensive data analysis from various high-voltage battery tests",
@@ -69,16 +73,18 @@
                     "Machine Learning",
                     "Scikit-learn",
                     "TensorFlow"
-                ]
+                ],
+                "Banner": "/images/Ford_Header.png",
+                "Color": "#081534"
             },
             {
-                "Company": "Native Projex, Inc.", 
+                "Title": "Native Projex, Inc.", 
                 "Position": "Backend Development Intern", 
                 "Description": "Quirks.ai is a proof-of-concept app in development by Native Projex, Inc. Native Projex is a small Vietnam-based start-up company. The app’s goal is to provide a trainable companion for each user that helps them explore the world the way that fits them best.", 
                 "Location": "Ho Chi Minh City, Vietnam", 
                 "Start Date": "May 2024",
                 "End Date": "August 2024",
-                "Responsibilities": [
+                "Accomplishments": [
                     "Enhanced search accuracy from 60% to 80% by automating the processing and categorization of unstructured data to engineer a refined dataset to train a fine-tuned version of Microsoft's DeBERTa machine learning model",
                     "Developed the dynamic sort algorithm as an integral component of a filtering and sorting search framework to provide customers with the best matching locations within major cities in Southeast Asia",
                     "Utilized new vector search techniques and an emerging vector database called Weaviate that enabled the capability to search 100,000+ places"
@@ -96,7 +102,8 @@
                     "GraphQL",
                     "PostgreSQL",
                     "Databases"
-                ]
+                ],
+                "Color": "#911032"
             }
         ],
         "Personal": [],

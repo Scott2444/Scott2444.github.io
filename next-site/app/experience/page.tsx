@@ -12,19 +12,21 @@ interface SidebarNavProps {
 }
 
 interface Experience {
-  Company: string;
+  Title: string;
   Position: string;
   Description: string;
   Location: string;
   "Start Date": string;
   "End Date": string;
-  Responsibilities?: string[];
+  Accomplishments?: string[];
   "Additional Content"?: {
     type: "image" | "video" | "link";
     src: string;
     alt: string;
   }[];
   Skills?: string[];
+  Banner?: string;
+  Color?: string;
 }
 
 function VideoComponent({ src, alt }: { src: string; alt: string }) {
@@ -150,130 +152,163 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   ) || [];
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-8">
-      {/* Show modal when image is selected */}
-      {selectedImage && (
-        <ImageModal
-          src={selectedImage.src}
-          alt={selectedImage.alt}
-          onClose={() => setSelectedImage(null)}
-        />
-      )}
-      
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-        <div>
-          <h3 className="text-xl font-semibold text-gray-800">{experience.Position}</h3>
-          <h4 className="text-lg text-gray-700">{experience.Company}</h4>
-        </div>
-        <div className="mt-2 md:mt-0 text-right">
-          <p className="text-gray-600">{experience.Location}</p>
-          <p className="text-gray-500 text-sm">{experience["Start Date"]} - {experience["End Date"]}</p>
-        </div>
-      </div>
-      
-      <p className="text-gray-600 mb-4">{experience.Description}</p>
-      
-      {experience.Responsibilities && experience.Responsibilities.length > 0 && (
-        <div className="mb-6">
-          <h5 className="text-gray-800 font-medium mb-2">Responsibilities</h5>
-          <ul className="list-disc pl-5 text-gray-600 space-y-1">
-            {experience.Responsibilities.map((responsibility, i) => (
-              <li key={i}>{responsibility}</li>
-            ))}
-          </ul>
+    <div className={`bg-white shadow-lg rounded-lg overflow-hidden mb-8 border border-gray-200 hover:shadow-xl transition-all duration-300 ${experience.Color ? `border-l-4` : ''}`} style={{ borderLeftColor: experience.Color || 'transparent' }}>
+      {/* Banner Image with Gradient Overlay */}
+      {experience.Banner && (
+        <div className="relative h-48 w-full overflow-hidden">
+          <Image 
+            src={experience.Banner}
+            alt={`${experience.Title} banner`}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+            className="z-0"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-10"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white via-white/90 to-transparent z-10"></div>
         </div>
       )}
-      
-      {experience["Additional Content"] && experience["Additional Content"].length > 0 && (
-        <div className="mt-6 border-t pt-4">
-          {/* Media content (images and videos) */}
-          {mediaContent.length > 0 && (
-            <div>
-                <h5 className="text-gray-800 font-medium mb-3">Media</h5>
-                <div className="flex flex-wrap gap-4 mb-6">
-                {mediaContent.map((content, i) => (
-                    content.type === "image" ? (
-                    <div
-                        key={i}
-                        className="relative w-60 h-40 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all"
-                        onClick={() => setSelectedImage({ src: content.src, alt: content.alt })}
-                    >
-                        <Image
-                        src={content.src}
-                        alt={content.alt}
-                        width={240}
-                        height={160}
-                        style={{ objectFit: 'cover' }}
-                        className="w-full h-full"
-                        placeholder="blur"
-                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
-                        />
-                        <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
-                            <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
-                                Click to enlarge
-                            </span>
-                        </div>
-                    </div>
-                    ) : content.type === "video" ? (
-                    <div key={i} className="w-60 h-40 rounded-lg overflow-hidden border border-gray-200">
-                        <VideoComponent src={content.src} alt={content.alt} />
-                    </div>
-                    ) : null
-                ))}
-                </div>
-            </div>
-            )}
-                    
-          {/* Separator between media and links (only if both exist) */}
-          {mediaContent.length > 0 && linkContent.length > 0 && (
-            <div className="border-t border-gray-100 my-4"></div>
-          )}
-          
-          {/* Link content */}
-          {linkContent.length > 0 && (
-            <div>
-              <h5 className="text-gray-800 font-medium mb-3">Related Links</h5>
-              <div className="flex flex-wrap gap-3">
-                {linkContent.map((content, i) => (
-                  <a 
-                    key={i}
-                    href={content.src} 
-                    className="block px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors border border-blue-100"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                      </svg>
-                      {content.alt}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-      
-      {/* Skills section */}
-      {experience.Skills && experience.Skills.length > 0 && (
-        <div className="mt-6 border-t pt-4">
-          <h5 className="text-gray-800 font-medium mb-3">Skills</h5>
-          <div className="flex flex-wrap gap-2">
-            {experience.Skills.map((skill, i) => (
-              <span 
-                key={i} 
-                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-              >
-                {skill}
-              </span>
-            ))}
+
+      <div className="p-6">
+        {/* Show modal when image is selected */}
+        {selectedImage && (
+          <ImageModal
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            onClose={() => setSelectedImage(null)}
+          />
+        )}
+        
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-800">{experience.Position}</h3>
+            <h4 className="text-lg text-gray-700">{experience.Title}</h4>
+          </div>
+          <div className="mt-2 md:mt-0 text-right">
+            <p className="text-gray-600">{experience.Location}</p>
+            <p className="text-gray-500 text-sm">{experience["Start Date"]} - {experience["End Date"]}</p>
           </div>
         </div>
-      )}
+        
+        <p className="text-gray-600 mb-4">{experience.Description}</p>
+        
+        {experience.Accomplishments && experience.Accomplishments.length > 0 && (
+          <div className="mb-6">
+            <h5 className="text-gray-800 font-medium mb-2">Accomplishments</h5>
+            <ul className="list-disc pl-5 text-gray-600 space-y-1">
+              {experience.Accomplishments.map((responsibility, i) => (
+                <li key={i}>{responsibility}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        {/* Additional Content Section */}
+        {experience["Additional Content"] && experience["Additional Content"].length > 0 && (
+          <div className="mt-6 border-t pt-4">
+            {/* Media content (images and videos) */}
+            {mediaContent.length > 0 && (
+              <div>
+                  <h5 className="text-gray-800 font-medium mb-3">Media</h5>
+                  <div className="flex flex-wrap gap-4 mb-6">
+                  {mediaContent.map((content, i) => (
+                      content.type === "image" ? (
+                      <div
+                          key={i}
+                          className="relative w-60 h-40 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all"
+                          onClick={() => setSelectedImage({ src: content.src, alt: content.alt })}
+                      >
+                          <Image
+                          src={content.src}
+                          alt={content.alt}
+                          width={240}
+                          height={160}
+                          style={{ objectFit: 'cover' }}
+                          className="w-full h-full"
+                          placeholder="blur"
+                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+                          />
+                          <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
+                              <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
+                                  Click to enlarge
+                              </span>
+                          </div>
+                      </div>
+                      ) : content.type === "video" ? (
+                      <div key={i} className="w-60 h-40 rounded-lg overflow-hidden border border-gray-200">
+                          <VideoComponent src={content.src} alt={content.alt} />
+                      </div>
+                      ) : null
+                  ))}
+                  </div>
+              </div>
+            )}
+                    
+            {/* Separator between media and links (only if both exist) */}
+            {mediaContent.length > 0 && linkContent.length > 0 && (
+              <div className="border-t border-gray-100 my-4"></div>
+            )}
+            
+            {/* Link content */}
+            {linkContent.length > 0 && (
+              <div>
+                <h5 className="text-gray-800 font-medium mb-3">Related Links</h5>
+                <div className="flex flex-wrap gap-3">
+                  {linkContent.map((content, i) => (
+                    <a 
+                      key={i}
+                      href={content.src} 
+                      className="block px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors border border-blue-100"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                          <polyline points="15 3 21 3 21 9"/>
+                          <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        {content.alt}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        
+        {/* Skills section */}
+        {experience.Skills && experience.Skills.length > 0 && (
+          <div className="mt-6 border-t pt-4">
+            <h5 className="text-gray-800 font-medium mb-3">Skills</h5>
+            <div className="flex flex-wrap gap-2">
+              {experience.Skills.map((skill, i) => {
+                // Categorize skills by type for better visual organization
+                const skillColor = 
+                  skill.includes("Python") || skill.includes("C") || skill.includes("Java") || skill.includes("MATLAB") || skill.includes("SQL") ? 
+                    "bg-blue-100 text-blue-700" : 
+                  skill.includes("Git") || skill.includes("Linux") ? 
+                    "bg-green-100 text-green-700" : 
+                  skill.includes("Machine Learning") || skill.includes("TensorFlow") || skill.includes("Scikit-learn") ? 
+                    "bg-purple-100 text-purple-700" :
+                  skill.includes("Database") || skill.includes("Postgre") || skill.includes("Weav") ? 
+                    "bg-yellow-100 text-yellow-700" :
+                    "bg-gray-100 text-gray-700";
+                    
+                return (
+                  <span 
+                    key={i} 
+                    className={`px-3 py-1 rounded-full text-sm font-medium ${skillColor}`}
+                  >
+                    {skill}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -364,12 +399,12 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
             {/* Professional Experience Card */}
             <div className="bg-gradient-to-br from-amber-300 to-amber-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[300px] hover:shadow-xl transition-shadow">
-              <h3 className="text-2xl font-semibold mb-2 text-white text-opacity-90">
+              <h3 className="text-2xl font-semibold mb-2 text-white/90">
                 Professional Experience
               </h3>
               {/* Add max-height and overflow to prevent text overlap */}
               <div className="h-[140px] overflow-hidden"> 
-                <p className="text-left text-amber-50 text-opacity-90">
+                <p className="text-left text-amber-50">
                   Here are some of the professional projects I've been involved in, ranging from large corporations to small startups!
                 </p>
               </div>
@@ -383,12 +418,12 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             
             {/* Personal Experience Card */}
             <div className="bg-gradient-to-br from-rose-300 to-rose-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[300px] hover:shadow-xl transition-shadow">
-              <h3 className="text-2xl font-semibold mb-2 text-white text-opacity-90">
+              <h3 className="text-2xl font-semibold mb-2 text-white/90">
                 Personal Experience
               </h3>
               {/* Add max-height and overflow to prevent text overlap */}
               <div className="h-[140px] overflow-hidden">
-                <p className="text-left text-rose-50 text-opacity-90">
+                <p className="text-left text-rose-50">
                   These are passion projects that are a reflection of my passion for programming and desire to learn!
                 </p>
               </div>
@@ -402,12 +437,12 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             
             {/* Skills Card */}
             <div className="bg-gradient-to-br from-indigo-300 to-indigo-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[300px] hover:shadow-xl transition-shadow">
-              <h3 className="text-2xl font-semibold mb-2 text-white text-opacity-90">
+              <h3 className="text-2xl font-semibold mb-2 text-white/90">
                 Skills
               </h3>
               {/* Add max-height and overflow to prevent text overlap */}
               <div className="h-[140px] overflow-hidden">
-                <p className="text-left text-indigo-50 text-opacity-90">
+                <p className="text-left text-indigo-50">
                   These are the technical and interpersonal skills that I have accumulated over my lifetime as a software engineer!
                 </p>
               </div>
@@ -425,8 +460,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         
         {/* Professional Experience Section */}
         <section id="professional" className="py-10 scroll-mt-20">
-          <h2 className="text-2xl font-bold mb-8">Professional Experience</h2>
-          
+            <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-amber-300 to-amber-500 inline-block rounded-lg shadow-sm text-white">Professional Experience</h2>
           {(data.Experience.Professional as Experience[]).map((exp, index) => (
             <ExperienceCard key={index} experience={exp} />
           ))}
@@ -436,8 +470,8 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         
         {/* Personal Experience Section */}
         <section id="personal" className="py-10 scroll-mt-20">
-          <h2 className="text-2xl font-bold mb-8">Personal Experience</h2>
-          <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-8">
+            <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-rose-300 to-rose-500 inline-block rounded-lg shadow-sm text-white">Personal Experience</h2>
+            <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-8">
             <p className="text-gray-600">
               Personal experience content will go here...
             </p>
@@ -447,12 +481,12 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         
         {/* Skills Section */}
         <section id="skills" className="py-10 scroll-mt-20">
-          <h2 className="text-2xl font-bold mb-8">Skills</h2>
-          <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-8">
-            <p className="text-gray-600">
-              Skills content will go here...
-            </p>
-          </div>
+            <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-indigo-300 to-indigo-500 inline-block rounded-lg shadow-sm text-white">Skills</h2>
+            <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-8">
+                <p className="text-gray-600">
+                Skills content will go here...
+                </p>
+            </div>
         </section>
       </div>
     </div>
