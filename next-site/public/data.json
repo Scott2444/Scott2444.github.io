@@ -15,8 +15,12 @@
                     "Hosted 1:1 help rooms to support students with conceptual questions and project related coding issues"
                 ],
                 "Additional Content": [
-                    {"type": "image", "src": "/images/ULA.JPG", "alt": "ULA Gathering"},
-                    {"type": "video", "src": "https://www.youtube.com/watch?v=Qc2PFExZXas", "alt": "ULA Video"}
+                    {"type": "image", "src": "/images/ULA.JPG", "alt": "ULA Gathering"}
+                ],
+                "Skills": [
+                    "Python",
+                    "Git",
+                    "Data Structures"
                 ]
             },
             {
@@ -33,6 +37,65 @@
                 ],
                 "Additional Content": [
                     {"type": "image", "src": "/images/Schaeffler.jpg", "alt": "Schaeffler Office"}
+                ],
+                "Skills": [
+                    "MATLAB",
+                    "C"
+                ]
+            },
+            {
+                "Company": "Ford Motor Company, Model E Group", 
+                "Position": "Product Development Intern", 
+                "Description": "Ford Motor Company, a major American car company, is famous for putting America on wheels. Today, they are pioneers in the electric vehicle space.", 
+                "Location": "Dearborn, Michigan", 
+                "Start Date": "May 2024",
+                "End Date": "August 2024",
+                "Responsibilities": [
+                    "Developed machine learning algorithms to predict internal temperatures of high-voltage battery packs",
+                    "Applied Hyperparameter Optimization algorithms to a novel Physics-Informed LSTM model, improving the model’s maximum error from 2.2°C to 1.6°C",
+                    "Designed backend scripts for comprehensive data analysis from various high-voltage battery tests",
+                    "Added dynamic interfaces to the GUI of the data analysis tool, designed for capability and future growth",
+                    "Refined the computational definitions of test methods to accurately determine high-voltage battery capacity"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Ford_Wind_Tunnel.jpg", "alt": "Ford Rolling Road Wind Tunnel"},
+                    {"type": "image", "src": "/images/Ford_Wind_Tunnel_Group.jpg", "alt": "VPEC Interns in the Ford Wind Tunnel"},
+                    {"type": "image", "src": "/images/Ford_Lightning.jpg", "alt": "Sitting in the furnk of a Ford Lightning"}
+                ],
+                "Skills": [
+                    "Python",
+                    "Git",
+                    "Linux",
+                    "Machine Learning",
+                    "Scikit-learn",
+                    "TensorFlow"
+                ]
+            },
+            {
+                "Company": "Native Projex, Inc.", 
+                "Position": "Backend Development Intern", 
+                "Description": "Quirks.ai is a proof-of-concept app in development by Native Projex, Inc. Native Projex is a small Vietnam-based start-up company. The app’s goal is to provide a trainable companion for each user that helps them explore the world the way that fits them best.", 
+                "Location": "Ho Chi Minh City, Vietnam", 
+                "Start Date": "May 2024",
+                "End Date": "August 2024",
+                "Responsibilities": [
+                    "Enhanced search accuracy from 60% to 80% by automating the processing and categorization of unstructured data to engineer a refined dataset to train a fine-tuned version of Microsoft's DeBERTa machine learning model",
+                    "Developed the dynamic sort algorithm as an integral component of a filtering and sorting search framework to provide customers with the best matching locations within major cities in Southeast Asia",
+                    "Utilized new vector search techniques and an emerging vector database called Weaviate that enabled the capability to search 100,000+ places"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Native_Projex.jpg", "alt": "Sitting in the office of Quirks.ai"}
+                ],
+                "Skills": [
+                    "Python",
+                    "Git",
+                    "Linux",
+                    "Machine Learning",
+                    "Scikit-learn",
+                    "TensorFlow",
+                    "GraphQL",
+                    "PostgreSQL",
+                    "Databases"
                 ]
             }
         ],

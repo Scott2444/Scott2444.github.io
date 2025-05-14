@@ -24,6 +24,7 @@ interface Experience {
     src: string;
     alt: string;
   }[];
+  Skills?: string[];
 }
 
 function VideoComponent({ src, alt }: { src: string; alt: string }) {
@@ -38,7 +39,7 @@ function VideoComponent({ src, alt }: { src: string; alt: string }) {
         const urlParams = new URLSearchParams(new URL(url).search);
         return urlParams.get('v') || '';
       } else if (url.includes('youtu.be/')) {
-        // Format: youtu.be/VIDEO_ID
+        // Format: youtu.be/VIDEO_ID    
         return url.split('youtu.be/')[1].split('?')[0];
       } else if (url.includes('youtube.com/embed/')) {
         // Format: youtube.com/embed/VIDEO_ID
@@ -228,7 +229,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             <div className="border-t border-gray-100 my-4"></div>
           )}
           
-          {/* Link content - No changes needed */}
+          {/* Link content */}
           {linkContent.length > 0 && (
             <div>
               <h5 className="text-gray-800 font-medium mb-3">Related Links</h5>
@@ -254,6 +255,23 @@ function ExperienceCard({ experience }: { experience: Experience }) {
               </div>
             </div>
           )}
+        </div>
+      )}
+      
+      {/* Skills section */}
+      {experience.Skills && experience.Skills.length > 0 && (
+        <div className="mt-6 border-t pt-4">
+          <h5 className="text-gray-800 font-medium mb-3">Skills</h5>
+          <div className="flex flex-wrap gap-2">
+            {experience.Skills.map((skill, i) => (
+              <span 
+                key={i} 
+                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>
