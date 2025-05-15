@@ -117,6 +117,203 @@ export function NavBar() {
   );
 }
 
+export interface SidebarSection {
+  id: string;
+  title: string;
+  href: string;
+  subsections?: { id: string; title: string; href: string }[];
+}
+
+export function Sidebar({
+  title,
+  sections,
+  activeSection,
+  footerContent,
+}: {
+  title: string;
+  sections: SidebarSection[];
+  activeSection: string;
+  footerContent?: React.ReactNode;
+}) {
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+
+  // Toggle section expansion
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }));
+  };
+
+  return (
+    <div className="hidden lg:block w-64 pr-6 border-r border-gray-200">
+      <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">
+        <h3 className="text-lg font-semibold mb-6 text-gray-700">{title}</h3>
+        <nav>
+          <ul className="space-y-3">
+            {sections.map(section => (
+              <li key={section.id}>
+                {section.subsections ? (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <a 
+                        href={section.href} 
+                        className={`py-2 px-3 rounded-lg transition-colors flex-grow ${
+                          activeSection === section.id 
+                            ? "bg-blue-100 text-blue-700 font-medium" 
+                            : "text-gray-700 hover:bg-blue-50"
+                        }`}
+                      >
+                        {section.title}
+                      </a>
+                      <button 
+                        onClick={() => toggleSection(section.id)}
+                        className="p-1.5 ml-1 text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md"
+                        aria-label={expandedSections[section.id] ? `Collapse ${section.title}` : `Expand ${section.title}`}
+                      >
+                        {expandedSections[section.id] ? (
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                          </svg>
+                        ) : (
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                    
+                    {expandedSections[section.id] && section.subsections && (
+                      <ul className="mt-1 ml-4 border-l-2 border-gray-100 pl-3 space-y-1">
+                        {section.subsections.map(subsection => (
+                          <li key={subsection.id}>
+                            <a 
+                              href={subsection.href}
+                              className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                            >
+                              {subsection.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                ) : (
+                  <a 
+                    href={section.href} 
+                    className={`block py-2 px-3 rounded-lg transition-colors ${
+                      activeSection === section.id 
+                        ? "bg-blue-100 text-blue-700 font-medium" 
+                        : "text-gray-700 hover:bg-blue-50"
+                    }`}
+                  >
+                    {section.title}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        
+        {footerContent && (
+          <div className="mt-10 border-t pt-6 border-gray-200">
+            {footerContent}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export function MobileSidebar({
+  title,
+  sections,
+  activeSection,
+  footerContent,
+}: {
+  title: string;
+  sections: SidebarSection[];
+  activeSection: string;
+  footerContent?: React.ReactNode;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <>
+      {/* Floating Action Button - Toggles between hamburger and X */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`fixed lg:hidden bottom-6 right-6 bg-blue-400 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-blue-500 transition-colors`}
+        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          {isOpen ? (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          )}
+        </svg>
+      </button>
+      
+      {/* Mobile Navigation Drawer - Slides in from left */}
+      {isOpen && (
+        <div className="fixed inset-0 z-30 lg:hidden">
+          {/* Semi-transparent backdrop */}
+          <div 
+            className="absolute inset-0 bg-gray-900/50 transition-opacity duration-300"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Drawer content - from left side */}
+          <div className="absolute left-0 top-0 bottom-0 w-80 bg-white shadow-xl p-6 overflow-y-auto z-40 animate-slide-in-left">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold">{title}</h2>
+            </div>
+            
+            <nav>
+              <ul className="space-y-4">
+                {sections.map(section => (
+                  <li key={section.id}>
+                    <a 
+                      href={section.href}
+                      className={`block py-2 px-4 rounded-md ${section.subsections ? "mb-2" : ""} ${activeSection === section.id ? "bg-blue-100 text-blue-700 font-medium" : "text-gray-700 hover:bg-blue-50"}`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {section.title}
+                    </a>
+                    
+                    {section.subsections && (
+                      <ul className="ml-2 border-l border-gray-200 pl-2 space-y-2 mt-2">
+                        {section.subsections.map(subsection => (
+                          <li key={subsection.id}>
+                            <a 
+                              href={subsection.href}
+                              className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {subsection.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              
+              {footerContent && (
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  {footerContent}
+                </div>
+              )}
+            </nav>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 
 export function ContactMe() {
   return (
