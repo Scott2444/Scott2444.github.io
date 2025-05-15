@@ -13,8 +13,8 @@ interface SidebarNavProps {
 
 interface Experience {
   Title: string;
-  Position: string;
-  Description: string;
+  Subheading?: string;
+  Description?: string;
   Location: string;
   "Start Date": string;
   "End Date": string;
@@ -113,10 +113,10 @@ function SidebarNav({activeSection}: SidebarNavProps ) {
                   {(data.Experience.Professional as Experience[]).map((exp, index) => (
                     <li key={index}>
                       <a 
-                        href={`#${createSectionId(exp.Position)}`}
+                        href={`#${createSectionId(exp.Title)}`}
                         className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
                       >
-                        {exp.Position}
+                        {exp.Title}
                       </a>
                     </li>
                   ))}
@@ -160,10 +160,10 @@ function SidebarNav({activeSection}: SidebarNavProps ) {
                   {(data.Experience.Personal as Experience[]).map((exp, index) => (
                     <li key={index}>
                       <a 
-                        href={`#${createSectionId(exp.Position)}`}
+                        href={`#${createSectionId(exp.Title)}`}
                         className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
                       >
-                        {exp.Position}
+                        {exp.Title}
                       </a>
                     </li>
                   ))}
@@ -304,11 +304,11 @@ function MobileNavigation({ activeSection }: { activeSection: string }) {
                     {(data.Experience.Professional as Experience[]).map((exp, index) => (
                       <li key={index}>
                         <a 
-                          href={`#${createSectionId(exp.Position)}`}
-                          className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
+                          href={`#${createSectionId(exp.Title)}`}
+                          className="block py-2 px-4 text-gray-600 hover:text-blue-700 rounded-md"
                           onClick={() => setIsOpen(false)}
                         >
-                          {exp.Position}
+                          {exp.Title}
                         </a>
                       </li>
                     ))}
@@ -327,11 +327,11 @@ function MobileNavigation({ activeSection }: { activeSection: string }) {
                     {(data.Experience.Personal as Experience[]).map((exp, index) => (
                       <li key={index}>
                         <a 
-                          href={`#${createSectionId(exp.Position)}`}
+                          href={`#${createSectionId(exp.Title)}`}
                           className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
                           onClick={() => setIsOpen(false)}
                         >
-                          {exp.Position}
+                          {exp.Title}
                         </a>
                       </li>
                     ))}
@@ -525,6 +525,7 @@ function categorizeSkill(skillName: string): string {
 }
 
 function ExperienceCard({ experience }: { experience: Experience }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
   
   // Filter content by type
@@ -536,12 +537,17 @@ function ExperienceCard({ experience }: { experience: Experience }) {
     content => content.type === "link"
   ) || [];
 
+  // Check if there's expandable content
+  const hasExpandableContent = 
+    (experience.Accomplishments && experience.Accomplishments.length > 0) ||
+    (experience["Additional Content"] && experience["Additional Content"].length > 0) ||
+    (experience.Skills && experience.Skills.length > 0);
+
   return (
     <div 
-      className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 border border-gray-200 hover:shadow-xl transition-all duration-300 border-l-4" 
+      className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 md:mb-12 border border-gray-200 hover:shadow-xl transition-all duration-300 border-l-4" 
       style={{ borderLeftColor: experience.Color || '#374151' }}
     >
-      {/* Banner Image with Gradient Overlay */}
       {experience.Banner && (
         <div className="relative h-36 md:h-48 w-full overflow-hidden">
           <Image 
@@ -557,8 +563,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
         </div>
       )}
 
-      <div className="p-4 md:p-6">
-        {/* Show modal when image is selected */}
+      <div className="p-5 md:p-6">
         {selectedImage && (
           <ImageModal
             src={selectedImage.src}
@@ -567,12 +572,13 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           />
         )}
         
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+        {/* Basic information - always visible */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-5">
           <div>
-            <h3 className="text-xl font-semibold text-gray-800">{experience.Position}</h3>
-            <h4 className="text-lg text-gray-700">{experience.Title}</h4>
+            <h3 className="text-xl font-semibold text-gray-800">{experience.Title}</h3>
+            <h4 className="text-lg text-gray-700">{experience.Subheading}</h4>
           </div>
-          <div className="mt-2 md:mt-0 text-right">
+          <div className="mt-2 md:mt-0 md:text-right">
             <p className="text-gray-600">{experience.Location}</p>
             <p className="text-gray-500 text-sm">
               {experience["Start Date"]}
@@ -581,8 +587,11 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           </div>
         </div>
         
-        <p className="text-gray-600 mb-4">{experience.Description}</p>
+        <p className="text-gray-600 mb-5 leading-relaxed">
+          {experience.Description}
+        </p>
 
+        {/* Awards section - Keep visible as it's usually short */}
         {experience.Awards && experience.Awards.length > 0 && (
           <div className="mb-6">
             <h5 className="text-gray-800 font-medium mb-2">Awards</h5>
@@ -594,131 +603,161 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           </div>
         )}
         
-        {experience.Accomplishments && experience.Accomplishments.length > 0 && (
-          <div className="mb-6">
-            <h5 className="text-gray-800 font-medium mb-2">Accomplishments</h5>
-            <ul className="list-disc pl-5 text-gray-600 space-y-1">
-              {experience.Accomplishments.map((responsibility, i) => (
-                <li key={i}>{responsibility}</li>
-              ))}
-            </ul>
+        {/* Mobile-only toggle button */}
+        {hasExpandableContent && (
+          <div className="md:hidden my-4">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-full py-3 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-md flex items-center justify-center transition-colors border border-gray-200"
+              aria-expanded={isExpanded}
+            >
+              <span className="mr-2">{isExpanded ? "Show Less" : "Show More"}</span>
+              {isExpanded ? (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              )}
+            </button>
           </div>
         )}
         
-        {/* Additional Content Section */}
-        {experience["Additional Content"] && experience["Additional Content"].length > 0 && (
-          <div className="mt-6 border-t pt-4">
-            {/* Media content (images and videos) */}
-            {mediaContent.length > 0 && (
-              <div>
+        {/* Expandable content - conditionally rendered on mobile, always visible on desktop */}
+        <div 
+          className={`
+            ${isExpanded 
+              ? "max-h-[5000px] opacity-100 visible pointer-events-auto" 
+              : "max-h-0 opacity-0 invisible pointer-events-none"
+            } 
+            md:max-h-none md:opacity-100 md:visible md:pointer-events-auto
+            overflow-hidden transition-all duration-500 ease-in-out
+          `}
+        >
+          {/* Accomplishments */}
+          {experience.Accomplishments && experience.Accomplishments.length > 0 && (
+            <div className="mb-6">
+              <h5 className="text-gray-800 font-medium mb-2">Accomplishments</h5>
+              <ul className="list-disc pl-5 text-gray-600 space-y-2">
+                {experience.Accomplishments.map((responsibility, i) => (
+                  <li key={i} className="leading-relaxed">
+                    {responsibility}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          
+          {/* Additional Content Section */}
+          {experience["Additional Content"] && experience["Additional Content"].length > 0 && (
+            <div className="mt-6 border-t pt-4">
+              {mediaContent.length > 0 && (
+                <div>
                   <h5 className="text-gray-800 font-medium mb-3">Media</h5>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                  {mediaContent.map((content, i) => (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-4 mb-8 md:mb-6">
+                    {mediaContent.map((content, i) => (
                       content.type === "image" ? (
-                      <div
+                        <div
                           key={i}
-                          className="relative w-60 h-40 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all"
+                          className="relative w-full h-40 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all"
                           onClick={() => setSelectedImage({ src: content.src, alt: content.alt })}
-                      >
+                        >
                           <Image
-                          src={content.src}
-                          alt={content.alt}
-                          width={240}
-                          height={160}
-                          style={{ objectFit: 'cover' }}
-                          className="w-full h-full"
-                          placeholder="blur"
-                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+                            src={content.src}
+                            alt={content.alt}
+                            width={240}
+                            height={160}
+                            style={{ objectFit: 'cover' }}
+                            className="w-full h-full"
+                            placeholder="blur"
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                           />
                           <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
-                              <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
-                                  Click to enlarge
-                              </span>
+                            <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
+                              Click to enlarge
+                            </span>
                           </div>
-                      </div>
+                        </div>
                       ) : content.type === "video" ? (
-                      <div key={i} className="w-60 h-40 rounded-lg overflow-hidden border border-gray-200">
+                        <div key={i} className="w-full h-40 rounded-lg overflow-hidden border border-gray-200">
                           <VideoComponent src={content.src} alt={content.alt} />
-                      </div>
+                        </div>
                       ) : null
-                  ))}
+                    ))}
                   </div>
-              </div>
-            )}
-                    
-            {/* Separator between media and links (only if both exist) */}
-            {mediaContent.length > 0 && linkContent.length > 0 && (
-              <div className="border-t border-gray-100 my-4"></div>
-            )}
-            
-            {/* Link content */}
-            {linkContent.length > 0 && (
-              <div>
-                <h5 className="text-gray-800 font-medium mb-3">Related Links</h5>
-                <div className="flex flex-wrap gap-3">
-                  {linkContent.map((content, i) => (
-                    <a 
-                      key={i}
-                      href={content.src} 
-                      className="block px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors border border-blue-100"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                          <polyline points="15 3 21 3 21 9"/>
-                          <line x1="10" y1="14" x2="21" y2="3"/>
-                        </svg>
-                        {content.alt}
-                      </span>
-                    </a>
-                  ))}
                 </div>
-              </div>
-            )}
-          </div>
-        )}
-        
-        {/* Skills section */}
-        {experience.Skills && experience.Skills.length > 0 && (
-          <div className="mt-6 border-t pt-4">
-            <h5 className="text-gray-800 font-medium mb-3">Skills</h5>
-            <div className="flex flex-wrap gap-2">
-              {experience.Skills
-                .sort((a, b) => {
-                  // Helper function to get category priority (1=language, 2=proficiency, 3=other)
-                  const getCategoryPriority = (skill: string) => {
-                    const skillLower = skill.toLowerCase();
-                    // Check if this skill is a programming language
-                    const isLanguage = data.Experience.Skills?.Languages?.some(
-                      lang => lang.Title.toLowerCase() === skillLower
-                    );
-                    if (isLanguage) return 1;
+              )}
                     
-                    // Check if this skill is a technical proficiency
-                    const isProficiency = data.Experience.Skills?.Proficiencies?.some(
-                      prof => prof.Title.toLowerCase() === skillLower
-                    );
-                    if (isProficiency) return 2;
-                    
-                    // Other skills
-                    return 3;
-                  };
-                  
-                  return getCategoryPriority(a) - getCategoryPriority(b);
-                })
-                .map((skill, i) => (
-                  <span 
-                    key={i} 
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${categorizeSkill(skill)}`}
-                  >
-                    {skill}
-                  </span>
-                ))}
+              {mediaContent.length > 0 && linkContent.length > 0 && (
+                <div className="border-t border-gray-100 my-4"></div>
+              )}
+            
+              {linkContent.length > 0 && (
+                <div>
+                  <h5 className="text-gray-800 font-medium mb-3">Related Links</h5>
+                  <div className="flex flex-wrap gap-3">
+                    {linkContent.map((content, i) => (
+                      <a 
+                        key={i}
+                        href={content.src} 
+                        className="block px-4 py-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors border border-blue-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="flex items-center gap-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                          </svg>
+                          {content.alt}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          )}
+          
+          {/* Skills section */}
+          {experience.Skills && experience.Skills.length > 0 && (
+            <div className="mt-6 border-t pt-4">
+              <h5 className="text-gray-800 font-medium mb-3">Skills</h5>
+              <div className="flex flex-wrap gap-2">
+                {experience.Skills
+                  .sort((a, b) => {
+                    const getCategoryPriority = (skill: string) => {
+                      const skillLower = skill.toLowerCase();
+                      const isLanguage = data.Experience.Skills?.Languages?.some(
+                        lang => lang.Title.toLowerCase() === skillLower
+                      );
+                      if (isLanguage) return 1;
+                      
+                      const isProficiency = data.Experience.Skills?.Proficiencies?.some(
+                        prof => prof.Title.toLowerCase() === skillLower
+                      );
+                      if (isProficiency) return 2;
+                      
+                      return 3;
+                    };
+                    
+                    return getCategoryPriority(a) - getCategoryPriority(b);
+                  })
+                  .map((skill, i) => (
+                    <span 
+                      key={i} 
+                      className={`px-3 py-2 rounded-full text-sm font-medium mb-1 inline-block ${categorizeSkill(skill)}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -763,17 +802,75 @@ function SkillCard({ skill }: { skill: Skill }) {
 }
 
 export function ExperienceContent({activeSection}: SidebarNavProps ) {
+    const [languagesStarFilter, setLanguagesStarFilter] = useState(2); // Default to 2 stars
+    const [proficienciesStarFilter, setProficienciesStarFilter] = useState(2); // Default to 2 stars
+
     const createSectionId = (position: string | undefined) => {
         if (!position) return '';
         return position.toLowerCase().replace(/[^a-z0-9]/g, '-');
     };
+
+    // Filter skills based on star rating
+    const filteredLanguages = data.Experience.Skills?.Languages?.filter(
+      skill => skill.Expertise >= languagesStarFilter
+    ).sort((a, b) => b.Expertise - a.Expertise);
+    
+    const filteredProficiencies = data.Experience.Skills?.Proficiencies?.filter(
+      skill => skill.Expertise >= proficienciesStarFilter
+    ).sort((a, b) => b.Expertise - a.Expertise);
+    
+    // Star filter UI component
+    const StarFilter = ({ 
+      selectedStars, 
+      onChange,
+      label = "Filter by skill level:"
+    }: { 
+      selectedStars: number; 
+      onChange: (stars: number) => void;
+      label?: string;
+    }) => (
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3">
+        <span className="text-sm font-medium text-gray-700">{label}</span>
+        <div className="flex items-center gap-1">
+          {[1, 2, 3, 4, 5].map((stars) => (
+            <button
+              key={stars}
+              className={`p-1.5 rounded-full transition-colors ${
+                stars <= selectedStars 
+                  ? "bg-amber-100 text-amber-500" 
+                  : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+              }`}
+              onClick={() => onChange(stars)}
+              aria-pressed={stars <= selectedStars}
+              title={`${stars} ${stars === 1 ? 'star' : 'stars'} or higher`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            </button>
+          ))}
+        </div>
+        <span className="text-sm text-gray-500">
+          Showing {selectedStars === 1 ? 'all' : `${selectedStars}+ star`} skills
+        </span>
+        {selectedStars > 1 && (
+          <button 
+            onClick={() => onChange(1)} 
+            className="text-blue-600 text-sm hover:underline"
+          >
+            Show all
+          </button>
+        )}
+      </div>
+    );
+
   return (
-    <div className="flex-1 pl-6 relative">
+    <div className="flex-1 md:pl-6 relative">
       {/* Content with relative positioning to appear above the gradient */}
-      <div className="relative z-10">
+      <div className="relative z-10 pb-10">
         {/* Overview Section */}
-        <section className="mb-16 pt-6" id="overview">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8 text-[#141619]">
+        <section className="md:mb-16 mb-12 pt-8 md:pt-6" id="overview">
+          <h1 className="text-2xl md:text-4xl font-bold mb-8 text-[#141619] leading-tight">
             Programming Experience and Skills
           </h1>
           
@@ -840,10 +937,12 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         </section>
         
         {/* Professional Experience Section */}
-        <section id="professional" className="py-10 scroll-mt-20">
-            <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-amber-300 to-amber-500 inline-block rounded-lg shadow-sm text-white">Professional Experience</h2>
+        <section id="professional" className="pt-12 md:pt-10 scroll-mt-20">
+          <h2 className="text-2xl font-bold mb-10 md:mb-8 py-3 px-6 bg-gradient-to-r from-amber-300 to-amber-500 inline-block rounded-lg shadow-sm text-white">
+            Professional Experience
+          </h2>
             {(data.Experience.Professional as Experience[]).map((exp, index) => (
-                <div key={index} id={createSectionId(exp.Position)} className="scroll-mt-24">
+                <div key={index} id={createSectionId(exp.Title)} className="scroll-mt-24">
                     <ExperienceCard experience={exp} />
                 </div>
             ))}
@@ -851,10 +950,12 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         </section>
         
         {/* Personal Experience Section */}
-        <section id="personal" className="py-10 scroll-mt-20">
-            <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-rose-300 to-rose-500 inline-block rounded-lg shadow-sm text-white">Personal Experience</h2>
+        <section id="personal" className="pt-10 scroll-mt-20">
+            <h2 className="text-2xl font-bold mb-10 md:mb-8 py-3 px-6 bg-gradient-to-r from-rose-300 to-rose-500 inline-block rounded-lg shadow-sm text-white">
+              Personal Experience
+            </h2>
             {(data.Experience.Personal as Experience[]).map((exp, index) => (
-                <div key={index} id={createSectionId(exp.Position)} className="scroll-mt-24">
+                <div key={index} id={createSectionId(exp.Title)} className="scroll-mt-24">
                     <ExperienceCard experience={exp} />
                 </div>
             ))}
@@ -862,29 +963,65 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
         </section>
         
         {/* Skills Section */}
-        <section id="skills" className="py-10 scroll-mt-20">
-            <h2 className="text-2xl font-bold mb-8 py-3 px-6 bg-gradient-to-r from-indigo-300 to-indigo-500 inline-block rounded-lg shadow-sm text-white">Skills</h2>
+          <section id="skills" className="pt-10 scroll-mt-20">
+            <h2 className="text-2xl font-bold mb-10 md:mb-8 py-3 px-6 bg-gradient-to-r from-indigo-300 to-indigo-500 inline-block rounded-lg shadow-sm text-white">
+              Skills
+            </h2>
             
             {/* Programming Languages Section */}
             <div id="programming-languages" className="mb-8 scroll-mt-24">
-                <h3 className="text-xl font-semibold mb-5 text-gray-800">Programming Languages</h3>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-5">
+                <h3 className="text-xl font-semibold text-gray-800">Programming Languages</h3>
+              </div>
+              
+              {/* Star Filter for Languages */}
+              <StarFilter 
+                selectedStars={languagesStarFilter} 
+                onChange={setLanguagesStarFilter} 
+              />
+              
+              {filteredLanguages && filteredLanguages.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
-                {data.Experience.Skills?.Languages?.sort((a, b) => b.Expertise - a.Expertise).map((skill, index) => (
+                  {filteredLanguages.map((skill, index) => (
                     <SkillCard key={index} skill={skill} />
-                ))}
+                  ))}
                 </div>
+              ) : (
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+                  <p className="text-amber-700">
+                    No programming languages match your filter. <button onClick={() => setLanguagesStarFilter(1)} className="underline">Show all</button>
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Technical Proficiencies Section */}
             <div id="technical-proficiencies" className="scroll-mt-24">
-                <h3 className="text-xl font-semibold mb-5 text-gray-800">Technical Proficiencies</h3>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-5">
+                <h3 className="text-xl font-semibold text-gray-800">Technical Proficiencies</h3>
+              </div>
+              
+              {/* Star Filter for Proficiencies */}
+              <StarFilter 
+                selectedStars={proficienciesStarFilter} 
+                onChange={setProficienciesStarFilter} 
+              />
+              
+              {filteredProficiencies && filteredProficiencies.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {data.Experience.Skills?.Proficiencies?.sort((a, b) => b.Expertise - a.Expertise).map((skill, index) => (
+                  {filteredProficiencies.map((skill, index) => (
                     <SkillCard key={index} skill={skill} />
-                ))}
+                  ))}
                 </div>
+              ) : (
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <p className="text-amber-700">
+                    No technical proficiencies match your filter. <button onClick={() => setProficienciesStarFilter(1)} className="underline">Show all</button>
+                  </p>
+                </div>
+              )}
             </div>
-        </section>
+          </section>
       </div>
     </div>
   );
@@ -922,7 +1059,7 @@ export default function Experience() {
         {/* Background gradient */}
         <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-sky-100 to-white pointer-events-none" />
         
-        <div className="container mx-auto px-4 py-10 flex flex-1 relative z-10">
+        <div className="container mx-auto px-5 md:px-4 py-6 md:py-10 flex flex-1 relative z-10">
           <SidebarNav activeSection={activeSection} />
           <ExperienceContent activeSection={activeSection} />
         </div>

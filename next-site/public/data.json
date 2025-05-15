@@ -3,8 +3,8 @@
     "Experience": {
         "Professional": [
             {
-                "Title": "Michigan State University, CSE 331", 
-                "Position": "Undergraduate Learning Assistant", 
+                "Subheading": "Michigan State University, CSE 331", 
+                "Title": "Undergraduate Learning Assistant", 
                 "Description": "CSE 331 is the Data Structures and Algorithms Course at MSU taught by Professor Sebnam Onsay.", 
                 "Location": "East Lansing, MI", 
                 "Start Date": "January 2024",
@@ -26,8 +26,8 @@
                 "Color": "#17453C"
             },
             {
-                "Title": "Schaeffler Group North America", 
-                "Position": "Prototype Software Development Co-op", 
+                "Subheading": "Schaeffler Group North America", 
+                "Title": "Prototype Software Development Co-op", 
                 "Description": "Schaeffler Group is a German-based automotive supplier with 120,000 employees worldwide.", 
                 "Location": "Troy, Michigan", 
                 "Start Date": "August 2024",
@@ -48,8 +48,8 @@
                 "Color": "#08954C"
             },
             {
-                "Title": "Ford Motor Company, Model E Group", 
-                "Position": "Product Development Intern", 
+                "Subheading": "Ford Motor Company, Model E Group", 
+                "Title": "Product Development Intern", 
                 "Description": "Ford Motor Company, a major American car company, is famous for putting America on wheels. Today, they are pioneers in the electric vehicle space.", 
                 "Location": "Dearborn, Michigan", 
                 "Start Date": "May 2024",
@@ -79,8 +79,8 @@
                 "Color": "#081534"
             },
             {
-                "Title": "Native Projex, Inc.", 
-                "Position": "Backend Development Intern", 
+                "Subheading": "Native Projex, Inc.", 
+                "Title": "Backend Development Intern", 
                 "Description": "Quirks.ai is a proof-of-concept app in development by Native Projex, Inc. Native Projex is a small Vietnam-based start-up company. The app’s goal is to provide a trainable companion for each user that helps them explore the world the way that fits them best.", 
                 "Location": "Ho Chi Minh City, Vietnam", 
                 "Start Date": "May 2024",
@@ -98,7 +98,7 @@
                     "Git",
                     "Linux",
                     "Machine Learning",
-                    "Scikit-learn",
+                    "Scikit Learn",
                     "TensorFlow",
                     "GraphQL",
                     "PostgreSQL",
@@ -109,7 +109,7 @@
         ],
         "Personal": [
             {
-                "Position": "Personal Portfolio Website", 
+                "Title": "Personal Portfolio Website", 
                 "Location": "Novi, MI", 
                 "Start Date": "June 2024",
                 "End Date": "May 2025",
@@ -135,12 +135,13 @@
                 "Color": "#2C2E3A"
             },
             {
-                "Position": "QuizMe for Amazon Echo, SpartaHack 10", 
+                "Title": "QuizMe for Amazon Echo",
+                "Subheading": "SpartaHack 10",
                 "Location": "East Lansing, MI", 
                 "Start Date": "February 2025",
                 "Accomplishments": [
                     "Built QuizMe, an Amazon Alexa skill that converts Quizlet flashcards into voice-based quizzes using Google Gemini for question generation and semantic answer evaluation",
-                    "Developed a full-stack web app (HTML/CSS/JavaScript frontend, Flask backend on Render) to process Quizlet exports and serve them to Alexa via REST API",
+                    "Developed a full-stack web app (Next.js and Tailwind CSS frontend, Flask backend on Render) to process Quizlet exports and serve them to Alexa via REST API",
                     "Integrated AWS Lambda and the Alexa Developer Console to handle voice intents, external API calls, and user interaction through natural language",
                     "Used Google Gemini’s API to rephrase flashcard definitions into quiz questions and interpret user responses with semantic flexibility"
                 ],
@@ -156,7 +157,9 @@
                     "Python", 
                     "Git", 
                     "Machine Learning", 
-                    "AWS Lambda"
+                    "AWS Lambda",
+                    "Tailwind CSS",
+                    "Next.js"
                 ],
                 "Color": "#3B75F3",
                 "Awards": [
@@ -165,7 +168,7 @@
                 ]
             },
             {
-                "Position": "PDF Extract", 
+                "Title": "PDF Extract", 
                 "Location": "East Lansing, MI", 
                 "Start Date": "February 2025",
                 "Accomplishments": [
@@ -188,7 +191,8 @@
                 ]
             },
             {
-                "Position": "FitConnect, MHacks 2024", 
+                "Title": "FitConnect",
+                "Subheading": "MHacks 2024", 
                 "Location": "Ann Arbor, MI", 
                 "Start Date": "September 2024",
                 "Accomplishments": [
@@ -211,7 +215,8 @@
                 "Color": "#FFAF2F"
             },
             {
-                "Position": "CongressForecast, Spartahack 9", 
+                "Title": "CongressForecast",
+                "Subheading": "SpartaHack 9", 
                 "Location": "East Lansing, MI", 
                 "Start Date": "January 2024",
                 "Accomplishments": [
@@ -229,7 +234,7 @@
                 ]
             },
             {
-                "Position": "Ascent Videogame", 
+                "Title": "Ascent Videogame", 
                 "Location": "Novi, MI", 
                 "Start Date": "September 2021",
                 "End Date": "June 2022",
