@@ -423,7 +423,129 @@
             ]
         }
     },
-    "Education": {
-
-    }
+    "Education": [
+        {
+            "School": "Michigan State University",
+            "Subheading": "College of Engineering",
+            "Degree": "Bachelor of Science, Computer Science with Honors",
+            "Minor": "Business",
+            "GPA": 4.00,
+            "Start Date": "September 2022",
+            "End Date": "May 2026",
+            "Location": "East Lansing, MI",
+            "Selected Courses": [
+                {"Code": "CSE 404", "Title": "Introduction to Machine Learning"},
+                {"Code": "CSE 422", "Title": "Computer Networks"},
+                {"Code": "CSE 450", "Title": "Translation of Programming Languages"},
+                {"Code": "CSE 440", "Title": "Introduction to Artificial Intelligence"},
+                {"Code": "CSE 480", "Title": "Database Systems"},
+                {"Code": "CSE 491", "Title": "Software Performance Engineering"}
+            ],
+            "Extracirriculars": [
+                {
+                    "Club": "XR Club at MSU",
+                    "Position": "Workshop Director",
+                    "Start Date": "January 2024",
+                    "End Date": "December 2024",
+                    "Description": "The Extended Reality Club is a technical club aimed at promoting discussion about VR (virtual reality), AR (augment reality), and MR (mixed reality) technology. This is primarily done through meetings, workshops, and semester projects.",
+                    "Accomplishments": [
+                        "Launched the new XR Club at MSU in March 2024",
+                        "Created bi-weekly workshops for students to get hands-on experience with XR tools",
+                        "Interacted with clubs nationwide to ideate new workshop topics"
+                    ],
+                    "Additional Content": [
+                        {"type": "image", "src": "/images/XRLogo.png", "alt": "Club Logo"}
+                    ]
+                },
+                {
+                    "Club": "MSU Powerlifting Club",
+                    "Start Date": "August 2023",
+                    "End Date": "December 2023",
+                    "Description": "The MSU Powerlifting club is an athletic/social club to assemble students interested in powerlifting ranging from amateurs to experienced competitors. The most popular competition federation for members is the USAPL (United States of America Power Lifting)."
+                },
+                {
+                    "Club": "MSU Crew Club",
+                    "Start Date": "September 2022",
+                    "End Date": "May 2023",
+                    "Description": "The MSU Crew Club is a competitive athletic club for students interested in rowing. The club is organized as a team with coaches, equipment, and a boathouse. There are two competition seasons: the fall and spring with indoor winter training.",
+                    "Accomplishments": [
+                        "Practiced for 2 hours / day and weightlifted for 2 hours /day, 6 days / week",
+                        "Competed weekly in regional regattas apart of the American Collegiate Rowing Association",
+                        "Increased weight 145 lbs to 175 lbs by engaging in a rigorous diet provided by the team’s nutritionist"
+                    ],
+                    "Additional Content": [
+                        {"type": "video", "src": "/images/Rowing_Video.MOV", "alt": "Rowing Practice in the Grand River"}
+                    ]
+                }
+            ],
+            "Banner": "/images/MSU_Header.png",
+            "Color": "#081534"
+        },
+        {
+            "School": "Novi High School",
+            "GPA": 4.09,
+            "Start Date": "September 2018",
+            "End Date": "June 2022",
+            "Location": "Novi, MI",
+            "Extracirriculars": [
+                {
+                    "Club": "FIRST Robotics",
+                    "Start Date": "June 2014",
+                    "End Date": "June 2022",
+                    "Description": "FIRST Robotics is a worldwide, youth robotics organization for 5th-12th grade students with 79,000+ teams. There are three distinct leagues with increasing technical difficultly: FLL, FTC, and FRC. The yearly competition revolves around a technical challenge for a robot to complete and the core values of FIRST. Awards consider both robot performance and how well a team embodies the core values.",
+                    "Accomplishments": [
+                        "Our Frog Force 503 team won the Chairman’s award at the 2021 Detroit World Championship, placing us in the Hall of Fame",
+                        "We engaged in community outreach across the world to spread STEM education",
+                        "Utilized computer vision to automate the aiming of the robot’s turret",
+                        "Designed and manufactured the chassis of the robot"
+                    ],
+                    "Awards": [
+                        "2021 Detroit World Championship Chairman’s Award"
+                    ]
+                },
+                {
+                    "Club": "Boy Scouts of America",
+                    "Start Date": "March 2015",
+                    "End Date": "January 2021",
+                    "Description": "The Boy Scouts of America is a youth organization focused on character development through outdoor activities, leadership training, and community service.",
+                    "Accomplishments": [
+                        "Earned Eagle Scout rank by planning, fundraising, and leading an Eagle Scout Project where I created a small park area outside the city civic center",
+                        "Led the my troop as the Senior Patrol Leader for 2 terms through COVID-19",
+                        "Organized weekly meetings and outdoors events for scouts",
+                        "Coordinated food drives between Cub Scouts, Boy Scouts, and local food banks"
+                    ],
+                    "Awards": [
+                        "Eagle Scout Rank"
+                    ]
+                },
+                {
+                    "Club": "Novi High School Track and Field",
+                    "Position": "Captain",
+                    "Start Date": "March 2019",
+                    "End Date": "June 2022",
+                    "Description": "Track and Field is a sports team sponsored by Novi High School. It is a spring season sport based on individual performance where each athlete competes in running events and/or field events.",
+                    "Accomplishments": [
+                        "Became a varsity athlete competing in the 100M and 200M Dash",
+                        "Led ~40 student athletes through warm-up, workouts, and competition"
+                    ],
+                    "Awards": [
+                        "2021 MHSAA Boys Track Division 1 Regional Champions"
+                    ]
+                },
+                {
+                    "Club": "Novi High School Marching Band",
+                    "Position": "Section Leader",
+                    "Start Date": "June 2018",
+                    "End Date": "October 2021",
+                    "Description": "The Novi High School Marching Band competes in the Michigan Competing Band Association (MCBA) with a yearly season from June to October. The band must memorize a 15 minute show, which is performed at football games and competitions.",
+                    "Accomplishments": [
+                        "Led the Sousaphone Section by teaching music, marching technique, and drill routines",
+                        "Relayed information between director, drum majors, and the section to ensure coordination"
+                    ]
+                }
+            ],
+            "Banner": "/images/Novi_High_School.png",
+            "Color": "#0D7342"
+        }
+    ]
 }
