@@ -479,7 +479,11 @@
                 }
             ],
             "Banner": "/images/MSU_Header.png",
-            "Color": "#081534"
+            "Colors": {
+                "primary": "#18453B",
+                "light": "#f0f7f5", 
+                "border": "#d3e6e1"
+            }
         },
         {
             "School": "Novi High School",
@@ -545,7 +549,11 @@
                 }
             ],
             "Banner": "/images/Novi_High_School.png",
-            "Color": "#0D7342"
+            "Colors": {
+                "primary": "#0D7342",
+                "light": "#e6f2ed", 
+                "border": "#b5d5c7"
+            }
         }
     ]
 }
