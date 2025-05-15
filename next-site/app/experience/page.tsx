@@ -679,11 +679,35 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
 }
 
 export default function Experience() {
-  const [activeSection, setActiveSection] = useState("overview");
+  const [activeSection, setActiveSection] = useState("overview");  
 
-  // Update active section based on scroll position (keep this code)
   useEffect(() => {
-    // existing handleScroll implementation...
+    const handleScroll = () => {      
+      const sections = ["overview", "professional", "personal", "skills"];
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Change the active section if the viewport is within the section's top and bottom
+          if (rect.top <= 200 && rect.bottom > 200) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    console.warn("Adding scroll event listener");
+    window.addEventListener("scroll", handleScroll);
+    
+    // Initial check
+    setTimeout(handleScroll, 500); // Slight delay to ensure DOM is ready
+    
+    return () => {
+      console.warn("Removing scroll event listener");
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Create URL-friendly ID function (keep this existing function)

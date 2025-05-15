@@ -577,41 +577,37 @@ function EducationContent({ activeSection }: SidebarNavProps) {
 }
 
 export default function Education() {
-  const [activeSection, setActiveSection] = useState("overview");
-
-  // Update active section based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      // Main sections first (overview, education)
-      const mainSections = document.querySelectorAll("section[id]");
-      let currentSection = "";
-      
-      mainSections.forEach((section) => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop <= 100) {
-          currentSection = section.getAttribute("id") || "";
-        }
-      });
-      
-      // Then check for school subsections
-      if (currentSection === "education") {
-        const schoolSections = document.querySelectorAll("[id^='michigan-state-university'],[id^='novi-high-school']");
-        schoolSections.forEach((section) => {
-          const sectionTop = section.getBoundingClientRect().top;
-          if (sectionTop <= 100) {
-            currentSection = section.getAttribute("id") || "";
+  const [activeSection, setActiveSection] = useState("overview");  
+  
+    useEffect(() => {
+      const handleScroll = () => {      
+        const sections = ["overview", "education"];
+        
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // Change the active section if the viewport is within the section's top and bottom
+            if (rect.top <= 200 && rect.bottom > 200) {
+              setActiveSection(section);
+              break;
+            }
           }
-        });
-      }
+        }
+      };
+  
+      console.warn("Adding scroll event listener");
+      window.addEventListener("scroll", handleScroll);
       
-      if (currentSection && currentSection !== activeSection) {
-        setActiveSection(currentSection);
-      }
-    };
+      // Initial check
+      setTimeout(handleScroll, 500); // Slight delay to ensure DOM is ready
+      
+      return () => {
+        console.warn("Removing scroll event listener");
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [activeSection]);
 
   // Create URL-friendly ID function
   const createSectionId = (title: string) => {
