@@ -128,7 +128,6 @@ function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: 
       <div className="relative max-w-4xl max-h-[90vh] overflow-hidden">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 bg-black bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-70 transition-colors"
           aria-label="Close modal"
         >
         </button>
