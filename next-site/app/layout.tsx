@@ -13,6 +13,12 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Scott Haakenson",
   description: "Software Portfolio of Scott Haakenson",
+  icons: {
+    icon: [
+      { url: '/images/Personal_Logo.svg', type: 'image/svg+xml' }
+    ],
+    shortcut: ['/images/Personal_Logo.svg'],
+  },
 };
 
 export default function RootLayout({
