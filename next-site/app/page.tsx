@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import BlurredBackground, { NavBar, ContactMe } from "./components";
+import BlurredBackground, { NavBar, ContactMe, ImageModal } from "./components";
 import data from '../public/data.json';
 
 
@@ -250,6 +250,151 @@ export function AboutMe() {
   );
 }
 
+export function ImageGallery() {
+  // State to track active image for mobile view
+  const [activeImage, setActiveImage] = useState(0);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  // State to track the selected image for the modal
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  
+  // Handle scroll events to update active image indicator
+  const handleScroll = () => {
+    if (!galleryRef.current) return;
+    
+    const scrollPosition = galleryRef.current.scrollLeft;
+    const slideWidth = galleryRef.current.clientWidth * 1.1; // Account for the margins (width + margins)
+    const newActiveImage = Math.round(scrollPosition / slideWidth);
+    
+    if (newActiveImage !== activeImage) {
+      setActiveImage(newActiveImage);
+    }
+  };
+  
+  // Scroll to specific image when indicator is clicked
+  const scrollToImage = (index: number) => {
+    if (!galleryRef.current) return;
+    
+    const imageWidth = galleryRef.current.clientWidth;
+    galleryRef.current.scrollTo({
+      left: imageWidth * index * 1.1, // Account for the margins
+      behavior: 'smooth'
+    });
+  };
+  
+  // Get images from data
+  const images = data["About Me"].Images || [];
+  
+  return (
+    <section className="w-full bg-gray-100 py-12 md:py-16 dark:bg-transparent">
+      <div className="container mx-auto px-2 md:px-16">
+        <h2 className="text-3xl md:text-4xl font-medium text-center mb-10 text-gray-800 dark:text-white">
+          Photo Gallery
+        </h2>
+        
+        {/* Image Modal - rendered conditionally when an image is selected */}
+        {selectedImage && (
+          <ImageModal
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            onClose={() => setSelectedImage(null)}
+          />
+        )}
+        
+        {/* Desktop layout - larger images */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6">
+          {images.map((image: any, index: number) => (
+            <div 
+              key={`desktop-image-${index}`} 
+              className="rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer"
+              onClick={() => setSelectedImage({ src: image.src, alt: image.alt })}
+            >
+              <div className="relative h-64 lg:h-72">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
+                  <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
+                    Click to enlarge
+                  </span>
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-center text-gray-700 dark:text-gray-300">{image.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile slider */}
+        <div className="md:hidden mt-8">
+          <div 
+            ref={galleryRef}
+            className="flex overflow-x-auto snap-x scrollbar-hide px-[15%]"
+            onScroll={handleScroll}
+            style={{
+              scrollbarWidth: 'none', /* Firefox */
+              msOverflowStyle: 'none',  /* IE and Edge */
+              scrollSnapType: 'x mandatory',
+              paddingLeft: 'calc((100% - 70%) / 2)',
+              paddingRight: 'calc((100% - 70%) / 2)',
+            }}
+          >
+            {images.map((image: any, index: number) => (
+              <div 
+                key={`mobile-image-${index}`}
+                className="flex-shrink-0 w-[100%] mx-[5%] snap-center"
+                style={{ scrollSnapAlign: 'center' }}
+                onClick={() => setSelectedImage({ src: image.src, alt: image.alt })}
+              >
+                <div className="rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer">
+                  <div className="relative h-64">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
+                      <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
+                        Click to enlarge
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <p className="text-center text-gray-700 dark:text-gray-300">{image.caption}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Pagination dots - fixed to handle all elements correctly */}
+          {images.length > 1 && (
+            <div className="flex justify-center mt-6 space-x-2">
+              {images.map((_: any, index: number) => (
+                <button
+                  key={`dot-${index}`}
+                  onClick={() => scrollToImage(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    activeImage === index 
+                      ? 'bg-gray-800 scale-110 dark:bg-white' 
+                      : 'bg-gray-400 opacity-60'
+                  }`}
+                  aria-label={`Go to image ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -257,6 +402,7 @@ export default function Home() {
       <NavBar />
       <HeroSection />
       <AboutMe />
+      <ImageGallery />
       <ContactMe />
     </>
   );

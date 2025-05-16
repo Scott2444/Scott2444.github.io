@@ -1,4 +1,7 @@
 {
+    "Overall": {
+        "Resume": "College Resume - Third Year.pdf"
+    },
     "About Me": {
         "Introduction": "I'm currently a software engineering student at Michigan State University. I'm passionate about creating innovative products that push the bounds of what is possible.",
         "About Header": "Here's a little bit about me. I'm enthusiastic about coding and always looking to improve my skills. But everyone needs a break, right? When I'm not coding, you can usually find me at the gym or hanging out with friends.",
@@ -15,6 +18,13 @@
                 "Title": "Fitness",
                 "Description": "I try my best to stay active because having a healthy body is the greatest gift you can give yourself. I enjoy playing casual sports with friends like volleyball or going to the gym to get stronger. One of the best joys are finally beating a personal record after weeks of stagnation."
             }
+        ],
+        "Images": [
+            {"src": "/images/Via_Ferrata.JPG", "alt": "Via Ferrata", "caption": "Hiking the Via Ferrata Trail in Murren, Switerzerland"},
+            {"src": "/images/Jungfraujoch.JPG", "alt": "Jungfraujoch Summit", "caption": "Summit of Jungfraujoch, the highest point in Europe"},
+            {"src": "/images/Japan.JPG", "alt": "Japan", "caption": "Great Budda Hall, Tōdai-ji in Nara, Japan"},
+            {"src": "/images/Eiffel_Tower.JPG", "alt": "Eiffel Tower", "caption": "Eiffel Tower in Paris, France"},
+            {"src": "/images/Caving.jpeg", "alt": "ULA Gathering", "caption": "Hang Tien Cave in Phong Nha, Vietnam"}
         ]
     },
     "Experience": {

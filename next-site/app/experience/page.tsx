@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection } from "../components";
+import { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
 import data from '../../public/data.json';
 
 interface SidebarNavProps {
@@ -36,115 +36,6 @@ interface Skill {
     Description: string;
     Expertise: number;  
     Logo: string;
-}
-
-function VideoComponent({ src, alt }: { src: string; alt: string }) {
-  // Check if the source is a YouTube URL
-  const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
-  
-  // Extract YouTube video ID if it's a YouTube URL
-  const getYouTubeVideoId = (url: string): string => {
-    try {
-      if (url.includes('youtube.com/watch')) {
-        // Format: youtube.com/watch?v=VIDEO_ID
-        const urlParams = new URLSearchParams(new URL(url).search);
-        return urlParams.get('v') || '';
-      } else if (url.includes('youtu.be/')) {
-        // Format: youtu.be/VIDEO_ID    
-        return url.split('youtu.be/')[1].split('?')[0];
-      } else if (url.includes('youtube.com/embed/')) {
-        // Format: youtube.com/embed/VIDEO_ID
-        return url.split('youtube.com/embed/')[1].split('?')[0];
-      }
-      return '';
-    } catch (error) {
-      console.error('Error parsing YouTube URL', error);
-      return '';
-    }
-  };
-  
-  if (isYouTube) {
-    const videoId = getYouTubeVideoId(src);
-    if (!videoId) {
-      return (
-        <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-500">
-          Invalid YouTube URL
-        </div>
-      );
-    }
-    
-    // Use the privacy-enhanced mode (youtube-nocookie.com)
-    // And add parameters to reduce tracking and CORS issues
-    const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`;
-    
-    return (
-      <iframe
-        src={embedUrl}
-        title={alt}
-        width="100%"
-        height="100%"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="w-full h-full"
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
-    );
-  } else {
-    // Handle direct video files (MP4, etc.)
-    return (
-      <video
-        controls
-        width="100%"
-        height="100%"
-        preload="metadata"
-        title={alt}
-        className="w-full h-full object-cover"
-      >
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    );
-  }
-}
-
-function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
-  // Close when Escape key is pressed
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
-  
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" 
-         onClick={onClose}
-         aria-modal="true"
-         role="dialog">
-      <div className="relative max-w-4xl max-h-[90vh] overflow-hidden">
-        <button
-          onClick={onClose}
-          aria-label="Close modal"
-        >
-        </button>
-        <div className="relative w-full" onClick={(e) => e.stopPropagation()}>
-          <Image 
-            src={src} 
-            alt={alt} 
-            width={800} 
-            height={600} 
-            priority
-            style={{ objectFit: 'contain', maxHeight: '80vh', width: 'auto' }}
-            className="rounded-lg"
-          />
-        </div>
-      </div>
-    </div>
-  );
 }
 
 // Function to categorize a skill based on data.json
@@ -763,7 +654,7 @@ export default function Experience() {
   // Resume download button for the sidebar footer
   const resumeButton = (
     <a 
-      href="College Resume - Third Year.pdf" 
+      href={data.Overall.Resume} 
       download
       className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300"
     >

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection } from "../components";
+import { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
 import data from '../../public/data.json';
 
 interface SidebarNavProps {
@@ -68,100 +68,6 @@ function adjustColorBrightness(hex: string, percent: number) {
   return brighterHex;
 }
 
-function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  
-  // Close when clicking outside the image
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === modalRef.current) {
-      onClose();
-    }
-  };
-
-  // Close on escape key
-  useEffect(() => {
-    const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-    
-    window.addEventListener('keydown', handleEscKey);
-    return () => window.removeEventListener('keydown', handleEscKey);
-  }, [onClose]);
-
-  return (
-    <div 
-      ref={modalRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-2 sm:p-4"
-      onClick={handleBackdropClick}
-    >
-      <div className="relative max-w-4xl max-h-[90vh] w-full overflow-hidden">
-        <button 
-          onClick={onClose}
-          className="absolute top-2 right-2 z-10 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center text-white"
-          aria-label="Close modal"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-        
-        <Image
-          src={src}
-          alt={alt}
-          width={1200}
-          height={800}
-          style={{ objectFit: 'contain', maxHeight: '85vh' }}
-          className="rounded-lg"
-        />
-      </div>
-    </div>
-  );
-}
-
-// Video component for embedding videos
-function VideoComponent({ src, alt }: { src: string; alt: string }) {
-  // Handle YouTube URLs
-  if (src.includes('youtube.com') || src.includes('youtu.be')) {
-    // Extract video ID
-    let videoId = '';
-    if (src.includes('youtube.com/watch?v=')) {
-      videoId = src.split('v=')[1].split('&')[0];
-    } else if (src.includes('youtu.be/')) {
-      videoId = src.split('youtu.be/')[1].split('?')[0];
-    }
-    
-    if (videoId) {
-      return (
-        <div className="relative w-full pt-[56.25%]">
-          <iframe
-            className="absolute inset-0 w-full h-full rounded-lg"
-            src={`https://www.youtube.com/embed/${videoId}`}
-            title={alt}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      );
-    }
-  }
-  
-  // For other video formats, use HTML5 video
-  return (
-    <video
-      controls
-      className="w-full h-auto rounded-lg"
-      src={src}
-      title={alt}
-      playsInline // Better for mobile
-    >
-      Your browser does not support the video tag.
-    </video>
-  );
-}
-
 function CourseList({ courses }: { courses?: { Code: string; Title: string }[] }) {
   if (!courses || courses.length === 0) return null;
   
@@ -201,7 +107,15 @@ function CourseList({ courses }: { courses?: { Code: string; Title: string }[] }
   );
 }
 
-function SchoolCard({ school, index }: { school: School, index: number }) {
+function SchoolCard({ 
+  school, 
+  index,
+  setSelectedImage  // Add this prop
+}: { 
+  school: School, 
+  index: number,
+  setSelectedImage: React.Dispatch<React.SetStateAction<{ src: string; alt: string } | null>>
+}) {
   const [activeTab, setActiveTab] = useState<'academics'|'activities'>('academics');
   const [expanded, setExpanded] = useState<boolean>(false);
   const createSectionId = (name: string) => {
@@ -364,7 +278,7 @@ function SchoolCard({ school, index }: { school: School, index: number }) {
                       id={`${createSectionId(school.School)}-${createSectionId(activity.Club)}`}
                       className="scroll-mt-24"
                     >
-                      <ExtracurricularCard activity={activity} schoolColor={colors.primary} />
+                      <ExtracurricularCard activity={activity} schoolColor={colors.primary} setSelectedImage={setSelectedImage} />
                     </div>
                   ))}
                 </div>
@@ -379,8 +293,15 @@ function SchoolCard({ school, index }: { school: School, index: number }) {
   );
 }
 
-function ExtracurricularCard({ activity, schoolColor }: { activity: Extracurricular, schoolColor: string }) {
-  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+function ExtracurricularCard({ 
+  activity, 
+  schoolColor,
+  setSelectedImage  // Add this prop
+}: { 
+  activity: Extracurricular, 
+  schoolColor: string,
+  setSelectedImage: React.Dispatch<React.SetStateAction<{ src: string; alt: string } | null>>
+}) {
   const [expanded, setExpanded] = useState(false);
   
   // Filter content by type
@@ -410,13 +331,6 @@ function ExtracurricularCard({ activity, schoolColor }: { activity: Extracurricu
       style={{ borderLeft: `4px solid ${schoolColor}` }}
     >
       <div className="p-4 sm:p-6">
-        {selectedImage && (
-          <ImageModal
-            src={selectedImage.src}
-            alt={selectedImage.alt}
-            onClose={() => setSelectedImage(null)}
-          />
-        )}
         
         <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 sm:mb-4">
           <div>
@@ -530,7 +444,7 @@ function ExtracurricularCard({ activity, schoolColor }: { activity: Extracurricu
                           />
                           <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
                             <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
-                              View
+                              Click to Enlarge
                             </span>
                           </div>
                         </div>
@@ -590,7 +504,12 @@ function ExtracurricularCard({ activity, schoolColor }: { activity: Extracurricu
   );
 }
 
-function EducationContent({ activeSection }: SidebarNavProps) {
+function EducationContent({ 
+  activeSection,
+  setSelectedImage  // Add this prop
+}: SidebarNavProps & { 
+  setSelectedImage: React.Dispatch<React.SetStateAction<{ src: string; alt: string } | null>> 
+}) {
   // Create helper function for section IDs
   const createSectionId = (name: string) => {
     return name?.toLowerCase().replace(/[^a-z0-9]/g, '-') || '';
@@ -625,7 +544,7 @@ function EducationContent({ activeSection }: SidebarNavProps) {
             
             {/* Schools */}
             {(data.Education as School[]).map((school, index) => (
-              <SchoolCard key={index} school={school} index={index} />
+              <SchoolCard key={index} school={school} index={index} setSelectedImage={setSelectedImage} />
             ))}
           </div>
         </section>
@@ -636,6 +555,8 @@ function EducationContent({ activeSection }: SidebarNavProps) {
 
 export default function Education() {
   const [activeSection, setActiveSection] = useState("overview");  
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+
   
   useEffect(() => {
     const handleScroll = () => {      
@@ -694,7 +615,7 @@ export default function Education() {
   // Resume download button for the sidebar footer
   const resumeButton = (
     <a 
-      href="College Resume - Third Year.pdf" 
+      href={data.Overall.Resume} 
       download
       className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300"
     >
@@ -705,6 +626,14 @@ export default function Education() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <NavBar />
+
+      {selectedImage && (
+        <ImageModal
+          src={selectedImage.src}
+          alt={selectedImage.alt}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
       
       <div className="relative">
         {/* Background gradient */}
@@ -717,7 +646,7 @@ export default function Education() {
             activeSection={activeSection}
             footerContent={resumeButton}
           />
-          <EducationContent activeSection={activeSection} />
+          <EducationContent activeSection={activeSection} setSelectedImage={setSelectedImage}/>
         </div>
       </div>
 
