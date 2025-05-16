@@ -195,7 +195,7 @@ export function NavBar() {
       className={`sticky top-0 py-5 px-4 md:px-8 z-30 transition-all duration-300
         ${isScrolled 
           ? 'bg-sky-100/95 backdrop-blur-sm shadow-sm dark:bg-[#171717]/95 dark:md:bg-[#171717]/80 dark:shadow-lg dark:shadow-black/20' 
-          : 'bg-sky-100 dark:bg-[#171717] dark:md:bg-transparent'}
+          : 'bg-sky-100 md:bg-transparent dark:bg-[#171717] dark:md:bg-transparent'}
       `} 
       id="topofpage"
     >

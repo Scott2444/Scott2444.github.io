@@ -10,7 +10,7 @@ import data from '../public/data.json';
 
 export function HeroSection() {
   return (
-    <section className="w-full bg-sky-100 dark:bg-transparent relative">
+    <section className="w-full bg-transparent relative">
       {/* Mobile layout: image with overlay text */}
       <div className="md:hidden relative">
         {/* Image with gradient overlay */}
@@ -51,10 +51,10 @@ export function HeroSection() {
         {/* Overlaid text positioned at bottom - updated for dark mode */}
         <div className="absolute bottom-10 left-0 right-0 z-20 px-4">
           <div className="max-w-lg mx-auto">
-            <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h1 className="text-4xl font-bold mb-4 dark:text-white">
               Hi, I&apos;m Scott
             </h1>
-            <p className="text-med text-gray-800 dark:text-zinc-200">
+            <p className="text-med text-gray-700 dark:text-zinc-200">
               {data["About Me"].Introduction}
             </p>
           </div>
@@ -185,7 +185,10 @@ export function AboutMe() {
           {cards.map((card, index) => (
             <div 
               key={`desktop-card-${index}`}
-              className={`rounded-3xl p-6 pb-12 bg-gradient-to-r ${card.gradient}`}
+              className={`rounded-3xl p-6 pb-12 bg-gradient-to-r ${card.gradient} 
+                transform transition-all duration-300 
+                hover:scale-[1.03] hover:shadow-xl hover:shadow-black/20 dark:hover:shadow-white/10 
+                hover:-translate-y-1`}
             >
               <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center">
                 {card.title}
@@ -219,7 +222,9 @@ export function AboutMe() {
                   scrollSnapAlign: 'center',
                 }}
               >
-                <div className={`rounded-3xl p-5 pb-10 bg-gradient-to-r ${card.gradient} h-full`}>
+                <div className={`rounded-3xl p-5 pb-10 bg-gradient-to-r ${card.gradient} h-full
+                  transform transition-all duration-300 
+                  hover:scale-[1.02] hover:shadow-lg active:scale-95`}>
                   <h3 className="text-xl font-semibold mb-3 text-center">
                     {card.title}
                   </h3>
@@ -259,33 +264,54 @@ export function ImageGallery() {
   
   // Handle scroll events to update active image indicator
   const handleScroll = () => {
-    if (!galleryRef.current) return;
-    
-    const scrollPosition = galleryRef.current.scrollLeft;
-    const slideWidth = galleryRef.current.clientWidth * 1.1; // Account for the margins (width + margins)
-    const newActiveImage = Math.round(scrollPosition / slideWidth);
-    
-    if (newActiveImage !== activeImage) {
-      setActiveImage(newActiveImage);
-    }
-  };
-  
-  // Scroll to specific image when indicator is clicked
-  const scrollToImage = (index: number) => {
-    if (!galleryRef.current) return;
-    
-    const imageWidth = galleryRef.current.clientWidth;
-    galleryRef.current.scrollTo({
-      left: imageWidth * index * 1.1, // Account for the margins
-      behavior: 'smooth'
+    const container = galleryRef.current;
+    if (!container) return;
+
+    const scrollLeft = container.scrollLeft;
+    const containerWidth = container.clientWidth;
+
+    const children = Array.from(container.children);
+    const imageCenters = children.map(child => {
+      const childElement = child as HTMLElement;
+      return childElement.offsetLeft + childElement.clientWidth / 2;
     });
+
+    const center = scrollLeft + containerWidth / 2;
+
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    imageCenters.forEach((imageCenter, index) => {
+      const distance = Math.abs(imageCenter - center);
+      if (distance < minDistance) {
+        closestIndex = index;
+        minDistance = distance;
+      }
+    });
+
+    setActiveImage(closestIndex);
   };
+
+  const scrollToImage = (index: number) => {
+  const container = galleryRef.current;
+  if (!container) return;
+
+  const target = container.children[index] as HTMLElement;
+  if (target) {
+    target.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+      block: 'nearest',
+    });
+    setActiveImage(index);
+  }
+};
   
   // Get images from data
   const images = data["About Me"].Images || [];
   
   return (
-    <section className="w-full bg-gray-100 py-12 md:py-16 dark:bg-transparent">
+    <section className="w-full py-12 md:py-16 bg-transparent">
       <div className="container mx-auto px-2 md:px-16">
         <h2 className="text-3xl md:text-4xl font-medium text-center mb-10 text-gray-800 dark:text-white">
           Photo Gallery
@@ -382,7 +408,7 @@ export function ImageGallery() {
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     activeImage === index 
                       ? 'bg-gray-800 scale-110 dark:bg-white' 
-                      : 'bg-gray-400 opacity-60'
+                      : 'bg-gray-600 opacity-60 dark:bg-gray-400'
                   }`}
                   aria-label={`Go to image ${index + 1}`}
                 />
