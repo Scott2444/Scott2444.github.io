@@ -15,7 +15,6 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    /* We'll handle the underline differently for dark mode */
   }
 }
 

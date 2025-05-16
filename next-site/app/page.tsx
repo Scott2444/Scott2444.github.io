@@ -4,21 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { NavBar, ContactMe } from "./components";
+import BlurredBackground, { NavBar, ContactMe } from "./components";
 import data from '../public/data.json';
 
 
 export function HeroSection() {
   return (
-    <section className="w-full bg-sky-100 relative">
+    <section className="w-full bg-sky-100 dark:bg-transparent relative">
       {/* Mobile layout: image with overlay text */}
       <div className="md:hidden relative">
         {/* Image with gradient overlay */}
         <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] h-[500px]">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-sky-100 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-sky-100 dark:hidden z-10"></div>
           <Image 
             src="/images/Intro_Picture_Mobile.jpg" 
             alt="Picture of Scott Haakenson" 
+            className="dark:hidden"
             fill
             sizes="100vw"
             style={{
@@ -27,16 +28,34 @@ export function HeroSection() {
             }}
             priority
           />
+          <Image 
+            src="/images/Intro_Picture_Mobile.jpg" 
+            alt="Picture of Scott Haakenson" 
+            className="hidden dark:block"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center top',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)',
+              WebkitMaskSize: '100% 100%',
+              maskSize: '100% 100%',
+              WebkitMaskRepeat: 'no-repeat',
+              maskRepeat: 'no-repeat'
+            }}
+            priority
+          />
         </div>
         
-        {/* Overlaid text positioned at bottom */}
-        <div className="absolute bottom-8 left-0 right-0 z-20 px-4">
+        {/* Overlaid text positioned at bottom - updated for dark mode */}
+        <div className="absolute bottom-10 left-0 right-0 z-20 px-4">
           <div className="max-w-lg mx-auto">
-            <h1 className="text-4xl font-bold mb-4 text-gray-900">
+            <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
               Hi, I&apos;m Scott
             </h1>
-            <p className="text-med text-gray-800">
-              I&apos;m currently a software engineering student at Michigan State University. I&apos;m passionate about creating innovative products that push the bounds of what is possible.
+            <p className="text-med text-gray-800 dark:text-zinc-200">
+              {data["About Me"].Introduction}
             </p>
           </div>
         </div>
@@ -47,11 +66,11 @@ export function HeroSection() {
         {/* Text container */}
         <div className="w-full py-16 px-4 md:px-12 lg:px-20 flex flex-col justify-center">
           <div className="max-w-lg mx-auto">
-            <h1 className="text-5xl font-bold mb-6">
+            <h1 className="text-5xl font-bold mb-6 dark:text-white">
               Hi, I&apos;m Scott
             </h1>
-            <p className="text-xl text-gray-700 mb-8">
-              I&apos;m currently a software engineering student at Michigan State University. I&apos;m passionate about creating innovative products that push the bounds of what is possible.
+            <p className="text-xl text-gray-700 mb-8 dark:text-zinc-300">
+              {data["About Me"].Introduction}
             </p>
           </div>
         </div>
@@ -75,9 +94,9 @@ export function HeroSection() {
 
       {/* Get to know me - (desktop only) */}
       <div className="hidden md:flex flex-col items-center absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="text-gray-700 mb-2 font-medium">Get to know me</div>
+        <div className="text-gray-700 mb-2 font-medium dark:text-zinc-300">Get to know me</div>
         <svg 
-          className="w-6 h-6 text-gray-700" 
+          className="w-6 h-6 text-gray-700 dark:text-zinc-300" 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24" 
@@ -150,7 +169,7 @@ export function AboutMe() {
   }, []);
   
   return (
-    <section className="w-full bg-gray-800 py-12 md:py-16 text-white">
+    <section className="w-full bg-gray-800 py-12 md:py-16 text-white dark:bg-transparent">
       <div className="container mx-auto px-2 md:px-16">
         <h2 className="text-3xl md:text-4xl font-medium text-center mb-6">
           About Me
@@ -234,6 +253,7 @@ export function AboutMe() {
 export default function Home() {
   return (
     <>
+      <BlurredBackground />
       <NavBar />
       <HeroSection />
       <AboutMe />

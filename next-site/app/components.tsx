@@ -32,13 +32,13 @@ export default function BlurredBackground() {
   };
   
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-sky-100 dark:bg-[#171717]">
       {/* Purple orb */}
       <div 
         className="absolute w-[600px] h-[600px] rounded-full bg-[#5967D9]/50 blur-[100px]"
         style={{
           left: `calc(20% + ${purpleOrbPosition.x}px)`,
-          top: `calc(30% + ${purpleOrbPosition.y}px)`,
+          top: `calc(40% + ${purpleOrbPosition.y}px)`,
           transform: 'translate(-50%, -50%)',
         }}
       ></div>
@@ -61,8 +61,31 @@ export default function BlurredBackground() {
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Track scroll position to add effects when scrolled
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="py-5 px-4 md:px-8 bg-sky-100 dark:bg-[#171717]" id="topofpage">
+    <nav 
+      className={`sticky top-0 py-5 px-4 md:px-8 z-30 transition-all duration-300
+        ${isScrolled 
+          ? 'bg-sky-100/95 backdrop-blur-sm shadow-sm dark:bg-[#171717]/95 dark:md:bg-[#171717]/80 dark:shadow-lg dark:shadow-black/20' 
+          : 'bg-sky-100 dark:bg-[#171717] dark:md:bg-transparent'}
+      `} 
+      id="topofpage"
+    >
       <div className="container mx-auto flex justify-between items-center">
         <div className="ml-0 md:ml-20">
           <Link href="/" className="text-[#141619] no-underline">
@@ -126,7 +149,7 @@ export function NavBar() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden mt-2 bg-sky-100">
+        <div className="md:hidden mt-2 bg-sky-100 dark:bg-[#171717]">
           <ul className="flex flex-col space-y-2 px-4 py-2">
             <li>
               <Link 
@@ -164,7 +187,7 @@ export function NavBar() {
                   });
                   setIsMenuOpen(false);
                 }}
-                className="block w-full px-4 py-2 bg-neutral-300 rounded-lg transition-all duration-500 hover:bg-neutral-400 text-center"
+                className="block w-full px-4 py-2 bg-neutral-300 rounded-lg transition-all duration-500 hover:bg-neutral-400 text-center dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-500"
               >
                 <h4 className="text-base font-medium">Contact</h4>
               </button>
