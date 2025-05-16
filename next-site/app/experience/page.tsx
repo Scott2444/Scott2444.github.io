@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
+import BlurredBackground, { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
 import data from '../../public/data.json';
 
 interface SidebarNavProps {
@@ -49,7 +49,7 @@ function categorizeSkill(skillName: string): string {
   );
   
   if (isLanguage) {
-    return "bg-blue-100 text-blue-700"; // Blue for programming languages
+    return "bg-blue-100 text-blue-700 dark:bg-blue-400/60 dark:text-slate-200"; // Blue for programming languages
   }
   
   // Check if this skill is in the Proficiencies list
@@ -58,11 +58,11 @@ function categorizeSkill(skillName: string): string {
   );
   
   if (isProficiency) {
-    return "bg-green-100 text-green-700"; // Green for technical proficiencies
+    return "bg-green-100 text-green-700 dark:bg-green-400/50 dark:text-slate-200"; // Green for technical proficiencies
   }
   
   // If not found in either list, return gray
-  return "bg-gray-100 text-gray-700";
+  return "bg-gray-100 text-gray-700 dark:bg-gray-400/50 dark:text-slate-200";
 }
 
 function ExperienceCard({ experience }: { experience: Experience }) {
@@ -86,7 +86,8 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 
   return (
     <div 
-      className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 md:mb-12 border border-gray-200 hover:shadow-xl transition-all duration-300 border-l-4" 
+      className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 md:mb-12 border border-gray-200 hover:shadow-xl transition-all duration-300 border-l-4
+               dark:border-stone-700 dark:bg-stone-900 dark:shadow-lg"  
       style={{ borderLeftColor: experience.Color || '#374151' }}
     >
       {experience.Banner && (
@@ -100,7 +101,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             className="z-0"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-10"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white via-white/90 to-transparent z-10"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white via-white/90 to-transparent z-10 dark:from-stone-900 dark: dark:via-stone-900/90"></div>
         </div>
       )}
 
@@ -116,27 +117,27 @@ function ExperienceCard({ experience }: { experience: Experience }) {
         {/* Basic information - always visible */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-5">
           <div>
-            <h3 className="text-xl font-semibold text-gray-800">{experience.Title}</h3>
-            <h4 className="text-lg text-gray-700">{experience.Subheading}</h4>
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-slate-100">{experience.Title}</h3>
+            <h4 className="text-lg text-gray-700 dark:text-slate-200">{experience.Subheading}</h4>
           </div>
           <div className="mt-2 md:mt-0 md:text-right">
-            <p className="text-gray-600">{experience.Location}</p>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-600 dark:text-slate-300">{experience.Location}</p>
+            <p className="text-gray-500 dark:text-slate-400 text-sm">
               {experience["Start Date"]}
               {experience["End Date"] ? ` - ${experience["End Date"]}` : ""}
             </p>
           </div>
         </div>
         
-        <p className="text-gray-600 mb-5 leading-relaxed">
+        <p className="text-gray-600 mb-5 leading-relaxed dark:text-slate-300">
           {experience.Description}
         </p>
 
         {/* Awards section - Keep visible as it's usually short */}
         {experience.Awards && experience.Awards.length > 0 && (
           <div className="mb-6">
-            <h5 className="text-gray-800 font-medium mb-2">Awards</h5>
-            <ul className="list-disc pl-5 text-gray-600 space-y-1">
+            <h5 className="text-gray-800 font-medium mb-2 dark:text-slate-100">Awards</h5>
+            <ul className="list-disc pl-5 text-gray-600 space-y-1 dark:text-slate-200">
               {experience.Awards.map((award, i) => (
                 <li key={i}>{award}</li>
               ))}
@@ -180,8 +181,8 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           {/* Accomplishments */}
           {experience.Accomplishments && experience.Accomplishments.length > 0 && (
             <div className="mb-6">
-              <h5 className="text-gray-800 font-medium mb-2">Accomplishments</h5>
-              <ul className="list-disc pl-5 text-gray-600 space-y-2">
+              <h5 className="text-gray-800 font-medium mb-2 dark:text-slate-100">Accomplishments</h5>
+              <ul className="list-disc pl-5 text-gray-600 space-y-2 dark:text-slate-200">
                 {experience.Accomplishments.map((responsibility, i) => (
                   <li key={i} className="leading-relaxed">
                     {responsibility}
@@ -196,13 +197,13 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             <div className="mt-6 border-t pt-4">
               {mediaContent.length > 0 && (
                 <div>
-                  <h5 className="text-gray-800 font-medium mb-3">Media</h5>
+                  <h5 className="text-gray-800 font-medium mb-3 dark:text-slate-100">Media</h5>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-4 mb-8 md:mb-6">
                     {mediaContent.map((content, i) => (
                       content.type === "image" ? (
                         <div
                           key={i}
-                          className="relative w-full h-40 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all"
+                          className="relative w-full h-40 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all dark:border-stone-400"
                           onClick={() => setSelectedImage({ src: content.src, alt: content.alt })}
                         >
                           <Image
@@ -237,13 +238,14 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             
               {linkContent.length > 0 && (
                 <div>
-                  <h5 className="text-gray-800 font-medium mb-3">Related Links</h5>
+                  <h5 className="text-gray-800 font-medium mb-3 dark:text-slate-100">Related Links</h5>
                   <div className="flex flex-wrap gap-3">
                     {linkContent.map((content, i) => (
                       <a 
                         key={i}
                         href={content.src} 
-                        className="block px-4 py-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors border border-blue-100"
+                        className="block px-4 py-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors border border-blue-100
+                                   dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700/20 dark:hover:bg-blue-900/30"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -266,7 +268,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           {/* Skills section */}
           {experience.Skills && experience.Skills.length > 0 && (
             <div className="mt-6 border-t pt-4">
-              <h5 className="text-gray-800 font-medium mb-3">Skills</h5>
+              <h5 className="text-gray-800 font-medium mb-3 dark:text-slate-100">Skills</h5>
               <div className="flex flex-wrap gap-2">
                 {experience.Skills
                   .sort((a, b) => {
@@ -309,19 +311,20 @@ function SkillCard({ skill }: { skill: Skill }) {
   
   // No imageLoaded state - simplify the approach
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 relative h-[280px] hover:shadow-xl transition-all overflow-hidden">
-      <h3 className="text-lg font-semibold text-gray-800 relative z-10">{skill.Title}</h3>
-      <h5 className="text-sm text-gray-600 mb-2 relative z-10">{skill.Subheading}</h5>
+    <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 relative h-[280px] hover:shadow-xl transition-all overflow-hidden
+                   dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-500 dark:hover:shadow-xl">
+      <h3 className="text-lg font-semibold text-gray-800 relative z-10 dark:text-slate-100">{skill.Title}</h3>
+      <h5 className="text-sm text-gray-600 mb-2 relative z-10 dark:text-slate-300">{skill.Subheading}</h5>
       
       <div className="h-[120px] overflow-hidden relative z-10">
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600 text-sm dark:text-slate-300">
           {skill.Description}
         </p>
       </div>
       
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-2xl whitespace-nowrap z-10">
         {[...Array(5)].map((_, i) => (
-          <span key={i} className={`${i < skill.Expertise ? "fa-solid fa-star text-amber-400" : "fa-regular fa-star text-gray-300"} px-1`}></span>
+          <span key={i} className={`${i < skill.Expertise ? "fa-solid fa-star text-amber-400 dark:text-amber-400/90" : "fa-regular fa-star text-gray-300 dark:text-gray-300/80"} px-1`}></span>
         ))}
       </div>
       
@@ -371,7 +374,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
       label?: string;
     }) => (
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3">
-        <span className="text-sm font-medium text-gray-700">{label}</span>
+        <span className="text-sm font-medium text-gray-700 dark:text-slate-200">{label}</span>
         <div className="flex items-center gap-1">
           {[1, 2, 3, 4, 5].map((stars) => (
             <button
@@ -391,13 +394,13 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             </button>
           ))}
         </div>
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500 dark:text-slate-300">
           Showing {selectedStars === 1 ? 'all' : `${selectedStars}+ star`} skills
         </span>
         {selectedStars > 1 && (
           <button 
             onClick={() => onChange(1)} 
-            className="text-blue-600 text-sm hover:underline"
+            className="text-blue-600 text-sm hover:underline dark:text-blue-400"
           >
             Show all
           </button>
@@ -411,7 +414,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
       <div className="relative z-10 pb-10">
         {/* Overview Section */}
         <section className="md:mb-16 mb-12 pt-8 md:pt-6" id="overview">
-          <h1 className="text-2xl md:text-4xl font-bold mb-8 text-[#141619] leading-tight">
+          <h1 className="text-2xl md:text-4xl font-bold mb-8 text-[#141619] leading-tight dark:text-neutral-100">
             Programming Experience and Skills
           </h1>
           
@@ -474,7 +477,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             </div>
           </div>
           
-          <hr className="border-t-2 border-gray-200 mb-6" />
+          <hr className="border-t-2 border-gray-200 mb-6 dark:border-gray-400 dark:border-t-1" />
         </section>
         
         {/* Professional Experience Section */}
@@ -487,7 +490,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
                     <ExperienceCard experience={exp} />
                 </div>
             ))}
-            <hr className="border-t-2 border-gray-200" />
+            <hr className="border-t-2 border-gray-200 dark:border-gray-400 dark:border-t-1" />
         </section>
         
         {/* Personal Experience Section */}
@@ -500,7 +503,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
                     <ExperienceCard experience={exp} />
                 </div>
             ))}
-            <hr className="border-t-2 border-gray-200" />
+            <hr className="border-t-2 border-gray-200 dark:border-gray-400 dark:border-t-1" />
         </section>
         
         {/* Skills Section */}
@@ -512,7 +515,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             {/* Programming Languages Section */}
             <div id="programming-languages" className="mb-8 scroll-mt-24">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-5">
-                <h3 className="text-xl font-semibold text-gray-800">Programming Languages</h3>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-slate-100">Programming Languages</h3>
               </div>
               
               {/* Star Filter for Languages */}
@@ -539,7 +542,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             {/* Technical Proficiencies Section */}
             <div id="technical-proficiencies" className="scroll-mt-24">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-5">
-                <h3 className="text-xl font-semibold text-gray-800">Technical Proficiencies</h3>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-slate-100">Technical Proficiencies</h3>
               </div>
               
               {/* Star Filter for Proficiencies */}
@@ -656,19 +659,23 @@ export default function Experience() {
     <a 
       href={data.Overall.Resume} 
       download
-      className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300"
+      className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300 dark:bg-indigo-600/40 dark:hover:bg-indigo-600/60"
     >
       Download Resume
     </a>
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-transparent">
+      <div className="hidden dark:block">
+        <BlurredBackground />
+      </div>
+      <div className="absolute top-0 left-0 w-full h-30 bg-sky-100 dark:hidden"></div>
       <NavBar />
       
       <div className="relative">
         {/* Background gradient */}
-        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-sky-100 to-white pointer-events-none" />
+        <div className="dark:hidden absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-sky-100 to-white pointer-events-none" />
         
         <div className="container mx-auto px-5 md:px-4 py-6 md:py-10 flex flex-1 relative z-10">
           <Sidebar 

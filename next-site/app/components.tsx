@@ -194,8 +194,10 @@ export function NavBar() {
     <nav 
       className={`sticky top-0 py-5 px-4 md:px-8 z-30 transition-all duration-300
         ${isScrolled 
-          ? 'bg-sky-100/95 backdrop-blur-sm shadow-sm dark:bg-[#171717]/95 dark:md:bg-[#171717]/80 dark:shadow-lg dark:shadow-black/20' 
-          : 'bg-sky-100 md:bg-transparent dark:bg-[#171717] dark:md:bg-transparent'}
+          ? 'bg-sky-100/95 backdrop-blur-sm shadow-sm dark:bg-[#171717]/80 dark:md:bg-[#171717]/80 dark:shadow-lg dark:shadow-black/20' 
+          : isMenuOpen
+            ? 'bg-sky-100 md:bg-transparent dark:bg-[#171717]/60 dark:md:bg-transparent'
+            : 'bg-sky-100 md:bg-transparent dark:bg-transparent dark:md:bg-transparent'}
       `} 
       id="topofpage"
     >
@@ -262,7 +264,7 @@ export function NavBar() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden mt-2 bg-sky-100 dark:bg-[#171717]">
+        <div className="md:hidden mt-2 bg-sky-100 dark:bg-transparent">
           <ul className="flex flex-col space-y-2 px-4 py-2">
             <li>
               <Link 
@@ -341,9 +343,9 @@ export function Sidebar({
   };
 
   return (
-    <div className="hidden lg:block w-64 pr-6 border-r border-gray-200">
-      <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">
-        <h3 className="text-lg font-semibold mb-6 text-gray-700">{title}</h3>
+    <div className="hidden lg:block w-64 pr-6 border-r border-gray-200 dark:border-gray-400">
+      <div className="sticky top-32 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">
+        <h3 className="text-lg font-semibold mb-6 text-gray-700 dark:text-slate-200">{title}</h3>
         <nav>
           <ul className="space-y-3">
             {sections.map(section => (
@@ -355,15 +357,15 @@ export function Sidebar({
                         href={section.href} 
                         className={`py-2 px-3 rounded-lg transition-colors flex-grow ${
                           activeSection === section.id 
-                            ? "bg-blue-100 text-blue-700 font-medium" 
-                            : "text-gray-700 hover:bg-blue-50"
+                            ? "bg-blue-100 text-blue-700 font-medium dark:text-slate-200 dark:bg-[#5967D9]/40" 
+                            : "text-gray-700 hover:bg-blue-50 dark:text-slate-200 dark:hover:bg-[#5967D9]/20 dark:hover:text-slate-100"
                         }`}
                       >
                         {section.title}
                       </a>
                       <button 
                         onClick={() => toggleSection(section.id)}
-                        className="p-1.5 ml-1 text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md"
+                        className="p-1.5 ml-1 text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md dark:text-gray-300 dark:hover:bg-gray-300"
                         aria-label={expandedSections[section.id] ? `Collapse ${section.title}` : `Expand ${section.title}`}
                       >
                         {expandedSections[section.id] ? (
@@ -379,12 +381,13 @@ export function Sidebar({
                     </div>
                     
                     {expandedSections[section.id] && section.subsections && (
-                      <ul className="mt-1 ml-4 border-l-2 border-gray-100 pl-3 space-y-1">
+                      <ul className="mt-1 ml-4 border-l-2 border-gray-100 pl-3 space-y-1 dark:border-gray-100/30">
                         {section.subsections.map(subsection => (
                           <li key={subsection.id}>
                             <a 
                               href={subsection.href}
-                              className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                              className="block py-1.5 px-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors 
+                                         dark:text-slate-300 dark:hover:bg-[#5967D9]/30 dark:hover:text-slate-100"
                             >
                               {subsection.title}
                             </a>
@@ -398,8 +401,8 @@ export function Sidebar({
                     href={section.href} 
                     className={`block py-2 px-3 rounded-lg transition-colors ${
                       activeSection === section.id 
-                        ? "bg-blue-100 text-blue-700 font-medium" 
-                        : "text-gray-700 hover:bg-blue-50"
+                        ? "bg-blue-100 text-blue-700 font-medium dark:text-slate-200 dark:bg-[#5967D9]/40" 
+                        : "text-gray-700 hover:bg-blue-50 dark:text-slate-200 dark:hover:bg-[#5967D9]/20 dark:hover:text-slate-100"
                     }`}
                   >
                     {section.title}
@@ -411,7 +414,7 @@ export function Sidebar({
         </nav>
         
         {footerContent && (
-          <div className="mt-10 border-t pt-6 border-gray-200">
+          <div className="mt-10 border-t pt-6 border-gray-200 dark:border-gray-400">
             {footerContent}
           </div>
         )}
@@ -460,7 +463,7 @@ export function MobileSidebar({
           />
           
           {/* Drawer content - from left side */}
-          <div className="absolute left-0 top-0 bottom-0 w-80 bg-white shadow-xl p-6 overflow-y-auto z-40 animate-slide-in-left">
+          <div className="absolute left-0 top-0 bottom-0 w-80 bg-white shadow-xl p-6 overflow-y-auto z-40 animate-slide-in-left dark:bg-[#171717]/95">
             <div className="mb-6">
               <h2 className="text-xl font-semibold">{title}</h2>
             </div>
@@ -471,7 +474,10 @@ export function MobileSidebar({
                   <li key={section.id}>
                     <a 
                       href={section.href}
-                      className={`block py-2 px-4 rounded-md ${section.subsections ? "mb-2" : ""} ${activeSection === section.id ? "bg-blue-100 text-blue-700 font-medium" : "text-gray-700 hover:bg-blue-50"}`}
+                      className={`block py-2 px-4 rounded-md ${section.subsections ? "mb-2" : ""} ${activeSection === section.id 
+                        ? "bg-blue-100 text-blue-700 font-medium dark:text-slate-200 dark:bg-[#5967D9]/40" 
+                        : "text-gray-700 hover:bg-blue-50 dark:text-slate-200 dark:hover:bg-[#5967D9]/20 dark:hover:text-slate-100"
+                      }`}
                       onClick={() => setIsOpen(false)}
                     >
                       {section.title}
@@ -483,7 +489,7 @@ export function MobileSidebar({
                           <li key={subsection.id}>
                             <a 
                               href={subsection.href}
-                              className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md"
+                              className="block py-1 px-4 text-gray-600 hover:text-blue-700 rounded-md dark:text-slate-300 dark:hover:bg-[#5967D9]/30 dark:hover:text-slate-100"
                               onClick={() => setIsOpen(false)}
                             >
                               {subsection.title}
@@ -497,7 +503,7 @@ export function MobileSidebar({
               </ul>
               
               {footerContent && (
-                <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="mt-10 border-t pt-6 border-gray-200 dark:border-gray-400">
                   {footerContent}
                 </div>
               )}

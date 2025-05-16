@@ -37,8 +37,8 @@ export function HeroSection() {
             style={{
               objectFit: 'cover',
               objectPosition: 'center top',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)',
-              maskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)',
               WebkitMaskSize: '100% 100%',
               maskSize: '100% 100%',
               WebkitMaskRepeat: 'no-repeat',
