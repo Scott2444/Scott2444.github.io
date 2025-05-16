@@ -62,11 +62,14 @@ export default function BlurredBackground() {
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <nav className="py-5 px-4 md:px-8 bg-sky-100" id="topofpage">
+    <nav className="py-5 px-4 md:px-8 bg-sky-100 dark:bg-[#171717]" id="topofpage">
       <div className="container mx-auto flex justify-between items-center">
         <div className="ml-0 md:ml-20">
           <Link href="/" className="text-[#141619] no-underline">
-            <h2 className="text-2xl font-medium">Scott Haakenson</h2>
+            <h2 className="text-2xl font-medium">
+              <span className="dark:text-zinc-300">Scott </span>
+              <span className="dark:bg-gradient-to-r dark:from-[#5967D9] dark:to-[#C84D4D] dark:bg-clip-text dark:text-transparent">Haakenson</span> 
+            </h2>
           </Link>
         </div>
 
@@ -86,7 +89,7 @@ export function NavBar() {
         </button>
 
         {/* Desktop menu */}
-        <div className="hidden md:block">
+        <div className="hidden md:block text-black dark:text-white">
           <ul className="flex">
             <li>
               <Link href="/" className="px-5 py-2.5 block font-semibold transition-all duration-500 hover-underline-animation">
@@ -111,7 +114,7 @@ export function NavBar() {
                     behavior: 'smooth' 
                   });
                 }}
-                className="px-5 py-2.5 block font-semibold bg-neutral-300 rounded-xl transition-all duration-500 hover:bg-neutral-400 w-full text-left"
+                className="px-5 py-2.5 block font-semibold bg-neutral-300 rounded-xl transition-all duration-500 hover:bg-neutral-400 w-full text-left dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-500"
                 style={{cursor: 'pointer'}}
               >
                 <h4 className="text-base md:text-lg font-medium">Contact</h4>
