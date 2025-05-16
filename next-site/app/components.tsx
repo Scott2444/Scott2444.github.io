@@ -1,7 +1,63 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
+
+export default function BlurredBackground() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+  
+  // Calculate different movement patterns for each orb
+  const purpleOrbPosition = {
+    x: mousePosition.x / 30,
+    y: mousePosition.y / 35,
+  };
+  
+  const redOrbPosition = {
+    x: mousePosition.x / -25, // Negative divisor makes it move opposite horizontally
+    y: mousePosition.y / 20,  // Different divisor for unique speed
+  };
+  
+  return (
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      {/* Purple orb */}
+      <div 
+        className="absolute w-[600px] h-[600px] rounded-full bg-[#5967D9]/50 blur-[100px]"
+        style={{
+          left: `calc(20% + ${purpleOrbPosition.x}px)`,
+          top: `calc(30% + ${purpleOrbPosition.y}px)`,
+          transform: 'translate(-50%, -50%)',
+        }}
+      ></div>
+      
+      {/* Red orb */}
+      <div 
+        className="absolute w-[500px] h-[500px] rounded-full bg-[#C84D4D]/40 blur-[120px]"
+        style={{
+          right: `calc(25% + ${redOrbPosition.x}px)`, 
+          bottom: `calc(20% + ${redOrbPosition.y}px)`,
+          transform: 'translate(50%, 50%)',
+        }}
+      ></div>
+      
+      {/* Optional: subtle noise texture overlay */}
+      <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-overlay"></div>
+    </div>
+  );
+}
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -5,6 +5,8 @@ import Link from "next/link";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { NavBar, ContactMe } from "./components";
+import data from '../public/data.json';
+
 
 export function HeroSection() {
   return (
@@ -121,25 +123,20 @@ export function AboutMe() {
       behavior: 'smooth'
     });
   };
-
-  // Card data
-  const cards = [
-    {
-      title: "Learning",
-      gradient: "from-[#5967D9] to-[#7DCFB6]",
-      content: "I love learning new things. I follow the tech world to learn about how the next up and coming innovation came to inception. I also like to learn about how cars are engineered. Although I've never been able to work on one, I hope to have a project car one day."
-    },
-    {
-      title: "Traveling",
-      gradient: "from-[#7DCFB6] to-[#FBD1A2]",
-      content: "Seeing the world is one of my life goals because it allows me to experience different cultures that are unlike anything else. Each new place I visit offers a fresh perspective, enriching my understanding of the world."
-    },
-    {
-      title: "Staying Active",
-      gradient: "from-[#FBD1A2] to-[#F79256]",
-      content: "I try my best to stay active because having a healthy body is the greatest gift you can give yourself. I enjoy playing casual sports with friends like volleyball or going to the gym to get stronger. One of the best joys are finally beating a personal record after weeks of stagnation."
-    }
+  
+  // Add gradients to match with interests data
+  const gradients = [
+    "from-[#5967D9] to-[#7DCFB6]",
+    "from-[#7DCFB6] to-[#FBD1A2]",
+    "from-[#FBD1A2] to-[#F79256]"
   ];
+  
+  // Map interests data to cards with gradients
+  const cards = data["About Me"].Interests.map((interest: any, index: number) => ({
+    title: interest.Title,
+    gradient: gradients[index % gradients.length], // Use modulo to ensure we don't exceed array bounds
+    content: interest.Description
+  }));
   
   // Effect to add a class to enable smooth scrolling after initial load
   useEffect(() => {
@@ -160,9 +157,7 @@ export function AboutMe() {
         </h2>
         <div className="max-w-3xl mx-auto">
           <h4 className="text-base md:text-xl font-normal text-center mb-8 md:mb-12 leading-relaxed px-4">
-            Here&apos;s a little bit about me. I&apos;m enthusiastic about coding and always looking to improve my skills.
-            But everyone needs a break, right?
-            When I&apos;m not coding, you can usually find me at the gym or hanging out with friends.
+            {data["About Me"]["About Header"]}
           </h4>
         </div>
 

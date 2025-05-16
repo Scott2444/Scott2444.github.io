@@ -1,5 +1,22 @@
 {
-    "About Me": {},
+    "About Me": {
+        "Introduction": "I'm currently a software engineering student at Michigan State University. I'm passionate about creating innovative products that push the bounds of what is possible.",
+        "About Header": "Here's a little bit about me. I'm enthusiastic about coding and always looking to improve my skills. But everyone needs a break, right? When I'm not coding, you can usually find me at the gym or hanging out with friends.",
+        "Interests": [
+            {
+                "Title": "Learning",
+                "Description": "I love learning new things. I follow the tech world to learn about how the next up and coming innovation came to inception. I also like to learn about how cars are engineered. Although I've never been able to work on one, I hope to have a project car one day."
+            },
+            {
+                "Title": "Traveling",
+                "Description": "Seeing the world is one of my life goals because it allows me to experience different cultures that are unlike anything else. Each new place I visit offers a fresh perspective, enriching my understanding of the world."
+            },
+            {
+                "Title": "Learning",
+                "Description": "I try my best to stay active because having a healthy body is the greatest gift you can give yourself. I enjoy playing casual sports with friends like volleyball or going to the gym to get stronger. One of the best joys are finally beating a personal record after weeks of stagnation."
+            }
+        ]
+    },
     "Experience": {
         "Professional": [
             {
