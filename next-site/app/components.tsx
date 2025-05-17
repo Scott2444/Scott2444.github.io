@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   // Close when Escape key is pressed
@@ -527,7 +527,7 @@ export function ContactMe() {
               Contact Me
             </h1>
             <h4 className="text-base md:text-xl font-normal mb-8 leading-relaxed max-w-xl">
-              I'm interested in hearing from you about job opportunities, social media connections, or simply for a conversation.
+              I`&apos;`m interested in hearing from you about job opportunities, social media connections, or simply for a conversation.
             </h4>
             
             {/* Social media icons */}

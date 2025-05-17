@@ -1,15 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import BlurredBackground, { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
 import data from '../../public/data.json';
-
-interface SidebarNavProps {
-    activeSection: string;
-}
 
 interface Experience {
   Title: string;
@@ -345,7 +340,7 @@ function SkillCard({ skill }: { skill: Skill }) {
   );
 }
 
-export function ExperienceContent({activeSection}: SidebarNavProps ) {
+function ExperienceContent() {
     const [languagesStarFilter, setLanguagesStarFilter] = useState(2); // Default to 2 stars
     const [proficienciesStarFilter, setProficienciesStarFilter] = useState(2); // Default to 2 stars
 
@@ -427,7 +422,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
               {/* Add max-height and overflow to prevent text overlap */}
               <div className="h-[140px] overflow-hidden"> 
                 <p className="text-left text-amber-50">
-                  Here are some of the professional projects I've been involved in, ranging from large corporations to small startups!
+                  Here are some of the professional projects I&apos;ve been involved in, ranging from large corporations to small startups!
                 </p>
               </div>
               <a 
@@ -684,7 +679,7 @@ export default function Experience() {
             activeSection={activeSection}
             footerContent={resumeButton}
           />
-          <ExperienceContent activeSection={activeSection} />
+          <ExperienceContent />
         </div>
       </div>
 
