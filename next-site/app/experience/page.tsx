@@ -420,7 +420,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
             {/* Professional Experience Card */}
-            <div className="bg-gradient-to-br from-amber-300 to-amber-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[300px] hover:shadow-xl transition-shadow">
+            <div className="bg-gradient-to-br from-amber-300 to-amber-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[310px] hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-semibold mb-2 text-white/90">
                 Professional Experience
               </h3>
@@ -439,7 +439,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             </div>
             
             {/* Personal Experience Card */}
-            <div className="bg-gradient-to-br from-rose-300 to-rose-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[300px] hover:shadow-xl transition-shadow">
+            <div className="bg-gradient-to-br from-rose-300 to-rose-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[310px] hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-semibold mb-2 text-white/90">
                 Personal Experience
               </h3>
@@ -458,7 +458,7 @@ export function ExperienceContent({activeSection}: SidebarNavProps ) {
             </div>
             
             {/* Skills Card */}
-            <div className="bg-gradient-to-br from-indigo-300 to-indigo-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[300px] hover:shadow-xl transition-shadow">
+            <div className="bg-gradient-to-br from-indigo-300 to-indigo-500 shadow-lg rounded-lg p-6 border border-gray-200 relative h-[310px] hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-semibold mb-2 text-white/90">
                 Skills
               </h3>

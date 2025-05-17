@@ -3,8 +3,10 @@
 import Image from "next/image";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
+import BlurredBackground,{ NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
 import data from '../../public/data.json';
+import stone from 'tailwindcss/colors';
+
 
 interface SidebarNavProps {
   activeSection: string;
@@ -44,6 +46,9 @@ interface Colors {
   primary: string;
   light: string;
   border: string;
+  primaryDark?: string;
+  lightDark?: string;
+  borderDark?: string;
 }
 
 // Helper function to adjust color brightness
@@ -99,7 +104,7 @@ function CourseList({ courses }: { courses?: { Code: string; Title: string }[] }
             <span className={`${bg} ${text} text-xs font-medium px-2 py-1 rounded mr-2 mb-1`}>
               {course.Code}
             </span>
-            <span className="text-gray-700 text-sm sm:text-base">{course.Title}</span>
+            <span className="text-gray-700 text-sm sm:text-base dark:text-slate-200">{course.Title}</span>
           </div>
         );
       })}
@@ -121,13 +126,29 @@ function SchoolCard({
   const createSectionId = (name: string) => {
     return name?.toLowerCase().replace(/[^a-z0-9]/g, '-') || '';
   };
+
+  const [colors, setColors] = useState({
+    primary: school.Colors?.primary || '#3B82F6',
+    light: school.Colors?.light || '#EFF6FF',
+    border: school.Colors?.border || '#BFDBFE'
+  });
   
   // Use colors directly from the JSON data with fallbacks
-  const colors = {
-    primary: school.Colors?.primary || '#3B82F6',    // default: blue-500
-    light: school.Colors?.light || '#EFF6FF',        // default: blue-50
-    border: school.Colors?.border || '#BFDBFE'       // default: blue-200
-  };
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setColors({
+        primary: school.Colors?.primaryDark || '#059669', // fallback: emerald-600
+        light: school.Colors?.lightDark || '#a7f3d0',     // fallback: emerald-200
+        border: school.Colors?.borderDark || '#6ee7b7'    // fallback: emerald-300
+      });
+    } else {
+      setColors({
+        primary: school.Colors?.primary || '#3B82F6',
+        light: school.Colors?.light || '#EFF6FF',
+        border: school.Colors?.border || '#BFDBFE'
+      });
+    }
+  }, [school.Colors]);
   
   return (
     <div 
@@ -138,7 +159,7 @@ function SchoolCard({
       <div className="md:hidden flex items-center mb-4">
         <div className="w-4 h-4 rounded-full bg-white border-2 mr-3" style={{ borderColor: colors.primary }}></div>
         <div 
-          className="px-3 py-1 rounded-full text-sm font-medium shadow-sm" 
+          className="px-3 py-1 rounded-full text-sm font-medium shadow-sm " 
           style={{ 
             background: colors.light,
             color: colors.primary,
@@ -161,7 +182,7 @@ function SchoolCard({
       </div>
       
       <div 
-        className="bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-xl transition-all duration-300 border-t-4 sm:border-t-8" 
+        className="bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-xl transition-all duration-300 border-t-4 sm:border-t-8 dark:bg-stone-900" 
         style={{ 
           borderColor: colors.border,
           borderTopColor: colors.primary
@@ -192,32 +213,56 @@ function SchoolCard({
           </div>
         )}
         
-        {/* Tab navigation - improved for mobile */}
-        <div className="flex border-b" style={{ borderColor: colors.border }}>
-          <button 
+        {/* Tab navigation */}
+        <div
+          className="flex border-b"
+          style={{
+            borderColor: colors.border,
+            backgroundColor: undefined, // fallback for light mode
+          }}
+        >
+          <button
             onClick={() => setActiveTab('academics')}
-            className={`flex-1 py-3 sm:py-4 px-2 sm:px-6 text-center font-medium transition-colors text-sm sm:text-base ${
-              activeTab === 'academics' 
-                ? 'border-b-2' 
-                : 'hover:bg-opacity-10 hover:bg-gray-200'
-            }`}
-            style={{ 
-              color: activeTab === 'academics' ? colors.primary : 'gray',
-              borderColor: activeTab === 'academics' ? colors.primary : 'transparent'
+            className={`flex-1 py-3 sm:py-4 px-2 sm:px-6 text-center font-medium transition-colors text-sm sm:text-base
+              ${activeTab === 'academics'
+                ? 'border-b-2'
+                : 'hover:bg-opacity-10 hover:bg-gray-200 dark:hover:bg-stone-700'}
+              dark:border-stone-700
+              dark:bg-stone-900
+              dark:text-neutral-200
+              ${activeTab === 'academics' ? 'dark:border-b-2' : ''}
+            `}
+            style={{
+              color: activeTab === 'academics'
+                ? colors.primary
+                : (typeof window !== "undefined" && window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? '#d1d5db' // Tailwind gray-300 for dark mode
+                    : 'gray'),
+              borderColor: activeTab === 'academics' ? colors.primary : 'transparent',
+              backgroundColor: undefined,
             }}
           >
             Academics
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('activities')}
-            className={`flex-1 py-3 sm:py-4 px-2 sm:px-6 text-center font-medium transition-colors text-sm sm:text-base ${
-              activeTab === 'activities' 
-                ? 'border-b-2' 
-                : 'hover:bg-opacity-10 hover:bg-gray-200'
-            }`}
-            style={{ 
-              color: activeTab === 'activities' ? colors.primary : 'gray',
-              borderColor: activeTab === 'activities' ? colors.primary : 'transparent'
+            className={`flex-1 py-3 sm:py-4 px-2 sm:px-6 text-center font-medium transition-colors text-sm sm:text-base
+              ${activeTab === 'activities'
+                ? 'border-b-2'
+                : 'hover:bg-opacity-10 hover:bg-gray-200 dark:hover:bg-stone-700'}
+              dark:border-stone-700
+              dark:bg-stone-900
+              dark:text-neutral-200
+              ${activeTab === 'activities' ? 'dark:border-b-2' : ''}
+            `}
+            style={{
+              color: activeTab === 'activities'
+                ? colors.primary
+                : (typeof window !== "undefined" && window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? '#d1d5db'
+                    : 'gray'),
+              borderColor: activeTab === 'activities' ? colors.primary : 'transparent',
+              backgroundColor: undefined,
             }}
           >
             <span className="hidden xs:inline">Activities</span>
@@ -232,10 +277,10 @@ function SchoolCard({
               {/* School information */}
               <div className="flex flex-col md:flex-row md:items-start md:justify-between">
                 <div>
-                  {school.Subheading && <h3 className="text-lg sm:text-xl text-gray-700 mb-2">{school.Subheading}</h3>}
+                  {school.Subheading && <h3 className="text-lg sm:text-xl text-gray-700 mb-2 dark:text-slate-200">{school.Subheading}</h3>}
                   <div className="space-y-1">
-                    {school.Degree && <p className="text-gray-700 text-sm sm:text-base">{school.Degree}</p>}
-                    {school.Minor && <p className="text-gray-700 text-sm sm:text-base">Minor in {school.Minor}</p>}
+                    {school.Degree && <p className="text-gray-700 text-sm sm:text-base dark:text-slate-200">{school.Degree}</p>}
+                    {school.Minor && <p className="text-gray-700 text-sm sm:text-base dark:text-slate-200">Minor in {school.Minor}</p>}
                     <p style={{ color: colors.primary }} className="font-medium text-sm sm:text-base">
                       GPA: {school.GPA.toFixed(2)}/4.00
                     </p>
@@ -243,8 +288,8 @@ function SchoolCard({
                 </div>
                 
                 <div className="mt-3 md:mt-0 md:text-right">
-                  <p className="text-gray-600 text-sm sm:text-base">{school.Location}</p>
-                  <p className="text-gray-500 text-xs sm:text-sm">
+                  <p className="text-gray-600 text-sm sm:text-base dark:text-slate-300">{school.Location}</p>
+                  <p className="text-gray-500 text-xs sm:text-sm dark:text-slate-400">
                     {school["Start Date"]} - {school["End Date"]}
                   </p>
                 </div>
@@ -327,7 +372,7 @@ function ExtracurricularCard({
                               linkContent.length;
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-4 sm:mb-8 border border-gray-200 hover:shadow-xl transition-all duration-300 relative"
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-4 sm:mb-8 border border-gray-200 hover:shadow-xl transition-all duration-300 relative dark:bg-stone-900 dark:border-stone-700"
       style={{ borderLeft: `4px solid ${schoolColor}` }}
     >
       <div className="p-4 sm:p-6">
@@ -338,18 +383,18 @@ function ExtracurricularCard({
               <h3 className="text-lg sm:text-xl font-semibold" style={{ color: schoolColor }}>{activity.Club}</h3>
             </div>
             {activity.Position && (
-              <h4 className="text-base sm:text-lg text-gray-700">{activity.Position}</h4>
+              <h4 className="text-base sm:text-lg text-gray-700 dark:text-slate-200">{activity.Position}</h4>
             )}
           </div>
           
           <div className="mt-1 md:mt-0 md:text-right">
-            <p className="text-gray-500 text-xs sm:text-sm">
+            <p className="text-gray-500 text-xs sm:text-sm dark:text-slate-400">
               {activity["Start Date"]} - {activity["End Date"]}
             </p>
           </div>
         </div>
         
-        <p className="text-gray-600 mb-4 sm:mb-5 leading-relaxed text-sm sm:text-base">
+        <p className="text-gray-600 mb-4 sm:mb-5 leading-relaxed text-sm sm:text-base dark:text-slate-300">
           {activity.Description}
         </p>
         
@@ -388,7 +433,7 @@ function ExtracurricularCard({
                 style={{ backgroundColor: headingBgColor, color: headingTextColor }}>
                 Accomplishments
               </h5>
-              <ul className="list-disc pl-4 sm:pl-5 text-gray-600 space-y-1 sm:space-y-2 text-sm sm:text-base">
+              <ul className="list-disc pl-4 sm:pl-5 text-gray-600 space-y-1 sm:space-y-2 text-sm sm:text-base dark:text-slate-300">
                 {activity.Accomplishments.map((accomplishment, i) => (
                   <li key={i} className="leading-relaxed">
                     {accomplishment}
@@ -405,7 +450,7 @@ function ExtracurricularCard({
                 style={{ backgroundColor: headingBgColor, color: headingTextColor }}>
                 Awards
               </h5>
-              <ul className="list-disc pl-4 sm:pl-5 text-gray-600 space-y-1 text-sm sm:text-base">
+              <ul className="list-disc pl-4 sm:pl-5 text-gray-600 space-y-1 text-sm sm:text-base dark:text-slate-300">
                 {activity.Awards.map((award, i) => (
                   <li key={i}>{award}</li>
                 ))}
@@ -520,17 +565,17 @@ function EducationContent({
       <div className="relative z-10 pb-10">
         {/* Overview Section with enhanced colors */}
         <section className="md:mb-16 mb-12 pt-8 md:pt-6" id="overview">
-          <h1 className="text-2xl md:text-4xl font-bold mb-8 text-[#141619] leading-tight">
+          <h1 className="text-2xl md:text-4xl font-bold mb-8 text-[#141619] leading-tight dark:text-neutral-100">
             Education and Extracurricular Activities
           </h1>
           
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-10">
-            <p className="text-lg text-gray-700 leading-relaxed">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-10 dark:from-blue-900/30 dark:to-indigo-900/30">
+            <p className="text-lg text-gray-700 leading-relaxed dark:text-slate-200">
               My academic journey has shaped my technical foundation, while extracurricular activities have developed my leadership, teamwork, and specialized skills. Below is a timeline of my educational experience and the activities that have contributed to my growth.
             </p>
           </div>
           
-          <hr className="border-t-2 border-gray-200 mb-10" />
+          <hr className="border-t-2 border-gray-200 mb-10 dark:border-gray-400 dark:border-t-1" />
         </section>
         
         {/* Education Timeline Section */}
@@ -617,14 +662,18 @@ export default function Education() {
     <a 
       href={data.Overall.Resume} 
       download
-      className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300"
+      className="block w-full bg-[#4891FF] hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center transition duration-300 dark:bg-indigo-600/40 dark:hover:bg-indigo-600/60"
     >
       Download Resume
     </a>
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-transparent">
+      <div className="hidden dark:block">
+        <BlurredBackground />
+      </div>
+      <div className="absolute top-0 left-0 w-full h-30 bg-sky-100 dark:hidden"></div>
       <NavBar />
 
       {selectedImage && (
@@ -637,7 +686,7 @@ export default function Education() {
       
       <div className="relative">
         {/* Background gradient */}
-        <div className="absolute top-0 left-0 w-full h-48 sm:h-64 bg-gradient-to-b from-sky-100 to-white pointer-events-none" />
+        <div className="dark:hidden absolute top-0 left-0 w-full h-48 sm:h-64 bg-gradient-to-b from-sky-100 to-white pointer-events-none" />
         
         <div className="container mx-auto px-4 sm:px-5 py-4 sm:py-6 md:py-10 flex flex-1 relative z-10">
           <Sidebar 
