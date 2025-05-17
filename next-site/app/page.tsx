@@ -1,14 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import BlurredBackground, { NavBar, ContactMe, ImageModal } from "./components";
 import data from '../public/data.json';
 
+interface Interest {
+  Title: string;
+  Description: string;
+}
 
-export function HeroSection() {
+interface ImageData {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+
+function HeroSection() {
   return (
     <section className="w-full bg-transparent relative">
       {/* Mobile layout: image with overlay text */}
@@ -114,7 +124,7 @@ export function HeroSection() {
   );
 }
 
-export function AboutMe() {
+function AboutMe() {
   // State to track active slide for mobile view
   const [activeSlide, setActiveSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -151,7 +161,7 @@ export function AboutMe() {
   ];
   
   // Map interests data to cards with gradients
-  const cards = data["About Me"].Interests.map((interest: any, index: number) => ({
+  const cards = data["About Me"].Interests.map((interest: Interest, index: number) => ({
     title: interest.Title,
     gradient: gradients[index % gradients.length], // Use modulo to ensure we don't exceed array bounds
     content: interest.Description
@@ -255,7 +265,7 @@ export function AboutMe() {
   );
 }
 
-export function ImageGallery() {
+function ImageGallery() {
   // State to track active image for mobile view
   const [activeImage, setActiveImage] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -328,7 +338,7 @@ export function ImageGallery() {
         
         {/* Desktop layout - larger images */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((image: any, index: number) => (
+          {images.map((image: ImageData, index: number) => (
             <div 
               key={`desktop-image-${index}`} 
               className="rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer"
@@ -369,7 +379,7 @@ export function ImageGallery() {
               paddingRight: 'calc((100% - 70%) / 2)',
             }}
           >
-            {images.map((image: any, index: number) => (
+            {images.map((image: ImageData, index: number) => (
               <div 
                 key={`mobile-image-${index}`}
                 className="flex-shrink-0 w-[100%] mx-[5%] snap-center"
@@ -401,7 +411,7 @@ export function ImageGallery() {
           {/* Pagination dots - fixed to handle all elements correctly */}
           {images.length > 1 && (
             <div className="flex justify-center mt-6 space-x-2">
-              {images.map((_: any, index: number) => (
+              {images.map((_: ImageData, index: number) => (
                 <button
                   key={`dot-${index}`}
                   onClick={() => scrollToImage(index)}

@@ -2,15 +2,9 @@
 
 import Image from "next/image";
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import BlurredBackground,{ NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
 import data from '../../public/data.json';
-import stone from 'tailwindcss/colors';
-
-
-interface SidebarNavProps {
-  activeSection: string;
-}
 
 interface School {
   School: string;
@@ -114,15 +108,12 @@ function CourseList({ courses }: { courses?: { Code: string; Title: string }[] }
 
 function SchoolCard({ 
   school, 
-  index,
   setSelectedImage  // Add this prop
 }: { 
   school: School, 
-  index: number,
   setSelectedImage: React.Dispatch<React.SetStateAction<{ src: string; alt: string } | null>>
 }) {
   const [activeTab, setActiveTab] = useState<'academics'|'activities'>('academics');
-  const [expanded, setExpanded] = useState<boolean>(false);
   const createSectionId = (name: string) => {
     return name?.toLowerCase().replace(/[^a-z0-9]/g, '-') || '';
   };
@@ -550,15 +541,10 @@ function ExtracurricularCard({
 }
 
 function EducationContent({ 
-  activeSection,
   setSelectedImage  // Add this prop
-}: SidebarNavProps & { 
+}:  { 
   setSelectedImage: React.Dispatch<React.SetStateAction<{ src: string; alt: string } | null>> 
 }) {
-  // Create helper function for section IDs
-  const createSectionId = (name: string) => {
-    return name?.toLowerCase().replace(/[^a-z0-9]/g, '-') || '';
-  };
   
   return (
     <div className="flex-1 md:pl-6 relative">
@@ -589,7 +575,7 @@ function EducationContent({
             
             {/* Schools */}
             {(data.Education as School[]).map((school, index) => (
-              <SchoolCard key={index} school={school} index={index} setSelectedImage={setSelectedImage} />
+              <SchoolCard key={index} school={school} setSelectedImage={setSelectedImage} />
             ))}
           </div>
         </section>
@@ -695,7 +681,7 @@ export default function Education() {
             activeSection={activeSection}
             footerContent={resumeButton}
           />
-          <EducationContent activeSection={activeSection} setSelectedImage={setSelectedImage}/>
+          <EducationContent setSelectedImage={setSelectedImage}/>
         </div>
       </div>
 
