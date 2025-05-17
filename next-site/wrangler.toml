@@ -1,4 +1,4 @@
 # Set a recent compatibility date. Update this to a more current date if needed.
-compatibility_date = "2024-03-15" 
+compatibility_date = "2025-04-01" 
 # Enable Node.js compatibility mode for Pages Functions
 compatibility_flags = ["nodejs_compat_populate_process_env"]
