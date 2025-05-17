@@ -1,0 +1,587 @@
+{
+    "Overall": {
+        "Resume": "College Resume - Third Year.pdf"
+    },
+    "About Me": {
+        "Introduction": "I'm currently a software engineering student at Michigan State University. I'm passionate about creating innovative products that push the bounds of what is possible.",
+        "About Header": "Here's a little bit about me. I'm enthusiastic about coding and always looking to improve my skills. But everyone needs a break, right? When I'm not coding, you can usually find me at the gym or hanging out with friends.",
+        "Interests": [
+            {
+                "Title": "Learning",
+                "Description": "I love learning new things. I follow the tech world to learn about how the next up and coming innovation came to inception. I also like to learn about how cars are engineered. Although I've never been able to work on one, I hope to have a project car one day."
+            },
+            {
+                "Title": "Traveling",
+                "Description": "Seeing the world is one of my life goals because it allows me to experience different cultures that are unlike anything else. Each new place I visit offers a fresh perspective, enriching my understanding of the world."
+            },
+            {
+                "Title": "Fitness",
+                "Description": "I try my best to stay active because having a healthy body is the greatest gift you can give yourself. I enjoy playing casual sports with friends like volleyball or going to the gym to get stronger. One of the best joys are finally beating a personal record after weeks of stagnation."
+            }
+        ],
+        "Images": [
+            {"src": "/images/Via_Ferrata.JPG", "alt": "Via Ferrata", "caption": "Hiking the Via Ferrata Trail in Murren, Switerzerland"},
+            {"src": "/images/Jungfraujoch.JPG", "alt": "Jungfraujoch Summit", "caption": "Summit of Jungfraujoch, the highest point in Europe"},
+            {"src": "/images/Japan.JPG", "alt": "Japan", "caption": "Great Budda Hall, Tōdai-ji in Nara, Japan"},
+            {"src": "/images/Eiffel_Tower.JPG", "alt": "Eiffel Tower", "caption": "Eiffel Tower in Paris, France"},
+            {"src": "/images/Caving.jpeg", "alt": "ULA Gathering", "caption": "Hang Tien Cave in Phong Nha, Vietnam"}
+        ]
+    },
+    "Experience": {
+        "Professional": [
+            {
+                "Subheading": "Michigan State University, CSE 331", 
+                "Title": "Undergraduate Learning Assistant", 
+                "Description": "CSE 331 is the Data Structures and Algorithms Course at MSU taught by Professor Sebnam Onsay.", 
+                "Location": "East Lansing, MI", 
+                "Start Date": "January 2024",
+                "End Date": "May 2025",
+                "Accomplishments": [
+                    "Developed a project focused on Deques with a robust test suite for automated grading in Python",
+                    "Evaluated 17 students’ projects for time and space complexity, correctness, and adherence to best practices",
+                    "Hosted 1:1 help rooms to support students with conceptual questions and project related coding issues"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/ULA.JPG", "alt": "ULA Gathering"}
+                ],
+                "Skills": [
+                    "Python",
+                    "Git",
+                    "Data Structures"
+                ],
+                "Banner": "/images/MSU_Header.png",
+                "Color": "#17453C"
+            },
+            {
+                "Subheading": "Schaeffler Group North America", 
+                "Title": "Prototype Software Development Co-op", 
+                "Description": "Schaeffler Group is a German-based automotive supplier with 120,000 employees worldwide.", 
+                "Location": "Troy, Michigan", 
+                "Start Date": "August 2024",
+                "End Date": "December 2024",
+                "Accomplishments": [
+                    "Developed a physics-based plant model to characterize the active ride height suspension in Simulink",
+                    "Authored a rigorous test suite for ride height control software, with 26% of test cases identifying failures",
+                    "Augmented an embedded chip to convert CAN communication to Serial communication in C++"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Schaeffler.jpg", "alt": "Schaeffler Office"}
+                ],
+                "Skills": [
+                    "MATLAB",
+                    "C"
+                ],
+                "Banner": "/images/Schaeffler_Header.png",
+                "Color": "#08954C"
+            },
+            {
+                "Subheading": "Ford Motor Company, Model E Group", 
+                "Title": "Product Development Intern", 
+                "Description": "Ford Motor Company, a major American car company, is famous for putting America on wheels. Today, they are pioneers in the electric vehicle space.", 
+                "Location": "Dearborn, Michigan", 
+                "Start Date": "May 2024",
+                "End Date": "August 2024",
+                "Accomplishments": [
+                    "Developed machine learning algorithms to predict internal temperatures of high-voltage battery packs",
+                    "Applied Hyperparameter Optimization algorithms to a novel Physics-Informed LSTM model, improving the model’s maximum error from 2.2°C to 1.6°C",
+                    "Designed backend scripts for comprehensive data analysis from various high-voltage battery tests",
+                    "Added dynamic interfaces to the GUI of the data analysis tool, designed for capability and future growth",
+                    "Refined the computational definitions of test methods to accurately determine high-voltage battery capacity"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Ford_Wind_Tunnel.jpg", "alt": "Ford Rolling Road Wind Tunnel"},
+                    {"type": "image", "src": "/images/Ford_Wind_Tunnel_Group.jpg", "alt": "VPEC Interns in the Ford Wind Tunnel"},
+                    {"type": "image", "src": "/images/Ford_Lightning.jpg", "alt": "Sitting in the furnk of a Ford Lightning"}
+                ],
+                "Skills": [
+                    "Python",
+                    "Git",
+                    "Linux",
+                    "Machine Learning",
+                    "Scikit-learn",
+                    "Keras",
+                    "TensorFlow"
+                ],
+                "Banner": "/images/Ford_Header.png",
+                "Color": "#081534"
+            },
+            {
+                "Subheading": "Native Projex, Inc.", 
+                "Title": "Backend Development Intern", 
+                "Description": "Quirks.ai is a proof-of-concept app in development by Native Projex, Inc. Native Projex is a small Vietnam-based start-up company. The app’s goal is to provide a trainable companion for each user that helps them explore the world the way that fits them best.", 
+                "Location": "Ho Chi Minh City, Vietnam", 
+                "Start Date": "May 2024",
+                "End Date": "August 2024",
+                "Accomplishments": [
+                    "Enhanced search accuracy from 60% to 80% by automating the processing and categorization of unstructured data to engineer a refined dataset to train a fine-tuned version of Microsoft's DeBERTa machine learning model",
+                    "Developed the dynamic sort algorithm as an integral component of a filtering and sorting search framework to provide customers with the best matching locations within major cities in Southeast Asia",
+                    "Utilized new vector search techniques and an emerging vector database called Weaviate that enabled the capability to search 100,000+ places"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Native_Projex.jpg", "alt": "Sitting in the office of Quirks.ai"}
+                ],
+                "Skills": [
+                    "Python",
+                    "Git",
+                    "Linux",
+                    "Machine Learning",
+                    "Scikit Learn",
+                    "TensorFlow",
+                    "GraphQL",
+                    "PostgreSQL",
+                    "Databases"
+                ],
+                "Color": "#911032"
+            }
+        ],
+        "Personal": [
+            {
+                "Title": "Personal Portfolio Website", 
+                "Location": "Novi, MI", 
+                "Start Date": "June 2024",
+                "End Date": "May 2025",
+                "Accomplishments": [
+                    "Built a static website using Next.js, TypeScript, and Tailwind CSS to showcase my projects and skills",
+                    "Implemented a responsive design to enable both desktop and mobile accessibility",
+                    "Designed website in Figma"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://www.scott-haakenson.com/", "alt": "Website"},
+                    {"type": "link", "src": "https://github.com/Scott2444/Scott2444.github.io", "alt": "Github Repo"}
+                ],
+                "Skills": [
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "TypeScript",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "Git",
+                    "Figma"
+                ],
+                "Color": "#2C2E3A"
+            },
+            {
+                "Title": "QuizMe for Amazon Echo",
+                "Subheading": "SpartaHack 10",
+                "Location": "East Lansing, MI", 
+                "Start Date": "February 2025",
+                "Accomplishments": [
+                    "Built QuizMe, an Amazon Alexa skill that converts Quizlet flashcards into voice-based quizzes using Google Gemini for question generation and semantic answer evaluation",
+                    "Developed a full-stack web app (Next.js and Tailwind CSS frontend, Flask backend on Render) to process Quizlet exports and serve them to Alexa via REST API",
+                    "Integrated AWS Lambda and the Alexa Developer Console to handle voice intents, external API calls, and user interaction through natural language",
+                    "Used Google Gemini’s API to rephrase flashcard definitions into quiz questions and interpret user responses with semantic flexibility"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/SpartaX_Group.JPG", "alt": "Group Photo"},
+                    {"type": "image", "src": "/images/SpartaX_Interactive.jpeg", "alt": "Winner of Interactive Track"},
+                    {"type": "image", "src": "/images/SpartaX_YouLearn.jpeg", "alt": "Winner of Best AI Learning Tool"},
+                    {"type": "link", "src": "https://devpost.com/software/quizme-for-amazon-echo?ref_content=my-projects-tab&ref_feature=my_projects", "alt": "Devpost"},
+                    {"type": "link", "src": "https://github.com/Scott2444/SpartahackX", "alt": "Amazon Skill Github Repo"},
+                    {"type": "link", "src": "https://github.com/maxgorm/quiz-me", "alt": "Website Github Repo"}
+                ],
+                "Skills": [
+                    "Python", 
+                    "Git", 
+                    "Machine Learning", 
+                    "AWS Lambda",
+                    "Tailwind CSS",
+                    "Next.js"
+                ],
+                "Color": "#3B75F3",
+                "Awards": [
+                    "[Interactive Media] Winner of the Track",
+                    "[YouLearn] The Best AI Learning tool for students and learners"
+                ]
+            },
+            {
+                "Title": "PDF Extract", 
+                "Location": "East Lansing, MI", 
+                "Start Date": "February 2025",
+                "Accomplishments": [
+                    "Built a full-stack web application to process and extract text and bounding boxes from PDFs, supporting both searchable and OCR-based documents",
+                    "Developed a FastAPI-based REST backend in Python to extract and return structured text-bounding box data from PDF URLs, with support for files up to 2,000 pages and 50MB",
+                    "Implemented OCR fallback for non-searchable PDFs and optimized processing to 1 second per 1000 pages",
+                    "Created a responsive frontend using Next.js, TypeScript, and Tailwind CSS that visualizes bounding boxes and transcripts with synchronized zoom and highlight interactions"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://pdf-extract-dusky.vercel.app/", "alt": "Deployment"},
+                    {"type": "link", "src": "https://github.com/Scott2444/PDF-Viewer", "alt": "Github Repo"}
+                ],
+                "Skills": [
+                    "Python", 
+                    "TypeScript",
+                    "Docker", 
+                    "Next.js", 
+                    "Vercel",
+                    "Tailwind CSS"
+                ]
+            },
+            {
+                "Title": "FitConnect",
+                "Subheading": "MHacks 2024", 
+                "Location": "Ann Arbor, MI", 
+                "Start Date": "September 2024",
+                "Accomplishments": [
+                    "Developed FitConnect, an iOS app built with SwiftUI and Firebase to help users find gym partners, share fitness goals, and track personal records in a social, supportive environment",
+                    "Engineered real-time data synchronization and user session storage using Firestore NoSQL database, integrating Firebase's Swift SDK for seamless backend communication",
+                    "Overcame integration issues with MongoDB Atlas and successfully migrated to Google Firebase, rebuilding the backend infrastructure under tight time constraints",
+                    "Gained first-hand experience with Swift, Xcode, and NoSQL databases, while designing a responsive UI and learning best practices for cloud-based app development"
+                ],
+                "Additional Content": [
+                    {"type": "video", "src": "https://www.youtube.com/watch?v=w3yO3yhb55E", "alt": "Demo Video"},
+                    {"type": "link", "src": "https://github.com/Scott2444/MHacks2024", "alt": "Github Repo"},
+                    {"type": "link", "src": "https://devpost.com/software/fitconnect-5164jc", "alt": "Devpost"}
+                ],
+                "Skills": [
+                    "Swift", 
+                    "Google Firebase",
+                    "MongoDB Atlas", 
+                    "NoSQL"
+                ],
+                "Color": "#FFAF2F"
+            },
+            {
+                "Title": "CongressForecast",
+                "Subheading": "SpartaHack 9", 
+                "Location": "East Lansing, MI", 
+                "Start Date": "January 2024",
+                "Accomplishments": [
+                    "Competed in the Spartahack 9 hack-a-thon and developed a machine learning algorithm to determine U.S. Congressional Election results based off data provided by the U.S. Census Bureau",
+                    "Leveraged TensorFlow’s deep learning capabilities to build a custom neural network for the prediction model",
+                    "Achieved 8.5% average error in predicting election outcomes within U.S. demographics and socioeconomic constraints"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://github.com/Scott2444/Spartahack_9", "alt": "Github Repo"}
+                ],
+                "Skills": [
+                    "Python", 
+                    "Machine Learning",
+                    "TensorFlow"
+                ]
+            },
+            {
+                "Title": "Ascent Videogame", 
+                "Location": "Novi, MI", 
+                "Start Date": "September 2021",
+                "End Date": "June 2022",
+                "Description": "Ascent is a 3D, online, multiplayer videogame created apart of the Novi High School Incubator Class. It was a collaborative effort of 2 other students.",
+                "Accomplishments": [
+                    "Led a project apart of the high school's incubator class to create a 3D multiplayer game directed at all audiences",
+                    "Utilized C# programming, Blender modeling, the Unity game engine, and Autodesk Fusion 360",
+                    "Engineered the foundational framework for a 3D multiplayer game, encompassing the development of a map, multiple character models, multiplayer server capabilities, and functional game mechanics within the designated project timeline"
+                ],
+                "Additional Content": [
+                    {"type": "image", "src": "/images/Ascent_Map.png", "alt": "Ascent Main Map Render"},
+                    {"type": "image", "src": "/images/Ascent_Menu.png", "alt": "Ascent Game Menu"}
+                ],
+                "Skills": [
+                    "C#", 
+                    "Blender",
+                    "Unity"
+                ]
+            }
+        ],
+        "Skills": {
+            "Languages": [
+                {
+                    "Title": "Python", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "Python is high-level, general-purpose programming language known for it’s readability, ease of use, and wide range of libraries.",
+                    "Expertise": 5, 
+                    "Logo": "/images/skills/Python.svg"
+                },
+                {
+                    "Title": "C", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "C is a powerful, low-level programming language known for its efficiency, portability, and close-to-hardware capabilities. It forms the foundation for many modern languages and operating systems.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/C.svg"
+                },
+                {
+                    "Title": "C++", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "C++ is a low-level, general-purpose programming language that excels in performance, flexibility, and a large standard library.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Cpp.svg"
+                },
+                {
+                    "Title": "C#", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "C# is a high-level, general-purpose programming language that excels at object-oriented programming. It is very popular in web applications and game development.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/CSharp.svg"
+                },
+                {
+                    "Title": "PostgreSQL", 
+                    "Subheading": "Query Language",
+                    "Description": "PostgreSQL is a powerful, open source query language used in relational databases. It is most proficient at storing data in a structured way while offering object-oriented features.",
+                    "Expertise": 5, 
+                    "Logo": "/images/skills/PostgreSQL.svg"
+                },
+                {
+                    "Title": "GraphQL", 
+                    "Subheading": "Query Language",
+                    "Description": "Graph QL is a query language known for it’s defined type structuring and system versatility, able to retrieve data from any server.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/GraphQL.svg"
+                },
+                {
+                    "Title": "HTML", 
+                    "Subheading": "Markup Language",
+                    "Description": "HTML (HyperText Markup Language) is the standard language used for creating and designing web pages. HTML is often used in conjunction with CSS and JavaScript.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/HTML.svg"
+                },
+                {
+                    "Title": "CSS", 
+                    "Subheading": "Styling Language",
+                    "Description": "CSS (Cascading Style Sheets) is a styling language used to control the presentation of web pages. It styles HTML elements to enhancing the visual appeal of websites.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/CSS.svg"
+                },
+                {
+                    "Title": "JavaScript", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "JavaScript is a high level, general purpose programming language that is the backbone of interactive web pages, allowing for dynamic elements.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Javascript.svg"
+                },
+                {
+                    "Title": "TypeScript", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "TypeScript is a statically typed superset of JavaScript that adds optional type checking and advanced tooling. It is commonly used for large-scale web development.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Typescript.svg"
+                },
+                {
+                    "Title": "MATLAB", 
+                    "Subheading": "Numerical Computing Environment",
+                    "Description": "MATLAB is a high-level programming environment used for numerical computation, data analysis, algorithm development, and visualization, widely adopted in engineering and scientific research.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Matlab.svg"
+                },
+                {
+                    "Title": "Swift", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "Swift is a programming language developed by Apple designed for safer, and more expressive software development on Apple platforms like iOS, macOS, and more.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Swift.svg"
+                }
+            ],
+            "Proficiencies": [
+                {
+                    "Title": "Git", 
+                    "Subheading": "Version Control",
+                    "Description": "Git is an open-source and extremely popular version control system. Its lightweight, distributed control makes it an absolute must-have for any software development.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Git.svg"
+                },
+                {
+                    "Title": "Machine Learning", 
+                    "Subheading": "Algorithms",
+                    "Description": "Machine Learning is a sub-field of AI that can learn complex tests from data. This field includes natural language processing, reinforcement learning, and computer vision.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Machine_Learning.svg"
+                },
+                {
+                    "Title": "Figma", 
+                    "Subheading": "Software",
+                    "Description": "Figma is a collaborative design tool used for creating user interfaces. It offers features for prototyping, real-time collaboration, vector graphics, and design systems.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Figma.svg"
+                },
+                {
+                    "Title": "TensorFlow", 
+                    "Subheading": "Machine Learning Library",
+                    "Description": "TensorFlow is an open-source machine learning framework created by Google to make it easier to build, train, and deploy machine learning models.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Tensorflow.svg"
+                },
+                {
+                    "Title": "Linux", 
+                    "Subheading": "Operating System",
+                    "Description": "Linux is a family of open-source operating system used in servers, desktops, and embedded systems and is known for it’s performance and customization.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Linux.svg"
+                },
+                {
+                    "Title": "Scikit Learn", 
+                    "Subheading": "Machine Learning Library",
+                    "Description": "Scikit-learn is an open-source machine learning library in Python that provides simple and efficient tools for data mining and analysis, including classification, regression, and clustering.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Scikit_Learn.svg"
+                },
+                {
+                    "Title": "Keras", 
+                    "Subheading": "Machine Learning Library",
+                    "Description": "Keras is a high-level neural networks API written in Python that runs on top of TensorFlow. It is user-friendly, modular, and great for fast experimentation with deep learning models.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Keras.svg"
+                },
+                {
+                    "Title": "Databases", 
+                    "Subheading": "Data Management",
+                    "Description": "Databases are organized collections of data that allow efficient retrieval, insertion, and deletion. They are fundamental to backend systems and data-driven applications.",
+                    "Expertise": 4, 
+                    "Logo": "/images/skills/Databases.svg"
+                },
+                {
+                    "Title": "Next.js", 
+                    "Subheading": "Web Framework",
+                    "Description": "Next.js is a React-based framework for building full-stack web applications. It offers features like server-side rendering, static site generation, and API routes out of the box.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Next_JS.svg"
+                },
+                {
+                    "Title": "Tailwind CSS", 
+                    "Subheading": "Styling Framework",
+                    "Description": "Tailwind CSS is a utility-first CSS framework that enables fast and consistent styling by composing classes directly in your HTML or JSX.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Tailwind.svg"
+                },
+                {
+                    "Title": "Docker", 
+                    "Subheading": "Containerization Platform",
+                    "Description": "Docker is a platform that enables developers to package applications and their dependencies into containers, ensuring consistency across different environments.",
+                    "Expertise": 3, 
+                    "Logo": "/images/skills/Docker.svg"
+                }
+            ]
+        }
+    },
+    "Education": [
+        {
+            "School": "Michigan State University",
+            "Subheading": "College of Engineering",
+            "Degree": "Bachelor of Science, Computer Science with Honors",
+            "Minor": "Business",
+            "GPA": 4.00,
+            "Start Date": "September 2022",
+            "End Date": "May 2026",
+            "Location": "East Lansing, MI",
+            "Selected Courses": [
+                {"Code": "CSE 404", "Title": "Introduction to Machine Learning"},
+                {"Code": "CSE 422", "Title": "Computer Networks"},
+                {"Code": "CSE 450", "Title": "Translation of Programming Languages"},
+                {"Code": "CSE 440", "Title": "Introduction to Artificial Intelligence"},
+                {"Code": "CSE 480", "Title": "Database Systems"},
+                {"Code": "CSE 491", "Title": "Software Performance Engineering"}
+            ],
+            "Extracirriculars": [
+                {
+                    "Club": "XR Club at MSU",
+                    "Position": "Workshop Director",
+                    "Start Date": "January 2024",
+                    "End Date": "December 2024",
+                    "Description": "The Extended Reality Club is a technical club aimed at promoting discussion about VR (virtual reality), AR (augment reality), and MR (mixed reality) technology. This is primarily done through meetings, workshops, and semester projects.",
+                    "Accomplishments": [
+                        "Launched the new XR Club at MSU in March 2024",
+                        "Created bi-weekly workshops for students to get hands-on experience with XR tools",
+                        "Interacted with clubs nationwide to ideate new workshop topics"
+                    ],
+                    "Additional Content": [
+                        {"type": "image", "src": "/images/XRLogo.png", "alt": "Club Logo"}
+                    ]
+                },
+                {
+                    "Club": "MSU Powerlifting Club",
+                    "Start Date": "August 2023",
+                    "End Date": "December 2023",
+                    "Description": "The MSU Powerlifting club is an athletic/social club to assemble students interested in powerlifting ranging from amateurs to experienced competitors. The most popular competition federation for members is the USAPL (United States of America Power Lifting)."
+                },
+                {
+                    "Club": "MSU Crew Club",
+                    "Start Date": "September 2022",
+                    "End Date": "May 2023",
+                    "Description": "The MSU Crew Club is a competitive athletic club for students interested in rowing. The club is organized as a team with coaches, equipment, and a boathouse. There are two competition seasons: the fall and spring with indoor winter training.",
+                    "Accomplishments": [
+                        "Practiced for 2 hours / day and weightlifted for 2 hours /day, 6 days / week",
+                        "Competed weekly in regional regattas apart of the American Collegiate Rowing Association",
+                        "Increased weight 145 lbs to 175 lbs by engaging in a rigorous diet provided by the team’s nutritionist"
+                    ],
+                    "Additional Content": [
+                        {"type": "video", "src": "/images/Rowing_Video.MOV", "alt": "Rowing Practice in the Grand River"}
+                    ]
+                }
+            ],
+            "Banner": "/images/MSU_Header.png",
+            "Colors": {
+                "primary": "#18453B",
+                "light": "#f0f7f5", 
+                "border": "#d3e6e1"
+            }
+        },
+        {
+            "School": "Novi High School",
+            "GPA": 4.09,
+            "Start Date": "September 2018",
+            "End Date": "June 2022",
+            "Location": "Novi, MI",
+            "Extracirriculars": [
+                {
+                    "Club": "FIRST Robotics",
+                    "Start Date": "June 2014",
+                    "End Date": "June 2022",
+                    "Description": "FIRST Robotics is a worldwide, youth robotics organization for 5th-12th grade students with 79,000+ teams. There are three distinct leagues with increasing technical difficultly: FLL, FTC, and FRC. The yearly competition revolves around a technical challenge for a robot to complete and the core values of FIRST. Awards consider both robot performance and how well a team embodies the core values.",
+                    "Accomplishments": [
+                        "Our Frog Force 503 team won the Chairman’s award at the 2021 Detroit World Championship, placing us in the Hall of Fame",
+                        "We engaged in community outreach across the world to spread STEM education",
+                        "Utilized computer vision to automate the aiming of the robot’s turret",
+                        "Designed and manufactured the chassis of the robot"
+                    ],
+                    "Awards": [
+                        "2021 Detroit World Championship Chairman’s Award"
+                    ]
+                },
+                {
+                    "Club": "Boy Scouts of America",
+                    "Position": "Senior Patrol Leader",
+                    "Start Date": "March 2015",
+                    "End Date": "January 2021",
+                    "Description": "The Boy Scouts of America is a youth organization focused on character development through outdoor activities, leadership training, and community service.",
+                    "Accomplishments": [
+                        "Earned Eagle Scout rank by planning, fundraising, and leading an Eagle Scout Project where I created a small park area outside the city civic center",
+                        "Led the my troop as the Senior Patrol Leader for 2 terms through COVID-19",
+                        "Organized weekly meetings and outdoors events for scouts",
+                        "Coordinated food drives between Cub Scouts, Boy Scouts, and local food banks"
+                    ],
+                    "Awards": [
+                        "Eagle Scout Rank"
+                    ]
+                },
+                {
+                    "Club": "Novi High School Track and Field",
+                    "Position": "Captain",
+                    "Start Date": "March 2019",
+                    "End Date": "June 2022",
+                    "Description": "Track and Field is a sports team sponsored by Novi High School. It is a spring season sport based on individual performance where each athlete competes in running events and/or field events.",
+                    "Accomplishments": [
+                        "Became a varsity athlete competing in the 100M and 200M Dash",
+                        "Led ~40 student athletes through warm-up, workouts, and competition"
+                    ],
+                    "Awards": [
+                        "2021 MHSAA Boys Track Division 1 Regional Champions"
+                    ]
+                },
+                {
+                    "Club": "Novi High School Marching Band",
+                    "Position": "Section Leader",
+                    "Start Date": "June 2018",
+                    "End Date": "October 2021",
+                    "Description": "The Novi High School Marching Band competes in the Michigan Competing Band Association (MCBA) with a yearly season from June to October. The band must memorize a 15 minute show, which is performed at football games and competitions.",
+                    "Accomplishments": [
+                        "Led the Sousaphone Section by teaching music, marching technique, and drill routines",
+                        "Relayed information between director, drum majors, and the section to ensure coordination"
+                    ]
+                }
+            ],
+            "Banner": "/images/Novi_High_School.png",
+            "Colors": {
+                "primary": "#0D7342",
+                "light": "#e6f2ed", 
+                "border": "#b5d5c7"
+            }
+        }
+    ]
+}
