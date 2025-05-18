@@ -527,7 +527,7 @@ export function ContactMe() {
               Contact Me
             </h1>
             <h4 className="text-base md:text-xl font-normal mb-8 leading-relaxed max-w-xl">
-              I`&apos;`m interested in hearing from you about job opportunities, social media connections, or simply for a conversation.
+              I&apos;m interested in hearing from you about job opportunities, social media connections, or simply for a conversation.
             </h4>
             
             {/* Social media icons */}
