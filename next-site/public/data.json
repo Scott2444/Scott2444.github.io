@@ -21,9 +21,9 @@
         ],
         "Images": [
             {"src": "/images/Via_Ferrata.JPG", "alt": "Via Ferrata", "caption": "Hiking the Via Ferrata Trail in Murren, Switerzerland"},
-            {"src": "/images/Jungfraujoch.JPG", "alt": "Jungfraujoch Summit", "caption": "Summit of Jungfraujoch, the highest point in Europe"},
-            {"src": "/images/Japan.JPG", "alt": "Japan", "caption": "Great Budda Hall, Tōdai-ji in Nara, Japan"},
-            {"src": "/images/Eiffel_Tower.JPG", "alt": "Eiffel Tower", "caption": "Eiffel Tower in Paris, France"},
+            {"src": "/images/Jungfraujoch.jpg", "alt": "Jungfraujoch Summit", "caption": "Summit of Jungfraujoch, the highest point in Europe"},
+            {"src": "/images/Japan.jpg", "alt": "Japan", "caption": "Great Budda Hall, Tōdai-ji in Nara, Japan"},
+            {"src": "/images/Eiffel_Tower.jpg", "alt": "Eiffel Tower", "caption": "Eiffel Tower in Paris, France"},
             {"src": "/images/Caving.jpeg", "alt": "ULA Gathering", "caption": "Hang Tien Cave in Phong Nha, Vietnam"}
         ]
     },
