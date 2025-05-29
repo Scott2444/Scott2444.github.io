@@ -30,10 +30,27 @@
     "Experience": {
         "Professional": [
             {
+                "Subheading": "Rocket Enterprise Technology", 
+                "Title": "Software Engineering Intern", 
+                "Description": "Rocket Mortgage is a major American mortgage lender and the largest online mortgage lender in the United States.", 
+                "Location": "Detroit, MI", 
+                "Start Date": "May 2025",
+                "End Date": "August 2025",
+                "Accomplishments": [
+                ],
+                "Additional Content": [
+                ],
+                "Skills": [
+                    "C#", "AWS", "MySQL", "ASP.NET Core", "GraphQL"
+                ],
+                "Banner": "/images/Rocket_Banner.jpg",
+                "Color": "#fc272f"
+            },
+            {
                 "Subheading": "Michigan State University, CSE 331", 
                 "Title": "Undergraduate Learning Assistant", 
                 "Description": "CSE 331 is the Data Structures and Algorithms Course at MSU taught by Professor Sebnam Onsay.", 
-                "Location": "East Lansing, MI", 
+                "Location": "East Lansing, Michigan", 
                 "Start Date": "January 2024",
                 "End Date": "May 2025",
                 "Accomplishments": [
@@ -110,8 +127,8 @@
                 "Title": "Backend Development Intern", 
                 "Description": "Quirks.ai is a proof-of-concept app in development by Native Projex, Inc. Native Projex is a small Vietnam-based start-up company. The app’s goal is to provide a trainable companion for each user that helps them explore the world the way that fits them best.", 
                 "Location": "Ho Chi Minh City, Vietnam", 
-                "Start Date": "May 2024",
-                "End Date": "August 2024",
+                "Start Date": "May 2023",
+                "End Date": "August 2023",
                 "Accomplishments": [
                     "Enhanced search accuracy from 60% to 80% by automating the processing and categorization of unstructured data to engineer a refined dataset to train a fine-tuned version of Microsoft's DeBERTa machine learning model",
                     "Developed the dynamic sort algorithm as an integral component of a filtering and sorting search framework to provide customers with the best matching locations within major cities in Southeast Asia",
@@ -367,6 +384,13 @@
                     "Description": "Swift is a programming language developed by Apple designed for safer, and more expressive software development on Apple platforms like iOS, macOS, and more.",
                     "Expertise": 2, 
                     "Logo": "/images/skills/Swift.svg"
+                },
+                {
+                    "Title": "Java", 
+                    "Subheading": "General Purpose Programming Language",
+                    "Description": "Java is a widely-used, object-oriented programming language known for its platform independence, allowing developers to write code once and run it on any device that supports Java. It is a popular choice for enterprise-scale applications, Android mobile app development, and large systems.",
+                    "Expertise": 2, 
+                    "Logo": "/images/skills/Java.svg"
                 }
             ],
             "Proficiencies": [
