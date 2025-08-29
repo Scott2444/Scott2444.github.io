@@ -32,16 +32,21 @@
             {
                 "Subheading": "Rocket Enterprise Technology", 
                 "Title": "Software Engineering Intern", 
-                "Description": "Rocket Mortgage is a major American mortgage lender and the largest online mortgage lender in the United States.", 
+                "Description": "Rocket Mortgage is the largest online mortgage lender in the United States.", 
                 "Location": "Detroit, MI", 
                 "Start Date": "May 2025",
                 "End Date": "August 2025",
                 "Accomplishments": [
+                    "Initiated and led the development of an Agile feature for the RHDS, the centralized service for all employee data, by building multiple endpoints in ASP.NET Core, MySQL, AWS RDS, Kubernetes, and Docker",
+                    "Developed a feature spanning several stories on the RHDS; iteratively designed and implemented APIs with input validation, database migrations via Flyway, and unit tests across controller, business, and DB layers, achieving 100% coverage on new code",
+                    "Built a permissions management API that automated client access provisioning, replacing manual SQL updates; reduced change requests from 1.5 engineer-hours to minutes per request, saving ~52 hours annually across the team",
+                    "Upgraded and refactored Notification Service Docs from Node 16 to Node 22, resolving package deprecations and implementing maintainability improvements, ensuring long-term support with minimal upkeep"
                 ],
                 "Additional Content": [
+                    {"type": "image", "src": "/images/Rocket_National_Intern_day.jpeg", "alt": "Rocket National Intern Day"}
                 ],
                 "Skills": [
-                    "C#", "AWS", "MySQL", "ASP.NET Core", "GraphQL"
+                    "C#", "ASP.NET Core", "GraphQL", "MySQL", "PostgreSQL", "Flyway", "REST API", "AWS", "Agile", "CircleCi", "SonarQube", "Snyk", "Docker", "K6"
                 ],
                 "Banner": "/images/Rocket_Banner.jpg",
                 "Color": "#fc272f"
