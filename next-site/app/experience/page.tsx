@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import { useState, useEffect } from "react";
-import BlurredBackground, { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent } from "../components";
+import BlurredBackground, { NavBar, ContactMe, Sidebar, MobileSidebar, SidebarSection, ImageModal, VideoComponent, PdfPreview } from "../components";
 import data from '../../public/data.json';
 
 interface Experience {
@@ -15,7 +15,7 @@ interface Experience {
   "End Date": string;
   Accomplishments?: string[];
   "Additional Content"?: {
-    type: "image" | "video" | "link";
+    type: "image" | "video" | "pdf" | "link";
     src: string;
     alt: string;
   }[];
@@ -66,7 +66,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   
   // Filter content by type
   const mediaContent = experience["Additional Content"]?.filter(
-    content => content.type === "image" || content.type === "video"
+    content => content.type === "image" || content.type === "video" || content.type === "pdf"
   ) || [];
   
   const linkContent = experience["Additional Content"]?.filter(
@@ -220,6 +220,10 @@ function ExperienceCard({ experience }: { experience: Experience }) {
                       ) : content.type === "video" ? (
                         <div key={i} className="w-full h-40 rounded-lg overflow-hidden border border-gray-200">
                           <VideoComponent src={content.src} alt={content.alt} />
+                        </div>
+                      ) : content.type === "pdf" ? (
+                        <div key={i} className="w-full h-40 rounded-lg overflow-hidden border border-gray-200">
+                          <PdfPreview src={content.src} alt={content.alt} />
                         </div>
                       ) : null
                     ))}

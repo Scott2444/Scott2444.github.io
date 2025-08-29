@@ -153,6 +153,33 @@
         ],
         "Personal": [
             {
+                "Title": "Machine Learning Agents in the Iterated Prisoner's Dilemma", 
+                "Subheading": "CSE 404 - Intro To Machine Learning, Final Project",
+                "Location": "East Lansing, MI", 
+                "Start Date": "April 2025",
+                "End Date": "May 2025",
+                "Accomplishments": [
+                    "Designed an experiment to test the effectiveness of online reinforcement learning agents in the Iterated Prisoner's Dilemma",
+                    "Trained 500 models (RNNs and LSTMs) with randomized hyperparameters against classic baseline strategies (e.g., Tit-for-Tat, Grim Trigger)",
+                    "Evaluated the models in a tournament where models competed against each other with online learning, identifying top-performing strategies",
+                    "Analyzed performance correlations between strategies, hyperparameters, and architectures, finding that LSTMs—favoring exploitative “nastier” strategies—outperformed RNNs"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://github.com/AparMohabansi/Prisoners-Dilemma", "alt": "Github Repo"},
+                    {"type": "image", "src": "/images/IPD-Performance.png", "alt": "Graph of Cooperation, Retailiation, and Forgiveness vs Performance"},
+                    {"type": "image", "src": "/images/IPD-Strategy.png", "alt": "Graph of Architecture and Strategy Index vs Performance"},
+                    {"type": "pdf", "src": "/IPD-Research-Paper.pdf", "alt": "Research Paper"}
+                ],
+                "Skills": [
+                    "Python",
+                    "Pytorch"
+                ],
+                "Color": "#2C2E3A",
+                "Awards": [
+                    "1st Place Team"
+                ]
+            },
+            {
                 "Title": "Personal Portfolio Website", 
                 "Location": "Novi, MI", 
                 "Start Date": "June 2024",

@@ -5,6 +5,33 @@ import Link from "next/link";
 import React from "react";
 import { useState, useEffect } from "react";
 
+// PDF preview component: shows a preview box with a PDF icon and label, opens PDF in new tab
+export function PdfPreview({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div
+      className="relative w-full h-40 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transition-all dark:border-stone-400 flex items-center justify-center bg-gray-50 dark:bg-stone-900"
+      onClick={() => window.open(src, '_blank', 'noopener')}
+      title={alt}
+      tabIndex={0}
+      role="button"
+      aria-label={`Open PDF: ${alt}`}
+    >
+      <div className="flex flex-col items-center justify-center w-full h-full">
+        <svg className="w-16 h-16 text-red-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6z" />
+        </svg>
+        <span className="text-sm font-medium text-red-600 dark:text-red-400">PDF Preview</span>
+        <span className="text-xs text-gray-500 dark:text-slate-400 mt-1 text-center px-2 line-clamp-2">{alt}</span>
+      </div>
+      <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
+        <span className="opacity-0 hover:opacity-100 text-white text-sm font-medium p-2 rounded bg-black bg-opacity-60 transition-opacity">
+          Click to open PDF
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   // Close when Escape key is pressed
   useEffect(() => {
