@@ -43,7 +43,7 @@
                     "Upgraded and refactored Notification Service Docs from Node 16 to Node 22, resolving package deprecations and implementing maintainability improvements, ensuring long-term support with minimal upkeep"
                 ],
                 "Additional Content": [
-                    {"type": "image", "src": "/images/Rocket_National_Intern_day.png", "alt": "Rocket National Intern Day"}
+                    {"type": "image", "src": "/images/Rocket_National_Intern_Day.png", "alt": "Rocket National Intern Day"}
                 ],
                 "Skills": [
                     "C#", "ASP.NET Core", "GraphQL", "MySQL", "PostgreSQL", "Flyway", "REST API", "AWS", "Agile", "CircleCi", "SonarQube", "Snyk", "Docker", "K6"
