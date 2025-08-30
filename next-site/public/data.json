@@ -43,7 +43,7 @@
                     "Upgraded and refactored Notification Service Docs from Node 16 to Node 22, resolving package deprecations and implementing maintainability improvements, ensuring long-term support with minimal upkeep"
                 ],
                 "Additional Content": [
-                    {"type": "image", "src": "/images/Rocket_National_Intern_day.jpeg", "alt": "Rocket National Intern Day"}
+                    {"type": "image", "src": "/images/Rocket_National_Intern_day.png", "alt": "Rocket National Intern Day"}
                 ],
                 "Skills": [
                     "C#", "ASP.NET Core", "GraphQL", "MySQL", "PostgreSQL", "Flyway", "REST API", "AWS", "Agile", "CircleCi", "SonarQube", "Snyk", "Docker", "K6"
@@ -167,7 +167,7 @@
                     "Designed an experiment to test the effectiveness of online reinforcement learning agents in the Iterated Prisoner's Dilemma",
                     "Trained 500 models (RNNs and LSTMs) with randomized hyperparameters against classic baseline strategies (e.g., Tit-for-Tat, Grim Trigger)",
                     "Evaluated the models in a tournament where models competed against each other with online learning, identifying top-performing strategies",
-                    "Analyzed performance correlations between strategies, hyperparameters, and architectures, finding that LSTMs—favoring exploitative “nastier” strategies—outperformed RNNs"
+                    "Analyzed performance correlations between strategies, hyperparameters, and architectures, finding that LSTMs tended to favor exploitative “nastier” strategies and outperformed RNNs"
                 ],
                 "Additional Content": [
                     {"type": "link", "src": "https://github.com/AparMohabansi/Prisoners-Dilemma", "alt": "Github Repo"},
@@ -191,7 +191,7 @@
                 "End Date": "May 2025",
                 "Accomplishments": [
                     "Built a static website using Next.js, TypeScript, and Tailwind CSS to showcase my projects and skills",
-                    "Implemented a responsive design to enable both desktop and mobile accessibility",
+                    "Implemented a responsive design to enable both desktop and mobile accessibility and both dark and light mode",
                     "Designed website in Figma"
                 ],
                 "Additional Content": [
