@@ -20,7 +20,7 @@ export function PdfPreview({ src, alt }: { src: string; alt: string }) {
         <svg className="w-16 h-16 text-red-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6z" />
         </svg>
-        <span className="text-sm font-medium text-red-600 dark:text-red-400">PDF Preview</span>
+        <span className="text-sm font-medium text-red-600 dark:text-red-400">PDF</span>
         <span className="text-xs text-gray-500 dark:text-slate-400 mt-1 text-center px-2 line-clamp-2">{alt}</span>
       </div>
       <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-200 flex items-center justify-center">

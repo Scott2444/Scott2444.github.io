@@ -60,10 +60,9 @@ function categorizeSkill(skillName: string): string {
   return "bg-gray-100 text-gray-700 dark:bg-gray-400/50 dark:text-slate-200";
 }
 
-function ExperienceCard({ experience }: { experience: Experience }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
-  
+function ExperienceCard({ experience, setSelectedImage }: { experience: Experience, setSelectedImage: (img: { src: string; alt: string } | null) => void }) {
+  const [isExpanded, setIsExpanded] = useState(false);  
+
   // Filter content by type
   const mediaContent = experience["Additional Content"]?.filter(
     content => content.type === "image" || content.type === "video" || content.type === "pdf"
@@ -101,14 +100,6 @@ function ExperienceCard({ experience }: { experience: Experience }) {
       )}
 
       <div className="p-5 md:p-6">
-        {selectedImage && (
-          <ImageModal
-            src={selectedImage.src}
-            alt={selectedImage.alt}
-            onClose={() => setSelectedImage(null)}
-          />
-        )}
-        
         {/* Basic information - always visible */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-5">
           <div>
@@ -344,7 +335,9 @@ function SkillCard({ skill }: { skill: Skill }) {
   );
 }
 
-function ExperienceContent() {
+function ExperienceContent({ setSelectedImage }: {
+  setSelectedImage: (img: { src: string; alt: string } | null) => void
+}) {
     const [languagesStarFilter, setLanguagesStarFilter] = useState(2); // Default to 2 stars
     const [proficienciesStarFilter, setProficienciesStarFilter] = useState(2); // Default to 2 stars
 
@@ -486,7 +479,7 @@ function ExperienceContent() {
           </h2>
             {(data.Experience.Professional as Experience[]).map((exp, index) => (
                 <div key={index} id={createSectionId(exp.Title)} className="scroll-mt-24">
-                    <ExperienceCard experience={exp} />
+                    <ExperienceCard experience={exp} setSelectedImage={setSelectedImage} />
                 </div>
             ))}
             <hr className="border-t-2 border-gray-200 dark:border-gray-400 dark:border-t-1" />
@@ -499,7 +492,7 @@ function ExperienceContent() {
             </h2>
             {(data.Experience.Personal as Experience[]).map((exp, index) => (
                 <div key={index} id={createSectionId(exp.Title)} className="scroll-mt-24">
-                    <ExperienceCard experience={exp} />
+                    <ExperienceCard experience={exp} setSelectedImage={setSelectedImage} />
                 </div>
             ))}
             <hr className="border-t-2 border-gray-200 dark:border-gray-400 dark:border-t-1" />
@@ -572,6 +565,7 @@ function ExperienceContent() {
 
 export default function Experience() {
   const [activeSection, setActiveSection] = useState("overview");  
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {      
@@ -666,11 +660,18 @@ export default function Experience() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-transparent">
+      {selectedImage && (
+        <ImageModal
+          src={selectedImage.src}
+          alt={selectedImage.alt}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
       <div className="hidden dark:block">
         <BlurredBackground />
       </div>
       <div className="absolute top-0 left-0 w-full h-30 bg-sky-100 dark:hidden"></div>
-      <NavBar />
+      {selectedImage === null && <NavBar />}
       
       <div className="relative">
         {/* Background gradient */}
@@ -683,7 +684,7 @@ export default function Experience() {
             activeSection={activeSection}
             footerContent={resumeButton}
           />
-          <ExperienceContent />
+          <ExperienceContent setSelectedImage={setSelectedImage} />
         </div>
       </div>
 
