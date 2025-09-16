@@ -20,7 +20,7 @@
             }
         ],
         "Images": [
-            {"src": "/images/Via_Ferrata.JPG", "alt": "Via Ferrata", "caption": "Hiking the Via Ferrata Trail in Murren, Switerzerland"},
+            {"src": "/images/Via_Ferrata.JPG", "alt": "Via Ferrata", "caption": "Via Ferrata Trail in Murren, Switzerland"},
             {"src": "/images/Jungfraujoch.jpg", "alt": "Jungfraujoch Summit", "caption": "Summit of Jungfraujoch, the highest point in Europe"},
             {"src": "/images/Japan.jpg", "alt": "Japan", "caption": "Great Budda Hall, Tōdai-ji in Nara, Japan"},
             {"src": "/images/Eiffel_Tower.jpg", "alt": "Eiffel Tower", "caption": "Eiffel Tower in Paris, France"},
@@ -179,9 +179,36 @@
                     "Python",
                     "Pytorch"
                 ],
-                "Color": "#2C2E3A",
+                "Color": "#9c2eb8",
                 "Awards": [
                     "1st Place Team"
+                ]
+            },
+            {
+                "Title": "N-Body Renderer", 
+                "Subheading": "CSE 491 - Software Performance Engineering, Final Project",
+                "Location": "East Lansing, MI", 
+                "Start Date": "April 2025",
+                "End Date": "May 2025",
+                "Accomplishments": [
+                    "Optimized a N-body simulator and renderer in C using AVX2 vectorization, OpenCilk parallelization, and cache locality techniques",
+                    "Refactored core simulation and rendering algorithms to reduce computational complexity and eliminate redundant calculations, achieving significant speedups",
+                    "Profiled and analyzed performance bottlenecks using advanced tooling"
+                ],
+                "Additional Content": [
+                    {"type": "link", "src": "https://github.com/spe-spring25/project2_haakens3-selipsky", "alt": "Github Repo"},
+                    {"type": "image", "src": "/images/N_Body_Render_Small.gif", "alt": "N-Body Simulation and Renderer Demo"},
+                    {"type": "image", "src": "/images/N_Body_Render_Large.gif", "alt": "N-Body Simulation and Renderer Demo"}
+                ],
+                "Skills": [
+                    "C",
+                    "OpenCilk",
+                    "AVX Intrinsics",
+                    "Perf"
+                ],
+                "Color": "#3945a3",
+                "Awards": [
+                    "Highest Project Performance in CSE 491"
                 ]
             },
             {
