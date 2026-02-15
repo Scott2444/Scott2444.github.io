@@ -213,6 +213,103 @@
         ],
         "Personal": [
             {
+                "Title": "Prodution Calculator",
+                "Location": "East Lansing, MI",
+                "Description": "A game-agnostic production pipeline planner for factory and management games like Factorio and Satisfactory. It allows users to define and share reusable game data, then build private factory workflows that automatically compute optimized production chains using linear programming. The platform provides a single, adaptable tool for designing and tracking complex production systems across any current or future game.",
+                "Start Date": "October 2025",
+                "End Date": "Present",
+                "Accomplishments": [
+                    "Designed a scalable, three-tier full-stack system for modeling production pipelines, emphasizing stateless services and clean separation of concerns",
+                    "Implemented a three-layered .NET Core RESTful API and PostgreSQL with Flyway for DB schema migrations",
+                    "Built modern, secure authentication using JWT access tokens with opaque refresh tokens",
+                    "Developed a React/Next.js frontend with TanStack Query for client state management and Tailwind CSS",
+                    "Self-hosted infrastructure using Cloudflare Pages and Zero Trust, with deployments via GitHub Actions CI/CD"
+                ],
+                "Additional Content": [
+                    {
+                        "type": "link",
+                        "src": "https://production-calculator.com",
+                        "alt": "Production Calculator (Coming Soon)"
+                    },
+                    {
+                        "type": "link",
+                        "src": "https://github.com/Scott2444/RealityCheck",
+                        "alt": "Github Repo"
+                    },
+                    {
+                        "type": "link",
+                        "src": "https://devpost.com/software/realitycheck-h0qt7s",
+                        "alt": "Devpost"
+                    }
+                ],
+                "Skills": [
+                    "ASP.NET Core",
+                    "JWT Authentication",
+                    "PostgreSQL",
+                    "Flyway",
+                    "GitHub Actions",
+                    "Next.js",
+                    "React",
+                    "TanStack Query",
+                    "REST API",
+                    "Tailwind CSS",
+                    "Linear Programming",
+                    "Resend Email API",
+                    "TypeScript"
+                ],
+                "Color": "#016630"
+            },
+            {
+                "Title": "Reality Check",
+                "Subheading": "SpartaHack 11",
+                "Location": "East Lansing, MI",
+                "Start Date": "February 2026",
+                "Accomplishments": [
+                    "Developed a decentralized media registry on Solana, enabling O(1) image verification using Program-Derived Addresses (PDAs) for instant, scalable lookup",
+                    "Built a full-stack web app and Chrome extension for seamless on-chain image registration and verification, with all cryptographic hashing performed client-side for integrity",
+                    "Designed and implemented a trust-agnostic system that empowers users to define their own trusted authorities, removing reliance on any central entity"
+                ],
+                "Additional Content": [
+                    {
+                        "type": "link",
+                        "src": "https://reality-check-deployment.vercel.app",
+                        "alt": "Reality Check"
+                    },
+                    {
+                        "type": "link",
+                        "src": "https://github.com/Scott2444/RealityCheck",
+                        "alt": "Github Repo"
+                    },
+                    {
+                        "type": "link",
+                        "src": "https://devpost.com/software/realitycheck-h0qt7s",
+                        "alt": "Devpost"
+                    },
+                    {
+                        "type": "video",
+                        "src": "https://www.youtube.com/watch?v=DdbmreodpWk",
+                        "alt": "Demo Video"
+                    },
+                    {
+                        "type": "image",
+                        "src": "/images/RealityCheckPage.png",
+                        "alt": "Website Page"
+                    }
+                ],
+                "Skills": [
+                    "Anchor",
+                    "Blockchain",
+                    "Chrome-Manifest",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "React",
+                    "Rust",
+                    "Solana",
+                    "TypeScript"
+                ],
+                "Color": "#016630"
+            },
+            {
                 "Title": "Machine Learning Agents in the Iterated Prisoner's Dilemma",
                 "Subheading": "CSE 404 - Intro To Machine Learning, Final Project",
                 "Location": "East Lansing, MI",
